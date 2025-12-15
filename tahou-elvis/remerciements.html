@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Remerciements - Collecte pour Tahou Elvis</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+      color: #333;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .hero-section {
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(10px);
+      border-radius: 25px;
+      padding: 50px 40px;
+      margin-bottom: 40px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      text-align: center;
+      animation: fadeInDown 0.8s ease-out;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-icon {
+      font-size: 5rem;
+      margin-bottom: 20px;
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-15px);
+      }
+    }
+
+    .hero-title {
+      font-size: 1.8rem;
+      line-height: 1.6;
+      color: #667eea;
+      font-weight: 600;
+      margin-bottom: 30px;
+      font-style: italic;
+      padding: 0 20px;
+    }
+
+    .bilan-section {
+      background: linear-gradient(135deg, #FFD700, #FFA500);
+      border-radius: 20px;
+      padding: 40px;
+      margin-bottom: 40px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+      animation: fadeInUp 0.8s ease-out 0.2s backwards;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .bilan-title {
+      text-align: center;
+      font-size: 2.2rem;
+      color: #fff;
+      margin-bottom: 30px;
+      font-weight: bold;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .bilan-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 25px;
+    }
+
+    .stat-card {
+      background: white;
+      border-radius: 15px;
+      padding: 25px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .stat-icon {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    .stat-value {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #667eea;
+      margin-bottom: 5px;
+    }
+
+    .stat-label {
+      font-size: 1rem;
+      color: #666;
+    }
+
+    .testimonials-section {
+      display: grid;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .testimonial-card {
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 35px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+      border-left: 6px solid #667eea;
+      animation: fadeInLeft 0.8s ease-out backwards;
+      position: relative;
+    }
+
+    .testimonial-card:nth-child(1) {
+      animation-delay: 0.3s;
+    }
+
+    .testimonial-card:nth-child(2) {
+      animation-delay: 0.4s;
+      border-left-color: #764ba2;
+    }
+
+    .testimonial-card:nth-child(3) {
+      animation-delay: 0.5s;
+      border-left-color: #FF6B9D;
+    }
+
+    @keyframes fadeInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .testimonial-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .testimonial-avatar {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: white;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .testimonial-info h3 {
+      font-size: 1.3rem;
+      color: #667eea;
+      margin-bottom: 5px;
+    }
+
+    .testimonial-role {
+      font-size: 0.9rem;
+      color: #999;
+      font-style: italic;
+    }
+
+    .testimonial-content {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #444;
+      position: relative;
+      padding-left: 20px;
+    }
+
+    .testimonial-content::before {
+      content: '"';
+      font-size: 4rem;
+      color: #667eea;
+      opacity: 0.2;
+      position: absolute;
+      left: -10px;
+      top: -20px;
+      font-family: Georgia, serif;
+    }
+
+    .quote-mark {
+      font-size: 3rem;
+      color: #667eea;
+      opacity: 0.3;
+      line-height: 0;
+    }
+
+    .footer-message {
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+      animation: fadeIn 0.8s ease-out 0.6s backwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .footer-message h2 {
+      font-size: 2rem;
+      color: #667eea;
+      margin-bottom: 20px;
+    }
+
+    .footer-message p {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: #555;
+    }
+
+    .hearts {
+      font-size: 2rem;
+      margin: 20px 0;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 1.3rem;
+        padding: 0 10px;
+      }
+
+      .hero-section {
+        padding: 30px 20px;
+      }
+
+      .bilan-section {
+        padding: 25px 20px;
+      }
+
+      .bilan-title {
+        font-size: 1.6rem;
+      }
+
+      .testimonial-card {
+        padding: 25px 20px;
+      }
+
+      .stat-value {
+        font-size: 1.5rem;
+      }
+    }
+
+    .sparkles {
+      position: fixed;
+      pointer-events: none;
+      animation: sparkle 3s ease-in-out infinite;
+    }
+
+    @keyframes sparkle {
+      0%, 100% {
+        opacity: 0;
+        transform: scale(0);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .proof-section, .gift-section {
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 40px;
+      margin-bottom: 40px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+      animation: fadeInUp 0.8s ease-out backwards;
+    }
+
+    .proof-section {
+      animation-delay: 0.6s;
+    }
+
+    .gift-section {
+      animation-delay: 0.7s;
+    }
+
+    .proof-title, .gift-title {
+      font-size: 2rem;
+      color: #667eea;
+      text-align: center;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .proof-subtitle, .gift-subtitle {
+      font-size: 1.1rem;
+      color: #999;
+      text-align: center;
+      margin-bottom: 30px;
+      font-style: italic;
+    }
+
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .proof-card, .gift-card {
+      background: white;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .proof-card:hover, .gift-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+    }
+
+    .proof-label {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #667eea;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    .proof-image-container, .gift-image-container {
+      width: 100%;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #f0f0f0;
+      min-height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .proof-image, .gift-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .proof-card:hover .proof-image,
+    .gift-card:hover .gift-image {
+      transform: scale(1.05);
+    }
+
+    .gift-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      max-width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      .proof-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .proof-section, .gift-section {
+        padding: 25px 20px;
+      }
+
+      .proof-title, .gift-title {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Section Héro avec titre principal -->
+    <div class="hero-section">
+      <div class="hero-icon">🙏</div>
+      <div class="hero-title">
+        « Quelqu'un qui te vient en aide alors que lui-même il se cherche, ce n'est plus de l'aide, on appelle ça de l'amour disait un artiste, et c'est ce dont vous m'avez témoigné. Alors que vous étiez en train de voir comment terminer le mois avec l'argent de transport qu'il vous restait, vous avez tenu à me témoigner de l'amour. »
+        <br><br>
+        <p>Tahou Elvis Patrice</p>
+      </div>
+      <div class="hearts">❤️ 💛 💚 💙 💜</div>
+    </div>
+
+    <!-- Section Bilan -->
+    <div class="bilan-section">
+      <div class="bilan-title">🎉 Bilan de la Collecte 🎉</div>
+      <div class="bilan-stats">
+        <div class="stat-card">
+          <div class="stat-icon">💰</div>
+          <div class="stat-value">527 000 FCFA</div>
+          <div class="stat-label">Total collecté</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">👥</div>
+          <div class="stat-value">42</div>
+          <div class="stat-label">Contributeurs</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">📅</div>
+          <div class="stat-value">1 semaine</div>
+          <div class="stat-label">Durée</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section Témoignages -->
+    <div class="testimonials-section">
+      <div class="testimonial-card">
+        <div class="testimonial-header">
+          <div class="testimonial-avatar">1</div>
+          <div class="testimonial-info">
+            <h3>Belle-mère de Elvis</h3>
+            <div class="testimonial-role">Femme légale du défunt</div>
+          </div>
+        </div>
+        <div class="testimonial-content">
+          Mon fils, Que Dieu vous bénisse toi et tes amis pour l'aide que vous nous avez apporter. Merci du fond du cœur. Que Dieu bénisse vos enfants et qu'ils réussissent.
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-header">
+          <div class="testimonial-avatar">2</div>
+          <div class="testimonial-info">
+            <h3>Oncle de Elvis</h3>
+            <div class="testimonial-role">Petit frère du défunt</div>
+          </div>
+        </div>
+        <div class="testimonial-content">
+          Merci beaucoup pour votre geste. Moi-même je me demandais où Elvis a eu tout cet argent vu que je connais sa situation actuelle ? C'est aujourd'hui j'ai la réponse. Vraiment que Dieu vous bénisse. Malgré que vous vous êtes séparés après l'école, mais vous avez tenu à lui venir en aide dans cette situation difficile qu'il a traversé : ça, ce n'est pas tout le monde qui le fait. Vraiment Que Dieu vous récompense.
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-header">
+          <div class="testimonial-avatar">3</div>
+          <div class="testimonial-info">
+            <h3>Sœur aînée de Elvis</h3>
+            <div class="testimonial-role">Fille aînée du défunt</div>
+          </div>
+        </div>
+        <div class="testimonial-content">
+          Elvis m'a informé de l'aide que vous lui avez apporté, et je tenais à vous dire infiniment merci. Les mots me manquent pour exprimer ce que je ressens réellement, mais je prie que Dieu vous le rende au centuple. Merci beaucoup.
+        </div>
+      </div>
+    </div>
+
+    <!-- Section Preuves des versements -->
+    <div class="proof-section">
+      <div class="proof-title">📸 Preuves des versements</div>
+      <div class="proof-subtitle">Transferts effectués à notre ami Elvis</div>
+      <div class="proof-grid">
+        <div class="proof-card">
+          <div class="proof-label">Versement 1</div>
+          <div class="proof-image-container">
+            <img src="./preuve_versement_1.jpg" alt="Preuve de versement 1" class="proof-image">
+          </div>
+        </div>
+        <div class="proof-card">
+          <div class="proof-label">Versement 2</div>
+          <div class="proof-image-container">
+            <img src="./preuve_versement_2.jpg" alt="Preuve de versement 2" class="proof-image">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section Don reçu -->
+    <div class="gift-section">
+      <div class="gift-title">🎁 Don reçu lors de ma visite</div>
+      <div class="gift-subtitle">La générosité d'Elvis en retour</div>
+      <div class="gift-container">
+        <div class="gift-card">
+          <div class="gift-image-container">
+            <img src="./photo_don_elvis.jpg" alt="Photo du don d'Elvis 1" class="gift-image">
+          </div>
+        </div>
+        <div class="gift-card">
+          <div class="gift-image-container">
+            <img src="./photo_ensemble.jpg" alt="Photo du don d'Elvis 2" class="gift-image">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Message de fin -->
+    <div class="footer-message">
+      <h2>✨ Merci Infiniment ✨</h2>
+      <p>À tous les contributeurs qui ont rendu cela possible,<br>
+      Votre générosité et votre solidarité resteront gravées dans nos cœurs.<br>
+      Que l'amour que vous avez semé vous revienne multiplié.</p>
+      <div class="hearts">💝 🙏 ✨</div>
+    </div>
+  </div>
+
+  <script>
+    // Créer des étoiles scintillantes en arrière-plan
+    function createSparkle() {
+      const sparkle = document.createElement('div');
+      sparkle.className = 'sparkles';
+      sparkle.textContent = '✨';
+      sparkle.style.left = Math.random() * window.innerWidth + 'px';
+      sparkle.style.top = Math.random() * window.innerHeight + 'px';
+      sparkle.style.fontSize = (Math.random() * 20 + 10) + 'px';
+      document.body.appendChild(sparkle);
+      
+      setTimeout(() => sparkle.remove(), 3000);
+    }
+
+    // Créer des étoiles périodiquement
+    setInterval(createSparkle, 800);
+    
+    // Créer quelques étoiles initiales
+    for (let i = 0; i < 10; i++) {
+      setTimeout(createSparkle, i * 200);
+    }
+  </script>
+</body>
+</html>

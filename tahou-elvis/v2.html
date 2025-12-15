@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SUIVI DES COTISATIONS POUR [ TAHOU ELVIS ]</title>
+  <link rel="icon" type="image/png" href="./icocollecte.png">
+  <meta property="og:title" content="SUIVI DES COTISATIONS POUR [ TAHOU ELVIS ]" />
+  <meta property="og:description" content="Suivi des collectes pour Tahou Elvis. Liste des contributions reçues.">
+  <meta property="og:image" content="https://raw.githubusercontent.com/asadgery/collecte-tahou-elvis/main/qr_code_wave_1200.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="1200" />
+  <meta property="og:url" content="https://asadgery.github.io/collecte-tahou-elvis/" />
+  <meta property="og:type" content="website" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+      color: #333;
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 30px;
+      margin-bottom: 30px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      animation: slideDown 0.6s ease-out;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h1 {
+      color: #667eea;
+      text-align: center;
+      font-size: 2em;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    header > p {
+      text-align: center;
+      margin: 10px 0;
+      font-size: 1.1em;
+    }
+
+    .qrcodes {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin: 25px 0;
+      flex-wrap: wrap;
+    }
+
+    .qrcode {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .qrcode:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+    }
+
+    .qrcode span {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .qrcode.wave span:first-child {
+      color: #00A6FF;
+    }
+
+    .qrcode.mtn span:first-child {
+      color: #FFCC00;
+    }
+
+    .qrcode.orange span:first-child {
+      color: #FF6600;
+    }
+
+    .qrcode img {
+      width: 80px;
+      height: 80px;
+      margin-top: 10px;
+      border-radius: 10px;
+    }
+
+    .indicators {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin: 30px 0;
+    }
+
+    .indicator {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 20px;
+      border-radius: 15px;
+      text-align: center;
+      color: white;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .indicator:hover {
+      transform: scale(1.05);
+    }
+
+    .indicator span {
+      display: block;
+      font-size: 0.9em;
+      opacity: 0.9;
+      margin-bottom: 8px;
+    }
+
+    .indicator strong {
+      display: block;
+      font-size: 1.3em;
+      font-weight: bold;
+    }
+
+    .progress-container {
+      background: #e0e0e0;
+      border-radius: 50px;
+      height: 40px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: inset 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #FF4500, #FF6347);
+      border-radius: 50px;
+      transition: width 1s ease, background 0.5s ease;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 15px;
+      color: white;
+      font-weight: bold;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    .table-container {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      overflow-x: auto;
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    thead {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+
+    th {
+      padding: 15px;
+      text-align: left;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.9em;
+      letter-spacing: 0.5px;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid #e0e0e0;
+      transition: all 0.3s ease;
+      animation: slideIn 0.5s ease-out backwards;
+    }
+
+    tbody tr:nth-child(even) {
+      background: #f8f9ff;
+    }
+
+    tbody tr:hover {
+      background: linear-gradient(90deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+      transform: scale(1.02);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    td {
+      padding: 15px;
+    }
+
+    td:first-child {
+      font-weight: bold;
+      color: #667eea;
+      font-size: 1.1em;
+    }
+
+    td:nth-child(2) {
+      font-weight: 600;
+    }
+
+    td:nth-child(3) {
+      color: #32CD32;
+      font-weight: 600;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: white;
+      font-size: 1.2em;
+      font-weight: 600;
+      margin-top: 30px;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.7;
+      }
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 1.5em;
+      }
+
+      .indicators {
+        grid-template-columns: 1fr;
+      }
+
+      table {
+        font-size: 0.9em;
+      }
+
+      th, td {
+        padding: 10px 5px;
+      }
+    }
+
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background: #f0f;
+      position: absolute;
+      animation: confetti-fall 3s linear;
+    }
+
+    @keyframes confetti-fall {
+      to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🎯 SUIVI DES COTISATIONS POUR [ TAHOU ELVIS ]</h1>
+    <p>Votre geste, quel qu'il soit, sera précieux. Et il comptera !</p>
+    <p><b>Numéros : Wave/MTN (+225) 0505637361 | Orange (+225) 0749052678</b></p>
+
+    <div class="qrcodes">
+        <div class="qrcode wave">
+            <span>💙 Wave</span>
+            <span>05 05 63 73 61</span>
+            <a href="wave://capture/scan">
+              <img src="./qr_code_wave_80x80.jpg" alt="QR Code Wave">
+            </a> 
+        </div>
+        <div class="qrcode mtn">
+            <span>💛 MTN MoMo</span>
+            <span>05 05 63 73 61</span>
+            <a href="tel:*133%23">
+              <img src="./qr_code_mtn_80x80.jpg" alt="QR Code MTN">
+            </a>            
+        </div>
+        <div class="qrcode orange">
+            <span>🧡 Orange Money</span>
+            <span>07 49 05 26 78</span>
+            <a href="tel:%23144*1%23">
+              <img src="./qr_code_orange_80x80.jpg" alt="QR Code Orange">
+            </a>            
+        </div>
+    </div>
+    
+    <div class="indicators">
+      <div class="indicator objectif">
+        <span>🎯 Objectif minimum</span>
+        <strong id="objectif">400 000 FCFA</strong>
+      </div>
+      <div class="indicator total-recu">
+        <span>💰 Total reçu</span>
+        <strong id="total">0 FCFA</strong>
+      </div>
+      <div class="indicator reste">
+        <span>📊 Reste à collecter</span>
+        <strong id="reste">400 000 FCFA</strong>
+      </div>
+      <div class="indicator date-limite">
+        <span>⏰ Date limite</span>
+        <strong>21/11/2025 23:59</strong>
+      </div>
+    </div>
+
+    <div class="progress-container">
+      <div class="progress-bar" id="progress-bar"></div>
+    </div>
+  </header>
+
+  <section class="table-container">
+    <h2 style="color: #667eea; margin-bottom: 10px;">📋 Liste des contributeurs</h2>
+    <table id="contributions">
+      <thead>
+        <tr>
+          <th>N°</th>
+          <th>Nom</th>
+          <th>Montant versé (FCFA)</th>
+          <th>Mode de paiement</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Les lignes seront générées automatiquement -->
+      </tbody>
+    </table>
+  </section>
+
+  <footer>
+    <p>🙏 Merci pour votre solidarité et votre soutien !</p>
+    <button id="celebration-btn" style="
+      margin-top: 20px;
+      padding: 20px 40px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      background: linear-gradient(135deg, #FFD700, #FFA500);
+      color: #333;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+      animation: pulse-button 2s ease-in-out infinite;
+    " onclick="window.location.href='celebration.html'">
+      🎉 Voir la célébration ! 🎉
+    </button>
+  </footer>
+
+  <style>
+    @keyframes pulse-button {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+      50% {
+        transform: scale(1.05);
+        box-shadow: 0 15px 40px rgba(255, 215, 0, 0.5);
+      }
+    }
+    
+    #celebration-btn:hover {
+      transform: scale(1.1) rotate(-3deg);
+      box-shadow: 0 15px 50px rgba(255, 215, 0, 0.7);
+    }
+  </style>
+
+  <script>
+    const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRCWf3Bt4Fec1mMurCINfvwa3QaysB_JDsNafQ2sNgzzkZCDBnzoVKrTqXD-YyjckQ60c4zvII8gxUm/pub?output=csv';
+    const objectif = 400000;
+
+    function createConfetti() {
+      const colors = ['#667eea', '#764ba2', '#FF4500', '#32CD32', '#FFD700'];
+      const confetti = document.createElement('div');
+      confetti.className = 'confetti';
+      confetti.style.left = Math.random() * window.innerWidth + 'px';
+      confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+      confetti.style.animationDelay = Math.random() * 3 + 's';
+      document.body.appendChild(confetti);
+      setTimeout(() => confetti.remove(), 3000);
+    }
+
+    async function fetchData() {
+      const response = await fetch(csvUrl);
+      const data = await response.text();
+      const rows = data.split('\n').slice(1);
+      const tbody = document.querySelector('#contributions tbody');
+      let total = 0;
+      let rowNumber = 1;
+
+      rows.forEach((row, index) => {
+        if (!row.trim()) return;
+        const cols = row.split(',');
+        const tr = document.createElement('tr');
+        tr.style.animationDelay = (index * 0.05) + 's';
+
+        // Ajouter le numéro d'ordre
+        const tdNum = document.createElement('td');
+        tdNum.textContent = rowNumber++;
+        tr.appendChild(tdNum);
+
+        // Afficher seulement les 4 premières colonnes (Nom, Montant, Mode, Date) sans Observation
+        for (let i = 0; i < 4; i++) {
+          const td = document.createElement('td');
+          td.textContent = cols[i] || '';
+          tr.appendChild(td);
+        }
+
+        tbody.appendChild(tr);
+
+        const montant = parseFloat(cols[1].replace(/\s/g, ''));
+        if (!isNaN(montant)) total += montant;
+      });
+
+      document.getElementById('total').textContent = total.toLocaleString() + ' FCFA';
+      const reste = Math.max(objectif - total, 0);
+      document.getElementById('reste').textContent = reste.toLocaleString() + ' FCFA';
+
+      const pourcentage = Math.min((total / objectif) * 100, 100);
+      const bar = document.getElementById('progress-bar');
+      bar.style.width = pourcentage + '%';
+      bar.textContent = Math.round(pourcentage) + '%';
+      
+      if (pourcentage < 50) {
+        bar.style.background = 'linear-gradient(90deg, #FF4500, #FF6347)';
+      } else if (pourcentage < 100) {
+        bar.style.background = 'linear-gradient(90deg, #1E90FF, #00BFFF)';
+      } else {
+        bar.style.background = 'linear-gradient(90deg, #32CD32, #00FA9A)';
+        // Célébration avec confettis !
+        for (let i = 0; i < 50; i++) {
+          setTimeout(() => createConfetti(), i * 100);
+        }
+      }
+    }
+
+    fetchData();
+    setInterval(fetchData, 60000); // Actualisation automatique toutes les minutes
+  </script>
+</body>
+</html>
