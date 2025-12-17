@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Affiche de Contribution - Marie Noelle</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            max-width: 600px;
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .input-section {
+            padding: 30px;
+            background: #f8f9fa;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .input-section h2 {
+            color: #2d3748;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.5em;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        .input-group label {
+            display: block;
+            color: #4a5568;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1.2em;
+            font-family: 'Poppins', sans-serif;
+            transition: border 0.3s;
+        }
+        
+        .input-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .poster-preview {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 30px;
+            position: relative;
+        }
+        
+        #posterCanvas {
+            width: 100%;
+            max-width: 540px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .share-btn {
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-size: 1.3em;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 30px auto 0;
+            font-family: 'Poppins', sans-serif;
+            width: fit-content;
+        }
+        
+        .share-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(37, 211, 102, 0.6);
+            background: #128C7E;
+        }
+        
+        .share-btn:active {
+            transform: translateY(-1px);
+        }
+        
+        .whatsapp-icon {
+            font-size: 1.5em;
+        }
+        
+        .note {
+            text-align: center;
+            color: white;
+            margin-top: 15px;
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        
+        @media (max-width: 600px) {
+            .input-section {
+                padding: 20px;
+            }
+            
+            .poster-preview {
+                padding: 20px;
+            }
+            
+            .share-btn {
+                font-size: 1.1em;
+                padding: 15px 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="input-section">
+            <h2>📝 Créer l'affiche de contribution</h2>
+            <div class="input-group">
+                <label for="donorName">Votre nom (optionnel)</label>
+                <input type="text" id="donorName" placeholder="Ex: Jean Kouassi">
+            </div>
+            <div class="input-group">
+                <label for="amount">Montant de la contribution *</label>
+                <input type="number" id="amount" placeholder="Ex: 50000" required>
+            </div>
+            <div class="input-group">
+                <label>Genre (optionnel)</label>
+                <div style="display: flex; gap: 20px; justify-content: center; margin-top: 10px;">
+                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                        <input type="radio" name="gender" value="homme" style="width: auto; cursor: pointer;">
+                        <span style="font-weight: 600;">👨 Homme</span>
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                        <input type="radio" name="gender" value="femme" style="width: auto; cursor: pointer;">
+                        <span style="font-weight: 600;">👩 Femme</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        
+        <div class="poster-preview">
+            <canvas id="posterCanvas"></canvas>
+            <button class="share-btn" id="shareBtn">
+                <span class="whatsapp-icon">📱</span>
+                <span>PARTAGER SUR WHATSAPP</span>
+            </button>
+            <p class="note">L'affiche sera copiée dans votre galerie, puis vous pourrez la partager</p>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('posterCanvas');
+        const ctx = canvas.getContext('2d');
+        const nameInput = document.getElementById('donorName');
+        const amountInput = document.getElementById('amount');
+        const shareBtn = document.getElementById('shareBtn');
+        
+        canvas.width = 1080;
+        canvas.height = 1080;
+        
+        function formatAmount(amount) {
+            if (!amount) return '______ FCFA';
+            const num = parseInt(amount);
+            if (isNaN(num)) return '______ FCFA';
+            return num.toLocaleString('fr-FR') + ' FCFA';
+        }
+        
+        function getGenderText() {
+            const gender = document.querySelector('input[name="gender"]:checked');
+            if (!gender) return 'Un(e) camarade généreux(se)';
+            return gender.value === 'homme' ? 'Un camarade généreux' : 'Une camarade généreuse';
+        }
+        
+        function drawConfetti() {
+            const confettiColors = ['#f093fb', '#f5576c', '#ffd700', '#00ff88', '#667eea', '#ff6b6b'];
+            for (let i = 0; i < 50; i++) {
+                ctx.fillStyle = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+                const x = Math.random() * canvas.width;
+                const y = Math.random() * 300 + 80;
+                const size = Math.random() * 15 + 5;
+                const rotation = Math.random() * Math.PI;
+                
+                ctx.save();
+                ctx.translate(x, y);
+                ctx.rotate(rotation);
+                ctx.fillRect(-size/2, -size/2, size, size/3);
+                ctx.restore();
+            }
+        }
+        
+        function drawStars() {
+            ctx.fillStyle = '#ffd700';
+            ctx.font = 'bold 60px Arial';
+            
+            ctx.fillText('✨', 150, 150);
+            ctx.fillText('⭐', canvas.width - 200, 180);
+            ctx.fillText('🌟', 200, 400);
+            ctx.fillText('✨', canvas.width - 180, 420);
+            ctx.fillText('⭐', 160, canvas.height - 200);
+            ctx.fillText('🌟', canvas.width - 220, canvas.height - 180);
+        }
+        
+        function drawPoster() {
+            const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+            gradient.addColorStop(0, '#667eea');
+            gradient.addColorStop(0.5, '#764ba2');
+            gradient.addColorStop(1, '#f093fb');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            drawConfetti();
+            
+            ctx.shadowColor = 'rgba(0, 0, 0, 0.3)';
+            ctx.shadowBlur = 30;
+            ctx.shadowOffsetX = 0;
+            ctx.shadowOffsetY = 15;
+            ctx.fillStyle = 'white';
+            ctx.fillRect(80, 80, canvas.width - 160, canvas.height - 160);
+            ctx.shadowBlur = 0;
+            
+            const headerGradient = ctx.createLinearGradient(80, 80, canvas.width - 80, 350);
+            headerGradient.addColorStop(0, '#ff6b6b');
+            headerGradient.addColorStop(0.5, '#f093fb');
+            headerGradient.addColorStop(1, '#ffd700');
+            ctx.fillStyle = headerGradient;
+            ctx.fillRect(80, 80, canvas.width - 160, 270);
+            
+            ctx.font = 'bold 100px Arial';
+            ctx.fillText('🎉', 180, 220);
+            ctx.fillText('💝', canvas.width / 2 - 50, 240);
+            ctx.fillText('🎊', canvas.width - 280, 220);
+            
+            ctx.shadowColor = 'rgba(0, 0, 0, 0.3)';
+            ctx.shadowBlur = 10;
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 90px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('MERCI !', canvas.width / 2, 330);
+            ctx.shadowBlur = 0;
+            
+            drawStars();
+            
+            ctx.fillStyle = '#2d3748';
+            ctx.font = 'bold 48px Arial';
+            ctx.fillText('🏆 + 🏆', canvas.width / 2, 460);
+            
+            const amount = formatAmount(amountInput.value);
+            
+            const amountBgGradient = ctx.createLinearGradient(0, 520, canvas.width, 580);
+            amountBgGradient.addColorStop(0, '#fff3cd');
+            amountBgGradient.addColorStop(1, '#ffd700');
+            ctx.fillStyle = amountBgGradient;
+            ctx.fillRect(200, 490, canvas.width - 400, 120);
+            
+            const amountGradient = ctx.createLinearGradient(0, 550, canvas.width, 550);
+            amountGradient.addColorStop(0, '#d9534f');
+            amountGradient.addColorStop(0.5, '#f093fb');
+            amountGradient.addColorStop(1, '#f5576c');
+            ctx.fillStyle = amountGradient;
+            ctx.font = 'bold 85px Arial';
+            ctx.shadowColor = 'rgba(0, 0, 0, 0.2)';
+            ctx.shadowBlur = 5;
+            ctx.fillText(amount, canvas.width / 2, 570);
+            ctx.shadowBlur = 0;
+            
+            ctx.strokeStyle = '#f093fb';
+            ctx.lineWidth = 5;
+            ctx.beginPath();
+            for (let x = 200; x < canvas.width - 200; x += 20) {
+                const y = 650 + Math.sin(x / 30) * 10;
+                if (x === 200) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+            }
+            ctx.stroke();
+            
+            const donorName = nameInput.value || getGenderText();
+            ctx.fillStyle = '#4a5568';
+            ctx.font = '42px Arial';
+            ctx.fillText('💫 De la part d'' :', canvas.width / 2, 730);
+            
+            ctx.fillStyle = '#e8f4f8';
+            ctx.fillRect(250, 750, canvas.width - 500, 80);
+            
+            ctx.fillStyle = '#667eea';
+            ctx.font = 'bold 58px Arial';
+            ctx.fillText(donorName, canvas.width / 2, 805);
+            
+            ctx.fillStyle = '#2d3748';
+            ctx.font = 'bold 44px Arial';
+            ctx.fillText('Pour notre sœur', canvas.width / 2, 900);
+            
+            ctx.fillStyle = '#f5576c';
+            ctx.font = 'bold 52px Arial';
+            ctx.fillText('Marie Noelle WEDJE', canvas.width / 2, 960);
+            
+            ctx.font = '80px Arial';
+            ctx.fillText('🙏', canvas.width / 2 - 100, canvas.height - 140);
+            ctx.fillText('❤️', canvas.width / 2, canvas.height - 140);
+            ctx.fillText('🙏', canvas.width / 2 + 100, canvas.height - 140);
+            
+            const footerGradient = ctx.createLinearGradient(80, canvas.height - 100, canvas.width - 80, canvas.height - 80);
+            footerGradient.addColorStop(0, '#56ab2f');
+            footerGradient.addColorStop(0.5, '#a8e063');
+            footerGradient.addColorStop(1, '#ffd700');
+            ctx.fillStyle = footerGradient;
+            ctx.fillRect(120, canvas.height - 100, canvas.width - 240, 60);
+            
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 32px Arial';
+            ctx.shadowColor = 'rgba(0, 0, 0, 0.3)';
+            ctx.shadowBlur = 5;
+            ctx.fillText('🌟 ENSEMBLE, NOUS SOMMES PLUS FORTS 🌟', canvas.width / 2, canvas.height - 60);
+            ctx.shadowBlur = 0;
+        }
+        
+        drawPoster();
+        
+        nameInput.addEventListener('input', drawPoster);
+        amountInput.addEventListener('input', drawPoster);
+        document.querySelectorAll('input[name="gender"]').forEach(function(radio) {
+            radio.addEventListener('change', drawPoster);
+        });
+        
+        shareBtn.addEventListener('click', function() {
+            canvas.toBlob(function(blob) {
+                const file = new File([blob], 'contribution_marie_Noelle.png', { type: 'image/png' });
+                
+                if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                    navigator.share({
+                        files: [file],
+                        title: 'Contribution pour Marie Noelle',
+                        text: 'J\'ai contribué pour Marie Noelle WEDJE ! 💝\n\nEnsemble, aidons notre sœur de promotion à vaincre l\'acromégalie.\n\nChaque geste compte ! 🙏'
+                    }).catch(function(err) {
+                        if (err.name !== 'AbortError') {
+                            console.error('Erreur lors du partage:', err);
+                            fallbackShare();
+                        }
+                    });
+                } else {
+                    fallbackShare();
+                }
+            }, 'image/png');
+        });
+        
+        function fallbackShare() {
+            const link = document.createElement('a');
+            link.download = 'contribution_marie_Noelle.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+            
+            const message = 'J\'ai contribué pour Marie Noelle WEDJE ! 💝\n\nEnsemble, aidons notre sœur de promotion à vaincre l\'acromégalie.\n\nChaque geste compte ! 🙏';
+            
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(message).then(function() {
+                    alert('✅ Image téléchargée et message copié !\n\nPartagez maintenant l\'image sur WhatsApp avec le message copié.');
+                }).catch(function() {
+                    alert('✅ Image téléchargée !\n\nPartagez-la maintenant sur WhatsApp.');
+                });
+            } else {
+                alert('✅ Image téléchargée !\n\nPartagez-la maintenant sur WhatsApp.');
+            }
+        }
+    </script>
+</body>
+</html>
