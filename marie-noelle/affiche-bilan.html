@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bilan 15 jours - Marie Noelle</title>
+    <title>Bilan 18 jours - Marie Noelle</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&display=swap');
         
@@ -55,7 +55,7 @@
             background: white;
             color: #667eea;
             display: inline-block;
-            padding: 15px 40px;
+            padding: 18px 40px;
             border-radius: 50px;
             font-size: 2em;
             font-weight: 900;
@@ -67,7 +67,7 @@
             color: white;
             font-size: 2.8em;
             font-weight: 900;
-            margin-bottom: 15px;
+            margin-bottom: 18px;
             text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
         }
         
@@ -329,7 +329,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <div class="day-badge">🗓️ JOUR 15</div>
+            <div class="day-badge">🗓️ JOUR 18</div>
             <h1> APPEL A L'AIDE</h1>
             <div class="subtitle">Pour Marie Noelle WEDJE</div>
         </div>
@@ -337,25 +337,25 @@
         <div class="stats-grid">
             <div class="stat-card highlight">
                 <span class="icon">👥</span>
-                <span class="value">49</span>
+                <span class="value">55</span>
                 <span class="label">Contributions enregistrées</span>
             </div>
             
             <div class="stat-card highlight">
                 <span class="icon">💰</span>
-                <span class="value">35%</span>
+                <span class="value">37%</span>
                 <span class="label">De l'objectif minimum</span>
             </div>
             
             <div class="stat-card">
                 <span class="icon">✅</span>
-                <span class="value">1 769 205</span>
+                <span class="value">1 874 205</span>
                 <span class="label">FCFA collectés</span>
             </div>
             
             <div class="stat-card">
                 <span class="icon">🎯</span>
-                <span class="value">3 230 795</span>
+                <span class="value">3 125 795</span>
                 <span class="label">FCFA restants</span>
             </div>
         </div>
@@ -388,7 +388,7 @@
             ctx.fillStyle = '#667eea';
             ctx.font = 'bold 60px Arial';
             ctx.textAlign = 'center';
-            ctx.fillText('🗓️ JOUR 15', 230, 150);
+            ctx.fillText('🗓️ JOUR 18', 230, 150);
             
             ctx.fillStyle = 'white';
             ctx.font = 'bold 65px Arial';
@@ -423,7 +423,7 @@
             grad1.addColorStop(0, '#667eea');
             grad1.addColorStop(1, '#764ba2');
             ctx.fillStyle = grad1;
-            ctx.fillText('49', card1X + cardWidth/2, cardY + 190);
+            ctx.fillText('55', card1X + cardWidth/2, cardY + 190);
             ctx.fillStyle = '#4a5568';
             ctx.font = '600 35px Arial';
             ctx.fillText('Contributions', card1X + cardWidth/2, cardY + 230);
@@ -432,7 +432,7 @@
             ctx.fillText('💰', card2X + cardWidth/2, cardY + 90);
             ctx.font = 'bold 90px Arial';
             ctx.fillStyle = grad1;
-            ctx.fillText('35%', card2X + cardWidth/2, cardY + 190);
+            ctx.fillText('37%', card2X + cardWidth/2, cardY + 190);
             ctx.fillStyle = '#4a5568';
             ctx.font = '600 35px Arial';
             ctx.fillText('De l\'objectif', card2X + cardWidth/2, cardY + 230);
@@ -442,7 +442,7 @@
             ctx.fillText('✅', card1X + cardWidth/2, card3Y + 90);
             ctx.fillStyle = '#2d3748';
             ctx.font = 'bold 70px Arial';
-            ctx.fillText('1 769 205', card1X + cardWidth/2, card3Y + 180);
+            ctx.fillText('1 874 205', card1X + cardWidth/2, card3Y + 180);
             ctx.fillStyle = '#4a5568';
             ctx.font = '600 35px Arial';
             ctx.fillText('FCFA collectés', card1X + cardWidth/2, card3Y + 220);
@@ -451,7 +451,7 @@
             ctx.fillText('🎯', card2X + cardWidth/2, card3Y + 90);
             ctx.fillStyle = '#2d3748';
             ctx.font = 'bold 70px Arial';
-            ctx.fillText('3 230 795', card2X + cardWidth/2, card3Y + 180);
+            ctx.fillText('3 125 795', card2X + cardWidth/2, card3Y + 180);
             ctx.fillStyle = '#4a5568';
             ctx.font = '600 35px Arial';
             ctx.fillText('FCFA restants', card2X + cardWidth/2, card3Y + 220);
@@ -472,18 +472,18 @@
             
             ctx.fillStyle = 'white';
             ctx.font = 'bold 60px Arial';
-            ctx.fillText('35%', 80 + (canvas.width - 160) * 0.35 / 2, progressY + 105);
+            ctx.fillText('37%', 80 + (canvas.width - 160) * 0.35 / 2, progressY + 105);
             
             ctx.fillStyle = '#56ab2f';
             ctx.font = 'bold 50px Arial';
-            ctx.fillText('1 769 205 FCFA', 280, progressY + 210);
+            ctx.fillText('1 874 205 FCFA', 280, progressY + 210);
             ctx.fillStyle = '#4a5568';
             ctx.font = '600 35px Arial';
             ctx.fillText('✅ Collecté', 280, progressY + 255);
             
             ctx.fillStyle = '#d9534f';
             ctx.font = 'bold 50px Arial';
-            ctx.fillText('3 230 795 FCFA', 800, progressY + 210);
+            ctx.fillText('3 125 795 FCFA', 800, progressY + 210);
             ctx.fillStyle = '#4a5568';
             ctx.font = '600 35px Arial';
             ctx.fillText('🎯 Restant', 800, progressY + 255);
@@ -529,8 +529,8 @@
                 if (navigator.canShare && navigator.canShare({ files: [file] })) {
                     navigator.share({
                         files: [file],
-                        title: 'Bilan 15 jours - Marie Noelle',
-                        text: '📊 BILAN JOUR 15 - Marie Noelle WEDJE\n\n📌 49 contributions\n📌 1 769 205 FCFA collectés\n📌 35% de l\'objectif\n📌 3 230 795 FCFA restants\n\n🔗 asadgery.github.io/solidarite/marie-noelle\n\n🎄 Contribuons ensemble ! 💝'
+                        title: 'Bilan 18 jours - Marie Noelle',
+                        text: '📊 BILAN JOUR 18 - Marie Noelle WEDJE\n\n📌 55 contributions\n📌 1 874 205 FCFA collectés\n📌 37% de l\'objectif\n📌 3 125 795 FCFA restants\n\n🔗 asadgery.github.io/solidarite/marie-noelle\n\n🎄 Contribuons ensemble ! 💝'
                     }).catch(function(err) {
                         if (err.name !== 'AbortError') {
                             console.error('Erreur lors du partage:', err);
@@ -551,7 +551,7 @@
             link.href = canvas.toDataURL('image/png');
             link.click();
             
-            const message = '📊 BILAN JOUR 15 - Marie Noelle WEDJE\n\n📌 49 contributions\n📌 1 769 205 FCFA collectés\n📌 35% de l\'objectif\n📌 3 230 795 FCFA restants\n\n🔗 asadgery.github.io/solidarite/marie-noelle\n\n🎄 Contribuons ensemble ! 💝';
+            const message = '📊 BILAN JOUR 18 - Marie Noelle WEDJE\n\n📌 55 contributions\n📌 1 874 205 FCFA collectés\n📌 37% de l\'objectif\n📌 3 125 795 FCFA restants\n\n🔗 asadgery.github.io/solidarite/marie-noelle\n\n🎄 Contribuons ensemble ! 💝';
             
             if (navigator.clipboard && navigator.clipboard.writeText) {
                 navigator.clipboard.writeText(message).then(function() {
