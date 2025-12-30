@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bilan 18 jours - Marie Noelle</title>
+    <title>Bilan 17 jours - Marie Noelle</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&display=swap');
         
@@ -329,7 +329,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <div class="day-badge">🗓️ JOUR 18</div>
+            <div class="day-badge">🗓️ JOUR 17</div>
             <h1> APPEL A L'AIDE</h1>
             <div class="subtitle">Pour Marie Noelle WEDJE</div>
         </div>
@@ -388,7 +388,7 @@
             ctx.fillStyle = '#667eea';
             ctx.font = 'bold 60px Arial';
             ctx.textAlign = 'center';
-            ctx.fillText('🗓️ JOUR 18', 230, 150);
+            ctx.fillText('🗓️ JOUR 17', 230, 150);
             
             ctx.fillStyle = 'white';
             ctx.font = 'bold 65px Arial';
@@ -529,8 +529,8 @@
                 if (navigator.canShare && navigator.canShare({ files: [file] })) {
                     navigator.share({
                         files: [file],
-                        title: 'Bilan 18 jours - Marie Noelle',
-                        text: '📊 BILAN JOUR 18 - Marie Noelle WEDJE\n\n📌 55 contributions\n📌 1 874 205 FCFA collectés\n📌 37% de l\'objectif\n📌 3 125 795 FCFA restants\n\n🔗 asadgery.github.io/solidarite/marie-noelle\n\n🎄 Contribuons ensemble ! 💝'
+                        title: 'Bilan 17 jours - Marie Noelle',
+                        text: '📊 BILAN JOUR 17 - Marie Noelle WEDJE\n\n📌 55 contributions\n📌 1 874 205 FCFA collectés\n📌 37% de l\'objectif\n📌 3 125 795 FCFA restants\n\n🔗 asadgery.github.io/solidarite/marie-noelle\n\n🎄 Contribuons ensemble ! 💝'
                     }).catch(function(err) {
                         if (err.name !== 'AbortError') {
                             console.error('Erreur lors du partage:', err);
@@ -551,7 +551,7 @@
             link.href = canvas.toDataURL('image/png');
             link.click();
             
-            const message = '📊 BILAN JOUR 18 - Marie Noelle WEDJE\n\n📌 55 contributions\n📌 1 874 205 FCFA collectés\n📌 37% de l\'objectif\n📌 3 125 795 FCFA restants\n\n🔗 asadgery.github.io/solidarite/marie-noelle\n\n🎄 Contribuons ensemble ! 💝';
+            const message = '📊 BILAN JOUR 17 - Marie Noelle WEDJE\n\n📌 55 contributions\n📌 1 874 205 FCFA collectés\n📌 37% de l\'objectif\n📌 3 125 795 FCFA restants\n\n🔗 asadgery.github.io/solidarite/marie-noelle\n\n🎄 Contribuons ensemble ! 💝';
             
             if (navigator.clipboard && navigator.clipboard.writeText) {
                 navigator.clipboard.writeText(message).then(function() {
