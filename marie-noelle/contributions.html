@@ -523,10 +523,10 @@
     
       const montantDisponible = Math.max(total - objectif2, 0);
       document.getElementById('total').textContent = total.toLocaleString() + ' FCFA';
-      document.getElementById('total2').textContent = (montantDisponible + total2).toLocaleString() + ' FCFA';
+      document.getElementById('total2').textContent = montantDisponible.toLocaleString() + ' FCFA';
 
       const reste = Math.max(objectif - total, 0);
-      const reste2 = Math.max(objectif2 - total2 - montantDisponible, 0);
+      const reste2 = Math.max(objectif2 - montantDisponible, 0);
       
       document.getElementById('reste').textContent = reste.toLocaleString() + ' FCFA';
       document.getElementById('reste2').textContent = reste2.toLocaleString() + ' FCFA';
