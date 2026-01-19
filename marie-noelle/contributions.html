@@ -455,8 +455,8 @@
       const data = await response.text();
       const rows = data.split('\n').slice(1);
     
-      const tbodyTop = document.querySelector('#contributions-top tbody');
-      const tbodyBottom = document.querySelector('#contributions-bottom tbody');
+      const tbodyTop = document.querySelector('#contributions-top tbody');     // 68 → fin
+      const tbodyBottom = document.querySelector('#contributions-bottom tbody'); // 1 → 67
     
       tbodyTop.innerHTML = '';
       tbodyBottom.innerHTML = '';
@@ -476,18 +476,18 @@
         tdNum.textContent = rowNumber;
         tr.appendChild(tdNum);
     
-        // Colonnes utiles
+        // Colonnes (Nom, Montant, Mode, Date)
         for (let i = 0; i < 4; i++) {
           const td = document.createElement('td');
           td.textContent = cols[i] || '';
           tr.appendChild(td);
         }
     
-        // Répartition des lignes
-        if (rowNumber <= 67) {
-          tbodyTop.appendChild(tr);
+        // 👉 RÉPARTITION CORRIGÉE
+        if (rowNumber >= 70) {
+          tbodyTop.appendChild(tr);       // Tableau du haut
         } else {
-          tbodyBottom.appendChild(tr);
+          tbodyBottom.appendChild(tr);    // Tableau existant
         }
     
         const montant = parseFloat((cols[1] || '').replace(/\s/g, ''));
