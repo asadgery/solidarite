@@ -485,7 +485,7 @@
       let total = 0;
       let total2 = 0;
       let rowNumber = 1;
-      let rowNumber2 = 0;
+      let rowNumber2 = 1;
     
       rows.forEach((row, index) => {
         if (!row.trim()) return;
@@ -496,6 +496,7 @@
     
         // Numéro
         const tdNum = document.createElement('td');
+        if (rowNumber >= 68) rowNumber = rowNumber2;
         tdNum.textContent = rowNumber;
         tr.appendChild(tdNum);
     
@@ -531,7 +532,7 @@
       document.getElementById('reste').textContent = reste.toLocaleString() + ' FCFA';
       document.getElementById('reste2').textContent = reste2.toLocaleString() + ' FCFA';
 
-      document.getElementById('contributions-top-title').textContent = '📋 Dose 2 - ' + rowNumber2.toLocaleString() + ' contributeurs, depuis le 07/01/2026';
+      document.getElementById('contributions-top-title').textContent = '📋 Dose 2 - ' + (rowNumber2 - 1).toLocaleString() + ' contributeurs, depuis le 07/01/2026';
     
       const pourcentage = Math.min((total / objectif) * 100, 100);
       const bar = document.getElementById('progress-bar');
