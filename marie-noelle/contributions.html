@@ -361,11 +361,11 @@
 
     <div class="indicators">   
       <div class="indicator objectif">
-        <span>🎯 Objectif Dose 2</span>
+        <span>🎯 Objectif (Dose 2)</span>
         <strong id="objectif2">1 600 000 FCFA</strong>
       </div>
       <div class="indicator total-recu">
-        <span>💰 Total reçu</span>
+        <span>💰 Total disponible</span>
         <strong id="total2">0 FCFA</strong>
       </div>
       <div class="indicator reste">
@@ -521,16 +521,17 @@
         rowNumber++;
       });
     
+      const montantDisponible = Math.max(total - objectif2, total);
       document.getElementById('total').textContent = total.toLocaleString() + ' FCFA';
-      document.getElementById('total2').textContent = total2.toLocaleString() + ' FCFA';
-    
+      document.getElementById('total2').textContent = (montantDisponible + total2).toLocaleString() + ' FCFA';
+
       const reste = Math.max(objectif - total, 0);
-      const reste2 = Math.max(objectif2 - total2, 0);
+      const reste2 = Math.max(objectif2 - total2 - montantDisponible, 0);
       
       document.getElementById('reste').textContent = reste.toLocaleString() + ' FCFA';
       document.getElementById('reste2').textContent = reste2.toLocaleString() + ' FCFA';
 
-      document.getElementById('contributions-top-title').textContent = '📋 Dose 2 - ' + rowNumber2.toLocaleString + ' contributeurs, depuis le 07/01/2026'
+      document.getElementById('contributions-top-title').textContent = '📋 Dose 2 - ' + rowNumber2.toLocaleString() + ' contributeurs, depuis le 07/01/2026';
     
       const pourcentage = Math.min((total / objectif) * 100, 100);
       const bar = document.getElementById('progress-bar');
