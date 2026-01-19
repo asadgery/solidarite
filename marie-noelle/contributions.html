@@ -364,8 +364,24 @@
   </header>
 
   <section class="table-container">
-    <h2 style="color: #667eea; margin-bottom: 10px;">📋 Liste des contributeurs</h2>
-    <table id="contributions">
+  <h2 style="color: #667eea; margin-bottom: 10px;">📋 Liste des contributeurs (Relance 2)</h2>
+  <table id="contributions-top">
+    <thead>
+      <tr>
+        <th>N°</th>
+        <th>Nom</th>
+        <th>Montant versé (FCFA)</th>
+        <th>Mode de paiement</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</section>
+
+  <section class="table-container">
+    <h2 style="color: #667eea; margin-bottom: 10px;">📋 Liste des contributeurs (Démarrage)</h2>
+    <table id="contributions-bottom">
       <thead>
         <tr>
           <th>N°</th>
@@ -438,58 +454,59 @@
       const response = await fetch(csvUrl);
       const data = await response.text();
       const rows = data.split('\n').slice(1);
-      const tbody = document.querySelector('#contributions tbody');
-      
-      // VIDER LE TABLEAU AVANT D'AJOUTER LES NOUVELLES LIGNES
-      tbody.innerHTML = '';
-      
+    
+      const tbodyTop = document.querySelector('#contributions-top tbody');
+      const tbodyBottom = document.querySelector('#contributions-bottom tbody');
+    
+      tbodyTop.innerHTML = '';
+      tbodyBottom.innerHTML = '';
+    
       let total = 0;
       let rowNumber = 1;
-
+    
       rows.forEach((row, index) => {
         if (!row.trim()) return;
+    
         const cols = row.split(',');
         const tr = document.createElement('tr');
-        tr.style.animationDelay = (index * 0.05) + 's';
-
-        // Ajouter le numéro d'ordre
+        tr.style.animationDelay = (index * 0.03) + 's';
+    
+        // Numéro
         const tdNum = document.createElement('td');
-        tdNum.textContent = rowNumber++;
+        tdNum.textContent = rowNumber;
         tr.appendChild(tdNum);
-
-        // Afficher seulement les 4 premières colonnes (Nom, Montant, Mode, Date) sans Observation
+    
+        // Colonnes utiles
         for (let i = 0; i < 4; i++) {
           const td = document.createElement('td');
           td.textContent = cols[i] || '';
           tr.appendChild(td);
         }
-
-        tbody.appendChild(tr);
-
-        const montant = parseFloat(cols[1].replace(/\s/g, ''));
+    
+        // Répartition des lignes
+        if (rowNumber <= 67) {
+          tbodyTop.appendChild(tr);
+        } else {
+          tbodyBottom.appendChild(tr);
+        }
+    
+        const montant = parseFloat((cols[1] || '').replace(/\s/g, ''));
         if (!isNaN(montant)) total += montant;
+    
+        rowNumber++;
       });
-
-      document.getElementById('total').textContent = total.toLocaleString() + ' FCFA';
+    
+      document.getElementById('total').textContent =
+        total.toLocaleString() + ' FCFA';
+    
       const reste = Math.max(objectif - total, 0);
-      document.getElementById('reste').textContent = reste.toLocaleString() + ' FCFA';
-
+      document.getElementById('reste').textContent =
+        reste.toLocaleString() + ' FCFA';
+    
       const pourcentage = Math.min((total / objectif) * 100, 100);
       const bar = document.getElementById('progress-bar');
       bar.style.width = pourcentage + '%';
       bar.textContent = Math.round(pourcentage) + '%';
-      
-      if (pourcentage < 50) {
-        bar.style.background = 'linear-gradient(90deg, #FF4500, #FF6347)';
-      } else if (pourcentage < 100) {
-        bar.style.background = 'linear-gradient(90deg, #1E90FF, #00BFFF)';
-      } else {
-        bar.style.background = 'linear-gradient(90deg, #32CD32, #00FA9A)';
-        // Célébration avec confettis !
-        for (let i = 0; i < 50; i++) {
-          setTimeout(() => createConfetti(), i * 100);
-        }
-      }
     }
 
     fetchData();
