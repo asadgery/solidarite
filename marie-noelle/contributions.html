@@ -362,15 +362,15 @@
     <div class="indicators">   
       <div class="indicator objectif">
         <span>🎯 Objectif Dose 2</span>
-        <strong id="objectif">1 600 000 FCFA</strong>
+        <strong id="objectif2">1 600 000 FCFA</strong>
       </div>
       <div class="indicator total-recu">
         <span>💰 Total reçu</span>
-        <strong id="total">0 FCFA</strong>
+        <strong id="total2">0 FCFA</strong>
       </div>
       <div class="indicator reste">
         <span>📊 Reste à collecter</span>
-        <strong id="reste">1 600 000 FCFA</strong>
+        <strong id="reste2">1 600 000 FCFA</strong>
       </div>
       <div class="indicator date-limite">
         <span>⏰ Date limite</span>
@@ -384,7 +384,7 @@
   </header>
 
   <section class="table-container">
-  <h2 style="color: #667eea; margin-bottom: 10px;"><span>📋 Dose 2</span><span id="nbre-contributeur-dose-2"></span> - Contributeurs, 07/01/2026 - Aujourd'hui</h2>
+  <h2 id="contributions-top-title" style="color: #667eea; margin-bottom: 10px;">📋 Dose 2 - Contributeurs, 07/01/2026 - Aujourd'hui</h2>
   <table id="contributions-top">
     <thead>
       <tr>
@@ -458,6 +458,7 @@
   <script>
     const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS12j5YSQwTrddBzFQ_nR_OgMKH2WmJhedtUDT1EEmP1JhGIGRNZeOS6nWfcvZul0g09_X7XrAXNTKG/pub?output=csv';
     const objectif = 5000000;
+    const objectif2 = 1600000;
 
     function createConfetti() {
       const colors = ['#667eea', '#764ba2', '#FF4500', '#32CD32', '#FFD700'];
@@ -482,7 +483,9 @@
       tbodyBottom.innerHTML = '';
     
       let total = 0;
+      let total2 = 0;
       let rowNumber = 1;
+      let rowNumber2 = 0;
     
       rows.forEach((row, index) => {
         if (!row.trim()) return;
@@ -506,22 +509,28 @@
         // 👉 RÉPARTITION CORRIGÉE
         if (rowNumber >= 68) {
           tbodyTop.appendChild(tr);       // Tableau du haut
+          rowNumber2++;
         } else {
           tbodyBottom.appendChild(tr);    // Tableau existant
         }
     
         const montant = parseFloat((cols[1] || '').replace(/\s/g, ''));
         if (!isNaN(montant)) total += montant;
+        if (rowNumber >= 68) total2 += montant;
     
         rowNumber++;
       });
     
-      document.getElementById('total').textContent =
-        total.toLocaleString() + ' FCFA';
+      document.getElementById('total').textContent = total.toLocaleString() + ' FCFA';
+      document.getElementById('total2').textContent = total2.toLocaleString() + ' FCFA';
     
       const reste = Math.max(objectif - total, 0);
-      document.getElementById('reste').textContent =
-        reste.toLocaleString() + ' FCFA';
+      const reste2 = Math.max(objectif2 - total2, 0);
+      
+      document.getElementById('reste').textContent = reste.toLocaleString() + ' FCFA';
+      document.getElementById('reste2').textContent = reste2.toLocaleString() + ' FCFA';
+
+      document.getElementById('contributions-top-title').textContent = '📋 Dose 2 - ' + rowNumber2.toLocaleString + ' contributeurs, depuis le 07/01/2026'
     
       const pourcentage = Math.min((total / objectif) * 100, 100);
       const bar = document.getElementById('progress-bar');
