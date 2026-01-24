@@ -346,12 +346,12 @@
         <strong id="objectif">5 000 000 FCFA</strong>
       </div>
       <div class="indicator total-recu">
-        <span>💰 Total reçu<br>(PTech promo 2029)</span>
+        <span>💰 Total reçu<br>(Prépa Techno promo 2029)</span>
         <strong id="total">0 FCFA</strong>
       </div>
       <div class="indicator total-recu">
         <span>💰 Autres contrib.<br>(Famille & Ami/es)</span>
-        <strong id="total-autre">0 FCFA</strong>
+        <strong id="total-autre">1 250 000 FCFA</strong>
       </div>
       <div class="indicator reste">
         <span>📊 Reste à collecter</span>
@@ -533,8 +533,8 @@
         rowNumber++;
       });
 
-      total += totalAutre
-      const montantDisponible = Math.max(total - remise1 - remise2, 0);
+      //total += totalAutre
+      const montantDisponible = Math.max(total + totalAutre - remise1 - remise2, 0);
       const reste = Math.max(objectif - total - totalAutre, 0);
       const reste2 = Math.max(objectif2 - remise2 - totalAutre, 0);
       
