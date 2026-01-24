@@ -342,7 +342,7 @@
     
     <div class="indicators">
       <div class="indicator objectif">
-        <span>🎯 Objectif<br>global</span>
+        <span>🎯 Objectif<br>(Global)</span>
         <strong id="objectif">5 000 000 FCFA</strong>
       </div>
       <div class="indicator total-recu">
@@ -350,15 +350,15 @@
         <strong id="total">0 FCFA</strong>
       </div>
       <div class="indicator total-recu">
-        <span>💰 Autres contrib.<br>(Famille & Ami/es)</span>
+        <span>💰 Autres contrib.<br>(Famille & Autres ami/es)</span>
         <strong id="total-autre">1 250 000 FCFA</strong>
       </div>
       <div class="indicator reste">
-        <span>📊 Reste à collecter</span>
+        <span>📊 Reste à collecter<br>(Global)</span>
         <strong id="reste">5 000 000 FCFA</strong>
       </div>
       <div class="indicator date-limite">
-        <span>⏰ Date limite</span>
+        <span>⏰ Date limite<br>(Global)</span>
         <strong>15/02/2026</strong>
       </div>
     </div>
@@ -545,7 +545,7 @@
 
       document.getElementById('contributions-top-title').textContent = '📋 Dose 2 - ' + (rowNumber2 - 1).toLocaleString() + ' contributeurs, depuis le 07/01/2026';
     
-      const pourcentage = Math.min((total / objectif) * 100, 100);
+      const pourcentage = Math.min(((total + totalAutre) / objectif) * 100, 100);
       const bar = document.getElementById('progress-bar');
       bar.style.width = pourcentage + '%';
       bar.textContent = Math.round(pourcentage) + '%';
