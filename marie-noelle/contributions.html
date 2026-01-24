@@ -342,12 +342,16 @@
     
     <div class="indicators">
       <div class="indicator objectif">
-        <span>🎯 Objectif global</span>
+        <span>🎯 Objectif<br>global</span>
         <strong id="objectif">5 000 000 FCFA</strong>
       </div>
       <div class="indicator total-recu">
-        <span>💰 Total reçu</span>
+        <span>💰 Total reçu<br>(PTech promo 2029)</span>
         <strong id="total">0 FCFA</strong>
+      </div>
+      <div class="indicator total-recu">
+        <span>💰 Autres contrib.<br>(Famille & Ami/es)</span>
+        <strong id="total-autre">0 FCFA</strong>
       </div>
       <div class="indicator reste">
         <span>📊 Reste à collecter</span>
@@ -459,6 +463,9 @@
     const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS12j5YSQwTrddBzFQ_nR_OgMKH2WmJhedtUDT1EEmP1JhGIGRNZeOS6nWfcvZul0g09_X7XrAXNTKG/pub?output=csv';
     const objectif = 5000000;
     const objectif2 = 1600000;
+    const remise1 = 1600000;
+    const remise2 = 1150000;
+    const totalAutre = 1250000;
 
     function createConfetti() {
       const colors = ['#667eea', '#764ba2', '#FF4500', '#32CD32', '#FFD700'];
@@ -525,14 +532,14 @@
     
         rowNumber++;
       });
-    
-      const montantDisponible = Math.max(total - objectif2, 0);
+
+      total += totalAutre
+      const montantDisponible = Math.max(total - remise1 - remise2, 0);
+      const reste = Math.max(objectif - total - totalAutre, 0);
+      const reste2 = Math.max(objectif2 - remise2 - totalAutre, 0);
+      
       document.getElementById('total').textContent = total.toLocaleString() + ' FCFA';
       document.getElementById('total2').textContent = montantDisponible.toLocaleString() + ' FCFA';
-
-      const reste = Math.max(objectif - total, 0);
-      const reste2 = Math.max(objectif2 - montantDisponible, 0);
-      
       document.getElementById('reste').textContent = reste.toLocaleString() + ' FCFA';
       document.getElementById('reste2').textContent = reste2.toLocaleString() + ' FCFA';
 
