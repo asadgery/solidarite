@@ -385,11 +385,46 @@
         <strong>25/01/2026</strong>
       </div>
     </div>
+    
+    <div class="indicators">   
+      <div class="indicator objectif">
+        <span>🎯 Objectif<br>(Dose 3)</span>
+        <strong id="objectif3">1 600 000 FCFA</strong>
+      </div>
+      <div class="indicator total-recu">
+        <span>💰 Total disponible<br>(Dose 3)</span>
+        <strong id="total3">0 FCFA</strong>
+      </div>
+      <div class="indicator reste">
+        <span>📊 Reste à collecter<br>(Dose 3)</span>
+        <strong id="reste3">1 600 000 FCFA</strong>
+      </div>
+      <div class="indicator date-limite">
+        <span>⏰ Date limite<br>(Dose 3)</span>
+        <strong>15/02/2026</strong>
+      </div>
+    </div>
   </header>
 
   <section class="table-container">
-  <h2 id="contributions-top-title" style="color: #667eea; margin-bottom: 10px;">📋 Dose 2 - Contributeurs, 07/01/2026 - Aujourd'hui</h2>
-  <table id="contributions-top">
+  <h2 id="contributions3-title" style="color: #667eea; margin-bottom: 10px;">📋 Dose 3 - Contributeurs, 26/01/2026 - Aujourd'hui</h2>
+  <table id="contributions3">
+    <thead>
+      <tr>
+        <th>N°</th>
+        <th>Nom</th>
+        <th>Montant versé (FCFA)</th>
+        <th>Mode de paiement</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</section>
+
+  <section class="table-container">
+  <h2 id="contributions2-title" style="color: #667eea; margin-bottom: 10px;">📋 Dose 2 - Contributeurs, 07/01/2026 - Aujourd'hui</h2>
+  <table id="contributions2">
     <thead>
       <tr>
         <th>N°</th>
@@ -463,8 +498,10 @@
     const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS12j5YSQwTrddBzFQ_nR_OgMKH2WmJhedtUDT1EEmP1JhGIGRNZeOS6nWfcvZul0g09_X7XrAXNTKG/pub?output=csv';
     const objectif = 5000000;
     const objectif2 = 1600000;
+    const objectif2 = 1600000;
     const remise1 = 1600000;
     const remise2 = 1150000;
+    const remise3 = 0;
     const totalAutre = 1250000;
 
     function createConfetti() {
@@ -483,16 +520,18 @@
       const data = await response.text();
       const rows = data.split('\n').slice(1);
     
-      const tbodyTop = document.querySelector('#contributions-top tbody');     // 68 → fin
-      const tbodyBottom = document.querySelector('#contributions-bottom tbody'); // 1 → 67
+      const tbody2 = document.querySelector('#contributions2 tbody');     // 68 → fin
+      const tbody1 = document.querySelector('#contributions-bottom tbody'); // 1 → 67
     
-      tbodyTop.innerHTML = '';
-      tbodyBottom.innerHTML = '';
+      tbody2.innerHTML = '';
+      tbody1.innerHTML = '';
     
       let total = 0;
       let total2 = 0;
+      let total3 = 0;
       let rowNumber = 1;
       let rowNumber2 = 1;
+      let rowNumber3 = 1;
     
       rows.forEach((row, index) => {
         if (!row.trim()) return;
@@ -503,10 +542,12 @@
     
         // Numéro
         const tdNum = document.createElement('td');
-        if (rowNumber >= 68) {
+        if (rowNumber < 68) {
+          tdNum.textContent = rowNumber;
+        } else if (rowNumber < 85) {
           tdNum.textContent = rowNumber2;
         } else {
-          tdNum.textContent = rowNumber;
+          tdNum.textContent = rowNumber3;
         }
         
         tr.appendChild(tdNum);
@@ -519,31 +560,37 @@
         }
     
         // 👉 RÉPARTITION CORRIGÉE
-        if (rowNumber >= 68) {
-          tbodyTop.appendChild(tr);       // Tableau du haut
+        if (rowNumber < 68) {
+          tbody1.appendChild(tr);       // Tableau 1
+          //rowNumber++;
+        } else if (rowNumber < 85) {
+          tbody2.appendChild(tr);    // Tableau 2
           rowNumber2++;
         } else {
-          tbodyBottom.appendChild(tr);    // Tableau existant
+          tbody2.appendChild(tr);    // Tableau 3
+          rowNumber3++;
         }
     
         const montant = parseFloat((cols[1] || '').replace(/\s/g, ''));
         if (!isNaN(montant)) total += montant;
-        if (rowNumber >= 68) total2 += montant;
+        if (rowNumber >= 68 && rowNumber < 85) total3 += montant;
     
         rowNumber++;
       });
 
       //total += totalAutre
-      const montantDisponible = Math.max(total + totalAutre - remise1 - remise2, 0);
+      const montantDisponible = Math.max(total + totalAutre - remise1 - remise2 - remise3, 0);
       const reste = Math.max(objectif - total - totalAutre, 0);
       const reste2 = Math.max(objectif2 - remise2 - totalAutre, 0);
+      const reste3 = Math.max(objectif2 - remise3, 0);
       
       document.getElementById('total').textContent = total.toLocaleString() + ' FCFA';
       document.getElementById('total2').textContent = montantDisponible.toLocaleString() + ' FCFA';
       document.getElementById('reste').textContent = reste.toLocaleString() + ' FCFA';
       document.getElementById('reste2').textContent = reste2.toLocaleString() + ' FCFA';
 
-      document.getElementById('contributions-top-title').textContent = '📋 Dose 2 - ' + (rowNumber2 - 1).toLocaleString() + ' contributeurs, depuis le 07/01/2026';
+      document.getElementById('contributions2-title').textContent = '📋 Dose 2 - ' + (rowNumber2 - 1).toLocaleString() + ' contributeurs, depuis le 07/01/2026';
+      document.getElementById('contributions3-title').textContent = '📋 Dose 3 - ' + (rowNumber3 - 1).toLocaleString() + ' contributeurs, depuis le 25/01/2026';
     
       const pourcentage = Math.min(((total + totalAutre) / objectif) * 100, 100);
       const bar = document.getElementById('progress-bar');
