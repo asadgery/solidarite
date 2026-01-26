@@ -520,9 +520,11 @@
       const data = await response.text();
       const rows = data.split('\n').slice(1);
     
-      const tbody2 = document.querySelector('#contributions2 tbody');     // 68 → fin
+      const tbody3 = document.querySelector('#contributions3 tbody');     // 85 → fin
+      const tbody2 = document.querySelector('#contributions2 tbody');     // 68 → 84
       const tbody1 = document.querySelector('#contributions1 tbody'); // 1 → 67
-    
+
+      tbody3.innerHTML = '';
       tbody2.innerHTML = '';
       tbody1.innerHTML = '';
     
@@ -567,13 +569,14 @@
           tbody2.appendChild(tr);    // Tableau 2
           rowNumber2++;
         } else {
-          tbody2.appendChild(tr);    // Tableau 3
+          tbody3.appendChild(tr);    // Tableau 3
           rowNumber3++;
         }
     
         const montant = parseFloat((cols[1] || '').replace(/\s/g, ''));
         if (!isNaN(montant)) total += montant;
-        if (rowNumber >= 68 && rowNumber < 85) total3 += montant;
+        if (rowNumber >= 68 && rowNumber < 85) total2 += montant;
+        if (rowNumber >= 85) total3 += montant;
     
         rowNumber++;
       });
@@ -588,6 +591,8 @@
       document.getElementById('total2').textContent = montantDisponible.toLocaleString() + ' FCFA';
       document.getElementById('reste').textContent = reste.toLocaleString() + ' FCFA';
       document.getElementById('reste2').textContent = reste2.toLocaleString() + ' FCFA';
+      document.getElementById('total3').textContent = montantDisponible.toLocaleString() + ' FCFA';
+      document.getElementById('reste3').textContent = reste3.toLocaleString() + ' FCFA';
 
       document.getElementById('contributions2-title').textContent = '📋 Dose 2 - ' + (rowNumber2 - 1).toLocaleString() + ' contributeurs, depuis le 07/01/2026';
       document.getElementById('contributions3-title').textContent = '📋 Dose 3 - ' + (rowNumber3 - 1).toLocaleString() + ' contributeurs, depuis le 25/01/2026';
