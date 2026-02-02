@@ -530,11 +530,12 @@
 
         // Parser les données CSV
         rows.forEach(row => {
+			if (!row.trim()) return;
           const cols = row.split(',').map(c => c.trim().replace(/^"|"$/g, ''));
           
           if (cols.length >= 5) {
             const nom = cols[0];
-            const montant = parseFloat(cols[1]) || 0;
+            const montant = parseFloat((cols[1] || '').replace(/\s/g, ''));
             const mode = cols[2];
             const date = cols[3];
             const origine = cols[4];
@@ -542,9 +543,9 @@
 
             // Calculer les totaux par origine
             if (origine === 'Promo 2029') {
-              totalPromo2029 += montant;
+				if (!isNaN(montant)) totalPromo2029 += montant;
             } else if (origine === 'Autre') {
-              totalAutre += montant;
+				if (!isNaN(montant)) totalAutre += montant;
             }
 
             // Répartir par dose
