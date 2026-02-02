@@ -342,27 +342,41 @@
     
     <div class="indicators">
       <div class="indicator objectif">
-        <span>🎯 Objectif<br>(Global)</span>
+        <span>🎯 Objectif (Global)</span>
         <strong id="objectif">5 000 000 FCFA</strong>
       </div>
       <div class="indicator total-recu">
-        <span>💰 Total reçu<br>(Prépa Techno promo 2029)</span>
+        <span>💰 Total reçu (PT Promo 2029)</span>
         <strong id="totalRecu">0 FCFA</strong>
       </div>
-      <div class="indicator total-recu">
-        <span>💰 Autres contrib.<br>(Famille & Autres ami/es)</span>
-        <strong id="totalAutreContrib">0 FCFA</strong>
-      </div>
       <div class="indicator reste">
-        <span>📊 Reste à collecter<br>(Global)</span>
+        <span>📊 Reste à collecter (Global)</span>
         <strong id="reste">5 000 000 FCFA</strong>
       </div>
       <div class="indicator date-limite">
-        <span>⏰ Date limite<br>(Global)</span>
+        <span>⏰ Date limite (Global)</span>
         <strong>15/02/2026</strong>
       </div>
     </div>
-
+	  
+	<div class="indicators">
+      <div class="indicator total-recu">
+        <span>💰 Autres contrib. (Famille & Autres ami/es)</span>
+        <strong id="totalAutreContrib">0 FCFA</strong>
+      </div>
+      <div class="indicator restitution">
+        <span>➡️💰 Transfert pour Dose 1</span>
+        <strong id="restitution1">1 600 000 FCFA</strong>
+      </div>
+      <div class="indicator restitution">
+        <span>➡️💰 Transfert pour Dose 2</span>
+        <strong id="restitution1">1 150 000 FCFA</strong>
+      </div>
+      <div class="indicator aRestituer">
+        <span>💰 Reste à transférer</span>
+        <strong id="RestantaRestituer">0 FCFA</strong>
+      </div>
+    </div>
     <div class="progress-container">
       <div class="progress-bar" id="progress-bar">0%</div>
     </div>
@@ -515,6 +529,8 @@
         const objectifDose1 = 1600000;
         const objectifDose2 = 1600000;
         const objectifDose3 = 1600000;
+		  const restitution1 = 1600000;
+		  const restitution2 = 1150000;
 
         // Initialisation des totaux
         let totalPromo2029 = 0;
@@ -566,6 +582,7 @@
 
         // Calculs globaux
         const reste = objectif - totalPromo2029 - totalAutre;
+		  const totalARestituer = totalPromo2029 + totalAutre - restitution1 - restitution2;
         const pourcentage = Math.min(((totalPromo2029 + totalAutre) / objectif) * 100, 100);
 
         // Calculs par dose
@@ -577,6 +594,7 @@
         document.getElementById('totalRecu').textContent = formatNumber(totalPromo2029) + ' FCFA';
         document.getElementById('totalAutreContrib').textContent = formatNumber(totalAutre) + ' FCFA';
         document.getElementById('reste').textContent = formatNumber(Math.max(reste, 0)) + ' FCFA';
+        document.getElementById('RestantaRestituer').textContent = formatNumber(Math.max(totalARestituer, 0)) + ' FCFA';
 
         // Barre de progression
         const bar = document.getElementById('progress-bar');
