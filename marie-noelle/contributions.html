@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SUIVI DES COTISATIONS POUR [ WEDJE MARIE NOELLE ]</title>
+  <title>SUIVI DES COTISATIONS POUR [ WEDJE MARIE NOËLLE ]</title>
   <link rel="icon" type="image/png" href="../icocollecte.png">
-  <meta property="og:title" content="SUIVI DES COTISATIONS POUR [ WEDJE MARIE NOELLE ]" />
-  <meta property="og:description" content="Suivi des collectes pour Marie Noelle. Liste des contributions reçues.">
+  <meta property="og:title" content="SUIVI DES COTISATIONS POUR [ WEDJE MARIE NOËLLE ]" />
+  <meta property="og:description" content="Suivi des collectes pour Marie Noëlle. Liste des contributions reçues.">
   <meta property="og:image" content="https://raw.githubusercontent.com/asadgery/solidarite/main/qr_code_wave_1200.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="1200" />
@@ -293,26 +293,26 @@
       }
     }
 
-    .confetti {
-      position: fixed;
-      width: 10px;
-      height: 10px;
-      background: #f0f;
-      position: absolute;
-      animation: confetti-fall 3s linear;
-    }
-
-    @keyframes confetti-fall {
-      to {
-        transform: translateY(100vh) rotate(360deg);
-        opacity: 0;
+    @keyframes pulse-button {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
       }
+      50% {
+        transform: scale(1.05);
+        box-shadow: 0 15px 40px rgba(255, 215, 0, 0.5);
+      }
+    }
+    
+    #celebration-btn:hover {
+      transform: scale(1.1) rotate(-3deg);
+      box-shadow: 0 15px 50px rgba(255, 215, 0, 0.7);
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>🎯 SUIVI DES COTISATIONS POUR [ WEDJE MARIE NOELLE ]</h1>
+    <h1>🎯 SUIVI DES COTISATIONS POUR [ WEDJE MARIE NOËLLE ]</h1>
     <p>Un geste pour sauver une vie.</p>
     <p><b>Numéros : Wave/MTN (+225) 0505637361 | Orange (+225) 0749052678</b></p>
 
@@ -347,11 +347,11 @@
       </div>
       <div class="indicator total-recu">
         <span>💰 Total reçu<br>(Prépa Techno promo 2029)</span>
-        <strong id="total">0 FCFA</strong>
+        <strong id="totalRecu">0 FCFA</strong>
       </div>
       <div class="indicator total-recu">
         <span>💰 Autres contrib.<br>(Famille & Autres ami/es)</span>
-        <strong id="total-autre">1 250 000 FCFA</strong>
+        <strong id="totalAutreContrib">0 FCFA</strong>
       </div>
       <div class="indicator reste">
         <span>📊 Reste à collecter<br>(Global)</span>
@@ -364,83 +364,34 @@
     </div>
 
     <div class="progress-container">
-      <div class="progress-bar" id="progress-bar"></div>
+      <div class="progress-bar" id="progress-bar">0%</div>
     </div>
-    
-    <div class="indicators">   
-      <div class="indicator objectif">
-        <span>🎯 Objectif<br>(Dose 2)</span>
-        <strong id="objectif2">1 600 000 FCFA</strong>
-      </div>
-      <div class="indicator total-recu">
-        <span>💰 Total disponible<br>(Dose 2)</span>
-        <strong id="total2">0 FCFA</strong>
-      </div>
-      <div class="indicator reste">
-        <span>📊 Reste à collecter<br>(Dose 2)</span>
-        <strong id="reste2">1 600 000 FCFA</strong>
-      </div>
-      <div class="indicator date-limite">
-        <span>⏰ Date limite<br>(Dose 2)</span>
-        <strong>25/01/2026</strong>
-      </div>
-    </div>
-    
+	
+  </header>
+  
+  <section class="table-container">
+    <h2 id="contributionsDose3-title" style="color: #667eea; margin-bottom: 10px;">📋 [ Dose 3 ] [ <span id="nombreContributeurs3">0</span> contributions ] [ 26/01/2026 à Aujourd'hui ]</h2>
+	
     <div class="indicators">   
       <div class="indicator objectif">
         <span>🎯 Objectif<br>(Dose 3)</span>
-        <strong id="objectif3">1 600 000 FCFA</strong>
+        <strong id="objectifDose3">1 600 000 FCFA</strong>
       </div>
       <div class="indicator total-recu">
         <span>💰 Total disponible<br>(Dose 3)</span>
-        <strong id="total3">0 FCFA</strong>
+        <strong id="totalRecuDose3">0 FCFA</strong>
       </div>
       <div class="indicator reste">
         <span>📊 Reste à collecter<br>(Dose 3)</span>
-        <strong id="reste3">1 600 000 FCFA</strong>
+        <strong id="resteACollecterDose3">1 600 000 FCFA</strong>
       </div>
       <div class="indicator date-limite">
         <span>⏰ Date limite<br>(Dose 3)</span>
         <strong>15/02/2026</strong>
       </div>
     </div>
-  </header>
-
-  <section class="table-container">
-  <h2 id="contributions3-title" style="color: #667eea; margin-bottom: 10px;">📋 Dose 3 - Contributeurs, 26/01/2026 - Aujourd'hui</h2>
-  <table id="contributions3">
-    <thead>
-      <tr>
-        <th>N°</th>
-        <th>Nom</th>
-        <th>Montant versé (FCFA)</th>
-        <th>Mode de paiement</th>
-        <th>Date</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
-</section>
-
-  <section class="table-container">
-  <h2 id="contributions2-title" style="color: #667eea; margin-bottom: 10px;">📋 Dose 2 - Contributeurs, 07/01/2026 - 25/01/2026</h2>
-  <table id="contributions2">
-    <thead>
-      <tr>
-        <th>N°</th>
-        <th>Nom</th>
-        <th>Montant versé (FCFA)</th>
-        <th>Mode de paiement</th>
-        <th>Date</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
-</section>
-
-  <section class="table-container">
-    <h2 style="color: #667eea; margin-bottom: 10px;">📋 Contributeurs (Démarrage) - 14/12/2025 au 06/01/2025</h2>
-    <table id="contributions1">
+	
+    <table id="contributionsDose3">
       <thead>
         <tr>
           <th>N°</th>
@@ -450,9 +401,79 @@
           <th>Date</th>
         </tr>
       </thead>
-      <tbody>
-        <!-- Les lignes seront générées automatiquement -->
-      </tbody>
+      <tbody></tbody>
+    </table>
+  </section>
+
+  <section class="table-container">
+    <h2 id="contributionsDose2-title" style="color: #667eea; margin-bottom: 10px;">📋 [ Dose 2 ] [ <span id="nombreContributeurs2">0</span> contributions ] [ 07/01/2026 au 25/01/2026 ]</h2>
+	
+	  <div class="indicators">   
+		<div class="indicator objectif">
+		  <span>🎯 Objectif<br>(Dose 2)</span>
+		  <strong id="objectifDose2">1 600 000 FCFA</strong>
+		</div>
+		<div class="indicator total-recu">
+		  <span>💰 Total disponible<br>(Dose 2)</span>
+		  <strong id="totalRecuDose2">0 FCFA</strong>
+		</div>
+		<div class="indicator reste">
+		  <span>📊 Reste à collecter<br>(Dose 2)</span>
+		  <strong id="resteACollecterDose2">1 600 000 FCFA</strong>
+		</div>
+		<div class="indicator date-limite">
+		  <span>⏰ Date limite<br>(Dose 2)</span>
+		  <strong>28/01/2026</strong>
+		</div>
+	  </div>
+  
+    <table id="contributionsDose2">
+      <thead>
+        <tr>
+          <th>N°</th>
+          <th>Nom</th>
+          <th>Montant versé (FCFA)</th>
+          <th>Mode de paiement</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </section>
+  
+  <section class="table-container">
+    <h2 style="color: #667eea; margin-bottom: 10px;">📋 [ Dose 1 ] [ <span id="nombreContributeurs1">0</span> contributions ] [ 14/12/2025 au 06/01/2025 ]</h2>
+	
+	<div class="indicators">   
+    <div class="indicator objectif">
+      <span>🎯 Objectif<br>(Dose 1)</span>
+      <strong id="objectifDose1">1 600 000 FCFA</strong>
+    </div>
+    <div class="indicator total-recu">
+      <span>💰 Total disponible<br>(Dose 1)</span>
+      <strong id="totalRecuDose1">0 FCFA</strong>
+    </div>
+    <div class="indicator reste">
+      <span>📊 Reste à collecter<br>(Dose 1)</span>
+      <strong id="resteACollecterDose1">1 600 000 FCFA</strong>
+    </div>
+    <div class="indicator date-limite">
+      <span>⏰ Date limite<br>(Dose 1)</span>
+      <strong>07/01/2026</strong>
+    </div>
+  </div>
+  
+    <table id="contributionsDose1">
+      <thead>
+        <tr>
+          <th>N°</th>
+          <th>Nom</th>
+          <th>Montant versé (FCFA)</th>
+          <th>Mode de paiement</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
     </table>
   </section>
 
@@ -476,135 +497,140 @@
     </button>
   </footer>
 
-  <style>
-    @keyframes pulse-button {
-      0%, 100% {
-        transform: scale(1);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-      }
-      50% {
-        transform: scale(1.05);
-        box-shadow: 0 15px 40px rgba(255, 215, 0, 0.5);
-      }
-    }
-    
-    #celebration-btn:hover {
-      transform: scale(1.1) rotate(-3deg);
-      box-shadow: 0 15px 50px rgba(255, 215, 0, 0.7);
-    }
-  </style>
-
   <script>
     const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS12j5YSQwTrddBzFQ_nR_OgMKH2WmJhedtUDT1EEmP1JhGIGRNZeOS6nWfcvZul0g09_X7XrAXNTKG/pub?output=csv';
-    const objectif = 5000000;
-    const objectif2 = 1600000;
-    const objectif2 = 1600000;
-    const remise1 = 1600000;
-    const remise2 = 1150000;
-    const remise3 = 0;
-    const totalAutre = 1250000;
 
-    function createConfetti() {
-      const colors = ['#667eea', '#764ba2', '#FF4500', '#32CD32', '#FFD700'];
-      const confetti = document.createElement('div');
-      confetti.className = 'confetti';
-      confetti.style.left = Math.random() * window.innerWidth + 'px';
-      confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
-      confetti.style.animationDelay = Math.random() * 3 + 's';
-      document.body.appendChild(confetti);
-      setTimeout(() => confetti.remove(), 3000);
+    function formatNumber(num) {
+      return num.toLocaleString('fr-FR');
     }
 
     async function fetchData() {
-      const response = await fetch(csvUrl);
-      const data = await response.text();
-      const rows = data.split('\n').slice(1);
-    
-      const tbody3 = document.querySelector('#contributions3 tbody');     // 85 → fin
-      const tbody2 = document.querySelector('#contributions2 tbody');     // 68 → 84
-      const tbody1 = document.querySelector('#contributions1 tbody'); // 1 → 67
+      try {
+        const res = await fetch(csvUrl);
+        const text = await res.text();
+        const rows = text.split('\n').slice(1).filter(r => r.trim());
 
-      tbody3.innerHTML = '';
-      tbody2.innerHTML = '';
-      tbody1.innerHTML = '';
-    
-      let total = 0;
-      let total2 = 0;
-      let total3 = 0;
-      let rowNumber = 1;
-      let rowNumber2 = 1;
-      let rowNumber3 = 1;
-    
-      rows.forEach((row, index) => {
-        if (!row.trim()) return;
-    
-        const cols = row.split(',');
-        const tr = document.createElement('tr');
-        tr.style.animationDelay = (index * 0.03) + 's';
-    
-        // Numéro
-        const tdNum = document.createElement('td');
-        if (rowNumber < 68) {
-          tdNum.textContent = rowNumber;
-        } else if (rowNumber < 85) {
-          tdNum.textContent = rowNumber2;
-        } else {
-          tdNum.textContent = rowNumber3;
-        }
-        
-        tr.appendChild(tdNum);
-    
-        // Colonnes (Nom, Montant, Mode, Date)
-        for (let i = 0; i < 4; i++) {
-          const td = document.createElement('td');
-          td.textContent = cols[i] || '';
-          tr.appendChild(td);
-        }
-    
-        // 👉 RÉPARTITION CORRIGÉE
-        if (rowNumber < 68) {
-          tbody1.appendChild(tr);       // Tableau 1
-          //rowNumber++;
-        } else if (rowNumber < 85) {
-          tbody2.appendChild(tr);    // Tableau 2
-          rowNumber2++;
-        } else {
-          tbody3.appendChild(tr);    // Tableau 3
-          rowNumber3++;
-        }
-    
-        const montant = parseFloat((cols[1] || '').replace(/\s/g, ''));
-        if (!isNaN(montant)) total += montant;
-        if (rowNumber >= 68 && rowNumber < 85) total2 += montant;
-        if (rowNumber >= 85) total3 += montant;
-    
-        rowNumber++;
-      });
+        // Objectifs
+        const objectif = 5000000;
+        const objectifDose1 = 1600000;
+        const objectifDose2 = 1600000;
+        const objectifDose3 = 1600000;
 
-      //total += totalAutre
-      const montantDisponible = Math.max(total + totalAutre - remise1 - remise2 - remise3, 0);
-      const reste = Math.max(objectif - total - totalAutre, 0);
-      const reste2 = Math.max(objectif2 - remise2 - totalAutre, 0);
-      const reste3 = Math.max(objectif2 - remise3, 0);
-      
-      document.getElementById('total').textContent = total.toLocaleString() + ' FCFA';
-      document.getElementById('total2').textContent = montantDisponible.toLocaleString() + ' FCFA';
-      document.getElementById('reste').textContent = reste.toLocaleString() + ' FCFA';
-      document.getElementById('reste2').textContent = reste2.toLocaleString() + ' FCFA';
-      document.getElementById('total3').textContent = montantDisponible.toLocaleString() + ' FCFA';
-      document.getElementById('reste3').textContent = reste3.toLocaleString() + ' FCFA';
+        // Initialisation des totaux
+        let totalPromo2029 = 0;
+        let totalAutre = 0;
+        let totalDose1 = 0;
+        let totalDose2 = 0;
+        let totalDose3 = 0;
 
-      document.getElementById('contributions2-title').textContent = '📋 Dose 2 - ' + (rowNumber2 - 1).toLocaleString() + ' contributeurs, depuis le 07/01/2026';
-      document.getElementById('contributions3-title').textContent = '📋 Dose 3 - ' + (rowNumber3 - 1).toLocaleString() + ' contributeurs, depuis le 25/01/2026';
-    
-      const pourcentage = Math.min(((total + totalAutre) / objectif) * 100, 100);
-      const bar = document.getElementById('progress-bar');
-      bar.style.width = pourcentage + '%';
-      bar.textContent = Math.round(pourcentage) + '%';
+        // Arrays pour stocker les contributions par dose
+        const contributionsDose1 = [];
+        const contributionsDose2 = [];
+        const contributionsDose3 = [];
+
+        // Parser les données CSV
+        rows.forEach(row => {
+			if (!row.trim()) return;
+          const cols = row.split(',').map(c => c.trim().replace(/^"|"$/g, ''));
+          
+          if (cols.length >= 5) {
+            const nom = cols[0];
+            const montant = parseFloat((cols[1] || '').replace(/\s/g, ''));
+            const mode = cols[2];
+            const date = cols[3];
+            const origine = cols[4];
+            const objectifDose = cols[5] || '';
+
+            // Calculer les totaux par origine
+            if (origine === 'Promo 2029') {
+				if (!isNaN(montant)) totalPromo2029 += montant;
+            } else if (origine === 'Autre') {
+				if (!isNaN(montant)) totalAutre += montant;
+            }
+
+            // Répartir par dose
+            const contribution = { nom, montant, mode, date };
+            
+            if (objectifDose === 'Dose 1') {
+              totalDose1 += montant;
+              contributionsDose1.push(contribution);
+            } else if (objectifDose === 'Dose 2') {
+              totalDose2 += montant;
+              contributionsDose2.push(contribution);
+            } else if (objectifDose === 'Dose 3') {
+              totalDose3 += montant;
+              contributionsDose3.push(contribution);
+            }
+          }
+        });
+
+        // Calculs globaux
+        const reste = objectif - totalPromo2029 - totalAutre;
+        const pourcentage = Math.min(((totalPromo2029 + totalAutre) / objectif) * 100, 100);
+
+        // Calculs par dose
+        const resteDose1 = Math.max(objectifDose1 - totalDose1, 0);
+        const resteDose2 = Math.max(objectifDose2 - totalDose2, 0);
+        const resteDose3 = Math.max(objectifDose3 - totalDose3, 0);
+
+        // Mise à jour de l'interface
+        document.getElementById('totalRecu').textContent = formatNumber(totalPromo2029) + ' FCFA';
+        document.getElementById('totalAutreContrib').textContent = formatNumber(totalAutre) + ' FCFA';
+        document.getElementById('reste').textContent = formatNumber(Math.max(reste, 0)) + ' FCFA';
+
+        // Barre de progression
+        const bar = document.getElementById('progress-bar');
+        bar.style.width = pourcentage + '%';
+        bar.textContent = Math.round(pourcentage) + '%';
+
+        // Dose 1
+        document.getElementById('totalRecuDose1').textContent = formatNumber(totalDose1) + ' FCFA';
+        document.getElementById('resteACollecterDose1').textContent = formatNumber(resteDose1) + ' FCFA';
+        document.getElementById('nombreContributeurs1').textContent = contributionsDose1.length;
+
+        // Dose 2
+        document.getElementById('totalRecuDose2').textContent = formatNumber(totalDose2) + ' FCFA';
+        document.getElementById('resteACollecterDose2').textContent = formatNumber(resteDose2) + ' FCFA';
+        document.getElementById('nombreContributeurs2').textContent = contributionsDose2.length;
+
+        // Dose 3
+        document.getElementById('totalRecuDose3').textContent = formatNumber(totalDose3) + ' FCFA';
+        document.getElementById('resteACollecterDose3').textContent = formatNumber(resteDose3) + ' FCFA';
+        document.getElementById('nombreContributeurs3').textContent = contributionsDose3.length;
+
+        // Remplir les tableaux
+        fillTable('contributionsDose1', contributionsDose1);
+        fillTable('contributionsDose2', contributionsDose2);
+        fillTable('contributionsDose3', contributionsDose3);
+
+      } catch (error) {
+        console.error('Erreur lors du chargement des données:', error);
+      }
     }
 
+    function fillTable(tableId, contributions) {
+      const tbody = document.querySelector(`#${tableId} tbody`);
+      tbody.innerHTML = '';
+
+      contributions.forEach((contrib, index) => {
+        const tr = document.createElement('tr');
+        tr.style.animationDelay = `${index * 0.05}s`;
+        tr.innerHTML = `
+          <td>${index + 1}</td>
+          <td>${contrib.nom}</td>
+          <td>${formatNumber(contrib.montant)} FCFA</td>
+          <td>${contrib.mode}</td>
+          <td>${contrib.date}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    // Charger les données au démarrage
     fetchData();
-    setInterval(fetchData, 60000); // Actualisation automatique toutes les minutes
+
+    // Actualiser toutes les 60 secondes
+    setInterval(fetchData, 60000);
   </script>
 </body>
 </html>
