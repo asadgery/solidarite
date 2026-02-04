@@ -437,7 +437,7 @@
 		</div>
 		<div class="indicator date-limite">
 		  <span>⏰ Date limite (Dose 2)</span>
-		  <strong>28/01/2026</strong>
+		  <strong>25/01/2026</strong>
 		</div>
 	  </div>
   
@@ -473,7 +473,7 @@
     </div>
     <div class="indicator date-limite">
       <span>⏰ Date limite (Dose 1)</span>
-      <strong>07/01/2026</strong>
+      <strong>06/01/2026</strong>
     </div>
   </div>
   
@@ -585,10 +585,13 @@
 		  const totalRecu_ = totalPromo2009 + totalAutre
 		  const totalARestituer = totalPromo2009 - restitution1 - restitution2;
         const pourcentage = Math.min(((totalPromo2009 + totalAutre) / objectif) * 100, 100);
+		  const argentRestant1 = totalDose1 - restitution1;
+		  const argentRestant2 = totalDose2 - restitution2;
+		  const argentRestant = totalRecu_ - restitution2;
 
         // Calculs par dose
-        const resteDose1 = Math.max(objectifDose1 - totalDose1, 0);
-        const resteDose2 = Math.max(objectifDose2 - totalDose2, 0);
+        const resteDose1 = Math.max(objectifDose1 - totalDose1 - argentRestant1, 0);
+        const resteDose2 = Math.max(objectifDose2 - totalDose2 - argentRestant2, 0);
         const resteDose3 = Math.max(objectifDose3 - totalDose3, 0);
 
         // Mise à jour de l'interface
