@@ -587,12 +587,11 @@
         const pourcentage = Math.min(((totalPromo2009 + totalAutre) / objectif) * 100, 100);
 		  const argentRestant1 = totalDose1 - restitution1;
 		  const argentRestant2 = totalDose2 - restitution2;
-		  const argentRestant = totalRecu_ - restitution2;
 
         // Calculs par dose
-        const resteDose1 = Math.max(objectifDose1 - totalDose1 - argentRestant1, 0);
-        const resteDose2 = Math.max(objectifDose2 - totalDose2 - argentRestant2, 0);
-        const resteDose3 = Math.max(objectifDose3 - totalDose3, 0);
+        const resteDose1 = Math.max(objectifDose1 - totalDose1, 0);
+        const resteDose2 = Math.max(objectifDose2 - totalDose2 - argentRestant1, 0);
+        const resteDose3 = Math.max(objectifDose3 - totalDose3 - argentRestant1 - argentRestant2, 0);
 
         // Mise à jour de l'interface
         document.getElementById('totalRecu').textContent = formatNumber(totalPromo2009) + ' FCFA';
