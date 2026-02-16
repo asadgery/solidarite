@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galaxie des Donateurs | Solidarité Marie Noëlle</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow: hidden;
+            color: white;
+            display: flex;
+        }
+
+        /* MENU VERTICAL GAUCHE */
+        .sidebar {
+            width: 260px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 4px 0 20px rgba(0,0,0,0.1);
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
+        }
+        
+        .sidebar-header {
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom: 2px solid rgba(102, 126, 234, 0.2);
+        }
+        
+        .sidebar-logo {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        
+        .sidebar-title {
+            font-size: 1.3em;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 5px;
+        }
+        
+        .sidebar-subtitle {
+            font-size: 0.85em;
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .sidebar-nav {
+            flex: 1;
+            padding: 20px 0;
+            overflow-y: auto;
+        }
+        
+        .nav-item {
+            margin: 8px 15px;
+        }
+        
+        .nav-item a {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 20px;
+            color: #2d3748;
+            text-decoration: none;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+        
+        .nav-item a:hover {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            transform: translateX(5px);
+        }
+        
+        .nav-item a.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .nav-icon {
+            font-size: 1.3em;
+            min-width: 25px;
+            text-align: center;
+        }
+        
+        .sidebar-footer {
+            padding: 20px;
+            border-top: 2px solid rgba(102, 126, 234, 0.2);
+            text-align: center;
+            font-size: 0.8em;
+            color: #666;
+        }
+        
+        /* BOUTON MOBILE TOGGLE */
+        .mobile-toggle {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 2100;
+            background: white;
+            border: none;
+            padding: 12px 16px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            cursor: pointer;
+            font-size: 1.5em;
+        }
+        
+        /* CONTENU PRINCIPAL GALAXY */
+        .main-content {
+            margin-left: 260px;
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        canvas {
+            display: block;
+        }
+        
+        .controls {
+            position: fixed;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            text-align: center;
+            pointer-events: none;
+        }
+        
+        .controls h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1s ease-in;
+        }
+        
+        .controls p {
+            font-size: 1.1em;
+            opacity: 0.9;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        
+        .info {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            font-size: 0.95em;
+            opacity: 0.85;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+        }
+        
+        .info p {
+            margin: 5px 0;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        @media (max-width: 968px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .controls h1 {
+                font-size: 1.8em;
+            }
+            
+            .controls p {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- BOUTON MOBILE -->
+    <button class="mobile-toggle" onclick="toggleSidebar()">☰</button>
+
+    <!-- MENU VERTICAL GAUCHE -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">❤️</div>
+            <div class="sidebar-title">Solidarité MN</div>
+            <div class="sidebar-subtitle">Marie Noëlle</div>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <div class="nav-item">
+                <a href="index.html">
+                    <span class="nav-icon">🏠</span>
+                    <span>Accueil</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="contributions.html">
+                    <span class="nav-icon">💰</span>
+                    <span>Contributions</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="note-synthese.html">
+                    <span class="nav-icon">📄</span>
+                    <span>Note de synthèse</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="galaxie-donateurs.html" class="active">
+                    <span class="nav-icon">🌟</span>
+                    <span>Galaxie Donateurs</span>
+                </a>
+            </div>
+        </nav>
+        
+        <div class="sidebar-footer">
+            <p>🙏 74 étoiles brillent</p>
+        </div>
+    </aside>
+
+    <!-- CONTENU PRINCIPAL -->
+    <main class="main-content">
+        <div class="controls">
+            <h1>GALAXY DES DONATEURS</h1>
+            <p>❤️ Des cœurs unis pour Marie-Noëlle ❤️</p>
+        </div>
+        
+        <div id="container"></div>
+        
+        <div class="info">
+            <p>🖱️ Faites glisser pour faire tourner la sphère</p>
+            <p>🔍 Molette pour zoomer / dézoomer</p>
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        const donors = [
+            "Mme 3K", "ABANE Christ", "ACLE Fabrice", "ADINGRA Guillaume", "AGNIMEL Laroche",
+            "ALLOUFOU Rymer", "AMANI K. Alain", "ASSEU Géry", "ASSI Sopie", "Les Anonymes",
+            "BAMBA Adama", "BONI Herman", "COULIBALY Bouaké", "COULIBALY Youssouf", "COULIBALY Zié",
+            "DATTE Franck", "DIABAGATE Fatim", "DIAKITE Alassane", "DIBY Okoma", "DJAKI Samuel",
+            "DJANHAN Franck", "DJE BI Hermann", "DOBE Rose", "DUA Cyril", "EHOUMAN Arnaud",
+            "EKOUMAN Fabrice", "FLEAN Maxime", "FOFANA Abdoulaye", "FOFANA Hamed", "Famille et amis",
+            "GODE Emmanuel", "GUEU Kpan Eric", "Inconnu", "KALLO Oumar", "KAMBOU Ollo",
+            "KOFFI Herman", "KONAN Henri", "KONATE Boue", "KONE Djama", "KONE N'gouhi",
+            "KOSSA Rodrigue", "KOSSONOU", "KOUAKOU Abraham", "KOUAKOU Van Dick", "KOUAME Marina",
+            "KOUAME Mohamed", "KREME Fossou", "LATTE Serges", "M'BOUA Alex", "MONEMO Joel",
+            "NDINDIN Franck", "NDRI Jules", "NDRI Landry", "NIMBA Ange", "ODJE Francis",
+            "OUATTARA Alamadogo", "OUATTARA Amadou", "OUATTARA Belarsi", "OUATTARA Stéphane",
+            "SEDJI SIAM", "SYLLA Mory", "TAHOU Elvis", "TAKOUO Dito", "TIA David",
+            "TRAORE Kalifa", "UMMAH SOLIDAIRE", "Un parrain", "YAO Bruno", "YAO Guy Davy",
+            "YAO Mariette", "YEO Christian", "ZADI Ange", "ZEGO Marius", "ZOUZOU Michel"
+        ];
+
+        // Configuration de la scène
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        
+        const container = document.getElementById('container');
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        renderer.setClearColor(0x000000, 0);
+        container.appendChild(renderer.domElement);
+        
+        camera.position.z = 15;
+        
+        // Groupe pour la sphère et les textes
+        const sphereGroup = new THREE.Group();
+        scene.add(sphereGroup);
+        
+        // Créer la sphère centrale transparente
+        const sphereGeometry = new THREE.SphereGeometry(5, 32, 32);
+        const sphereMaterial = new THREE.MeshPhongMaterial({
+            color: 0x4169E1,
+            transparent: true,
+            opacity: 0.15,
+            wireframe: false,
+            emissive: 0x2244aa,
+            emissiveIntensity: 0.3
+        });
+        const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+        sphereGroup.add(sphere);
+        
+        // Wireframe de la sphère
+        const wireframeGeometry = new THREE.SphereGeometry(5.05, 24, 24);
+        const wireframeMaterial = new THREE.MeshBasicMaterial({
+            color: 0x6699ff,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.2
+        });
+        const wireframe = new THREE.Mesh(wireframeGeometry, wireframeMaterial);
+        sphereGroup.add(wireframe);
+        
+        // Fonction pour créer un sprite de texte
+        function createTextSprite(text, isMerci = false) {
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            
+            if (isMerci) {
+                canvas.width = 512;
+                canvas.height = 256;
+                context.font = 'Bold 120px Arial';
+                context.fillStyle = '#FFD700';
+                context.textAlign = 'center';
+                context.textBaseline = 'middle';
+                
+                // Ombre
+                context.shadowColor = 'rgba(255, 215, 0, 0.8)';
+                context.shadowBlur = 20;
+                context.fillText(text, 256, 128);
+                
+                // Contour
+                context.strokeStyle = 'white';
+                context.lineWidth = 4;
+                context.strokeText(text, 256, 128);
+            } else {
+                canvas.width = 512;
+                canvas.height = 128;
+                context.font = 'Bold 32px Arial';
+                context.fillStyle = 'white';
+                context.textAlign = 'center';
+                context.textBaseline = 'middle';
+                
+                // Ombre légère
+                context.shadowColor = 'rgba(0, 0, 0, 0.5)';
+                context.shadowBlur = 5;
+                context.fillText(text, 256, 64);
+            }
+            
+            const texture = new THREE.CanvasTexture(canvas);
+            const spriteMaterial = new THREE.SpriteMaterial({ 
+                map: texture,
+                transparent: true,
+                opacity: isMerci ? 1.0 : 0.85
+            });
+            const sprite = new THREE.Sprite(spriteMaterial);
+            
+            if (isMerci) {
+                sprite.scale.set(8, 4, 1);
+            } else {
+                sprite.scale.set(3, 0.75, 1);
+            }
+            
+            return sprite;
+        }
+        
+        // Placer "MERCI" au centre
+        const merciSprite = createTextSprite('MERCI', true);
+        merciSprite.position.set(0, 0, 0);
+        sphereGroup.add(merciSprite);
+        
+        // Distribuer les noms sur la sphère (algorithme de Fibonacci)
+        const goldenAngle = Math.PI * (3 - Math.sqrt(5));
+        const radius = 7;
+        
+        donors.forEach((name, i) => {
+            const y = 1 - (i / (donors.length - 1)) * 2;
+            const radiusAtY = Math.sqrt(1 - y * y);
+            const theta = goldenAngle * i;
+            
+            const x = Math.cos(theta) * radiusAtY * radius;
+            const z = Math.sin(theta) * radiusAtY * radius;
+            const yPos = y * radius;
+            
+            const textSprite = createTextSprite(name, false);
+            textSprite.position.set(x, yPos, z);
+            
+            // Orienter le texte vers la caméra
+            textSprite.lookAt(camera.position);
+            
+            sphereGroup.add(textSprite);
+        });
+        
+        // Lumières
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+        scene.add(ambientLight);
+        
+        const pointLight1 = new THREE.PointLight(0xffffff, 0.8);
+        pointLight1.position.set(10, 10, 10);
+        scene.add(pointLight1);
+        
+        const pointLight2 = new THREE.PointLight(0x6699ff, 0.5);
+        pointLight2.position.set(-10, -10, -10);
+        scene.add(pointLight2);
+        
+        // Particules en arrière-plan
+        const particlesGeometry = new THREE.BufferGeometry();
+        const particlesCount = 500;
+        const posArray = new Float32Array(particlesCount * 3);
+        
+        for (let i = 0; i < particlesCount * 3; i++) {
+            posArray[i] = (Math.random() - 0.5) * 50;
+        }
+        
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+        const particlesMaterial = new THREE.PointsMaterial({
+            size: 0.05,
+            color: 0xffffff,
+            transparent: true,
+            opacity: 0.6
+        });
+        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+        scene.add(particlesMesh);
+        
+        // Contrôles de souris
+        let mouseDown = false;
+        let mouseX = 0;
+        let mouseY = 0;
+        let targetRotationX = 0;
+        let targetRotationY = 0;
+        
+        renderer.domElement.addEventListener('mousedown', (e) => {
+            mouseDown = true;
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+        
+        renderer.domElement.addEventListener('mouseup', () => {
+            mouseDown = false;
+        });
+        
+        renderer.domElement.addEventListener('mousemove', (e) => {
+            if (mouseDown) {
+                const deltaX = e.clientX - mouseX;
+                const deltaY = e.clientY - mouseY;
+                
+                targetRotationY += deltaX * 0.005;
+                targetRotationX += deltaY * 0.005;
+                
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            }
+        });
+        
+        // Zoom avec la molette
+        renderer.domElement.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            camera.position.z += e.deltaY * 0.01;
+            camera.position.z = Math.max(8, Math.min(25, camera.position.z));
+        });
+        
+        // Support tactile
+        let touchStartX = 0;
+        let touchStartY = 0;
+        
+        renderer.domElement.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+        });
+        
+        renderer.domElement.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            const deltaX = e.touches[0].clientX - touchStartX;
+            const deltaY = e.touches[0].clientY - touchStartY;
+            
+            targetRotationY += deltaX * 0.005;
+            targetRotationX += deltaY * 0.005;
+            
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+        });
+        
+        // Animation
+        let time = 0;
+        function animate() {
+            requestAnimationFrame(animate);
+            time += 0.01;
+            
+            // Rotation automatique légère
+            if (!mouseDown) {
+                targetRotationY += 0.002;
+            }
+            
+            // Interpolation douce de la rotation
+            sphereGroup.rotation.y += (targetRotationY - sphereGroup.rotation.y) * 0.1;
+            sphereGroup.rotation.x += (targetRotationX - sphereGroup.rotation.x) * 0.1;
+            
+            // Animation des particules
+            particlesMesh.rotation.y += 0.0005;
+            particlesMesh.rotation.x += 0.0002;
+            
+            // Pulse de la sphère centrale
+            const scale = 1 + Math.sin(time) * 0.02;
+            sphere.scale.set(scale, scale, scale);
+            
+            // Pulse du texte MERCI
+            const merciScale = 1 + Math.sin(time * 2) * 0.05;
+            merciSprite.scale.set(8 * merciScale, 4 * merciScale, 1);
+            
+            renderer.render(scene, camera);
+        }
+        
+        // Responsive
+        window.addEventListener('resize', () => {
+            const container = document.getElementById('container');
+            camera.aspect = container.clientWidth / container.clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(container.clientWidth, container.clientHeight);
+        });
+        
+        // Démarrer l'animation
+        animate();
+        
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active');
+        }
+        
+        // Fermer le menu mobile quand on clique sur un lien
+        document.querySelectorAll('.sidebar a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 968) {
+                    document.getElementById('sidebar').classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

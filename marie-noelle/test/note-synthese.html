@@ -21,7 +21,91 @@
             line-height: 1.7;
         }
         
-        /* MENU DE NAVIGATION */
+
+        /* MENU VERTICAL GAUCHE */
+        .sidebar {
+            width: 260px;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 4px 0 20px rgba(0,0,0,0.1);
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
+        }
+        
+        .sidebar-header {
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom: 2px solid rgba(102, 126, 234, 0.2);
+        }
+        
+        .sidebar-logo { font-size: 2em; margin-bottom: 10px; }
+        
+        .sidebar-title {
+            font-size: 1.3em;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 5px;
+        }
+        
+        .sidebar-subtitle { font-size: 0.85em; color: #666; font-weight: 500; }
+        .sidebar-nav { flex: 1; padding: 20px 0; overflow-y: auto; }
+        .nav-item { margin: 8px 15px; }
+        
+        .nav-item a {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 20px;
+            color: #2d3748;
+            text-decoration: none;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+        
+        .nav-item a:hover {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            transform: translateX(5px);
+        }
+        
+        .nav-item a.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .nav-icon { font-size: 1.3em; min-width: 25px; text-align: center; }
+        .sidebar-footer { padding: 20px; border-top: 2px solid rgba(102, 126, 234, 0.2); text-align: center; font-size: 0.8em; color: #666; }
+        
+        .mobile-toggle {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1100;
+            background: white;
+            border: none;
+            padding: 12px 16px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            cursor: pointer;
+            font-size: 1.5em;
+        }
+
+        body { display: flex; }
+        
+        .main-wrapper { margin-left: 260px; flex: 1; }
+
         nav {
             background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
@@ -292,7 +376,12 @@
             box-shadow: 0 12px 30px rgba(0,0,0,0.3);
         }
         
-        @media (max-width: 768px) {
+
+        @media (max-width: 968px) {
+            .sidebar { transform: translateX(-100%); }
+            .sidebar.active { transform: translateX(0); }
+            .mobile-toggle { display: block; }
+            .main-wrapper { margin-left: 0; }
             .document {
                 padding: 30px 25px;
             }
@@ -324,19 +413,24 @@
     </style>
 </head>
 <body>
-    <!-- MENU DE NAVIGATION -->
-    <nav>
-        <div class="nav-container">
-            <div class="nav-logo">❤️ Solidarité MN</div>
-            <button class="nav-toggle" onclick="toggleMenu()">☰</button>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="index.html">🏠 Accueil</a></li>
-                <li><a href="contributions.html">💰 Contributions</a></li>
-                <li><a href="note-synthese.html" class="active">📄 Note de synthèse</a></li>
-                <li><a href="galaxy-donateurs.html">🌟 Galaxy Donateurs</a></li>
-            </ul>
+    <button class="mobile-toggle" onclick="toggleSidebar()">☰</button>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">❤️</div>
+            <div class="sidebar-title">Solidarité MN</div>
+            <div class="sidebar-subtitle">Marie Noëlle</div>
         </div>
-    </nav>
+        <nav class="sidebar-nav">
+            <div class="nav-item"><a href="index.html"><span class="nav-icon">🏠</span><span>Accueil</span></a></div>
+            <div class="nav-item"><a href="contributions.html"><span class="nav-icon">💰</span><span>Contributions</span></a></div>
+            <div class="nav-item"><a href="note-synthese.html" class="active"><span class="nav-icon">📄</span><span>Note de synthèse</span></a></div>
+            <div class="nav-item"><a href="galaxie-donateurs.html"><span class="nav-icon">🌟</span><span>Galaxie Donateurs</span></a></div>
+        </nav>
+        <div class="sidebar-footer"><p>🙏 Ensemble pour Marie Noëlle</p></div>
+    </aside>
+    <div class="main-wrapper">
+
+
 
     <div class="container">
         <div class="document">
@@ -485,7 +579,7 @@
                     <li><strong>Parrains et bienfaiteurs</strong> : Contributions externes</li>
                     <li><strong>Organisation UMMAH SOLIDAIRE</strong> : Soutien institutionnel</li>
                 </ul>
-                <p style="margin-top: 20px;">Voir la <a href="galaxy-donateurs.html" style="color: #667eea; font-weight: 700;">Galaxy des Donateurs</a> pour découvrir tous ceux qui ont contribué.</p>
+                <p style="margin-top: 20px;">Voir la <a href="galaxie-donateurs.html" style="color: #667eea; font-weight: 700;">Galaxie des Donateurs</a> pour découvrir tous ceux qui ont contribué.</p>
             </div>
 
             <!-- VI. IMPACTS DU TRAITEMENT -->
@@ -544,7 +638,7 @@
                     <li>Publication en temps réel des contributions reçues</li>
                     <li>Mise à jour régulière de l'état d'avancement</li>
                     <li>Communication des restitutions effectuées</li>
-                    <li>Remerciements publics aux donateurs (Galaxy des Donateurs)</li>
+                    <li>Remerciements publics aux donateurs (Galaxie des Donateurs)</li>
                 </ul>
             </div>
 
@@ -605,10 +699,10 @@
     </div>
 
     <script>
-        function toggleMenu() {
+        function toggleSidebar() {
             const navLinks = document.getElementById('navLinks');
             navLinks.classList.toggle('active');
         }
     </script>
-</body>
+</div></body>
 </html>

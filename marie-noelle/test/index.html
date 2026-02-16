@@ -22,82 +22,123 @@
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
+            display: flex;
         }
         
-        /* MENU DE NAVIGATION */
-        nav {
+        /* MENU VERTICAL GAUCHE */
+        .sidebar {
+            width: 260px;
             background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            position: sticky;
+            box-shadow: 4px 0 20px rgba(0,0,0,0.1);
+            position: fixed;
+            left: 0;
             top: 0;
+            bottom: 0;
             z-index: 1000;
-            animation: slideDown 0.5s ease-out;
-        }
-        
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 30px;
+            flex-direction: column;
+            transition: transform 0.3s ease;
         }
         
-        .nav-logo {
-            font-size: 1.5em;
+        .sidebar-header {
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom: 2px solid rgba(102, 126, 234, 0.2);
+        }
+        
+        .sidebar-logo {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        
+        .sidebar-title {
+            font-size: 1.3em;
             font-weight: 800;
             background: linear-gradient(135deg, #667eea, #764ba2);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            margin-bottom: 5px;
         }
         
-        .nav-links {
+        .sidebar-subtitle {
+            font-size: 0.85em;
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .sidebar-nav {
+            flex: 1;
+            padding: 20px 0;
+            overflow-y: auto;
+        }
+        
+        .nav-item {
+            margin: 8px 15px;
+        }
+        
+        .nav-item a {
             display: flex;
-            gap: 30px;
-            list-style: none;
-        }
-        
-        .nav-links a {
-            text-decoration: none;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 20px;
             color: #2d3748;
-            font-weight: 600;
-            padding: 8px 16px;
-            border-radius: 8px;
+            text-decoration: none;
+            border-radius: 12px;
             transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 0.95em;
         }
         
-        .nav-links a:hover, .nav-links a.active {
+        .nav-item a:hover {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            transform: translateX(5px);
+        }
+        
+        .nav-item a.active {
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
-            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
         }
         
-        .nav-toggle {
+        .nav-icon {
+            font-size: 1.3em;
+            min-width: 25px;
+            text-align: center;
+        }
+        
+        .sidebar-footer {
+            padding: 20px;
+            border-top: 2px solid rgba(102, 126, 234, 0.2);
+            text-align: center;
+            font-size: 0.8em;
+            color: #666;
+        }
+        
+        /* BOUTON MOBILE TOGGLE */
+        .mobile-toggle {
             display: none;
-            background: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1100;
+            background: white;
             border: none;
-            font-size: 1.5em;
+            padding: 12px 16px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             cursor: pointer;
-        }
-        
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            font-size: 1.5em;
         }
         
         /* CONTENU PRINCIPAL */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
+        .main-content {
+            margin-left: 260px;
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+            max-height: 100vh;
         }
         
         .hero {
@@ -124,7 +165,6 @@
             background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             padding: 50px 40px;
             text-align: center;
-            position: relative;
         }
         
         .header::before {
@@ -177,48 +217,6 @@
         .name-section p {
             font-size: 1.2em;
             opacity: 0.95;
-        }
-        
-        .quick-actions {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-bottom: 40px;
-        }
-        
-        .action-card {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
-            border: 3px solid transparent;
-            border-radius: 15px;
-            padding: 30px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-        
-        .action-card:hover {
-            transform: translateY(-8px);
-            border-color: #667eea;
-            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.3);
-        }
-        
-        .action-card .icon {
-            font-size: 3em;
-            margin-bottom: 15px;
-        }
-        
-        .action-card h3 {
-            color: #2d3748;
-            font-size: 1.4em;
-            margin-bottom: 12px;
-            font-weight: 700;
-        }
-        
-        .action-card p {
-            color: #4a5568;
-            font-size: 1em;
-            line-height: 1.6;
         }
         
         .story {
@@ -409,25 +407,22 @@
         }
         
         /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: white;
-                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-                padding: 20px;
+        @media (max-width: 968px) {
+            .sidebar {
+                transform: translateX(-100%);
             }
             
-            .nav-links.active {
-                display: flex;
+            .sidebar.active {
+                transform: translateX(0);
             }
             
-            .nav-toggle {
+            .mobile-toggle {
                 display: block;
+            }
+            
+            .main-content {
+                margin-left: 0;
+                padding: 80px 20px 20px 20px;
             }
             
             .header h1 {
@@ -437,29 +432,55 @@
             .content {
                 padding: 30px 25px;
             }
-            
-            .quick-actions {
-                grid-template-columns: 1fr;
-            }
         }
     </style>
 </head>
 <body>
-    <!-- MENU DE NAVIGATION -->
-    <nav>
-        <div class="nav-container">
-            <div class="nav-logo">❤️ Solidarité MN</div>
-            <button class="nav-toggle" onclick="toggleMenu()">☰</button>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="index.html" class="active">🏠 Accueil</a></li>
-                <li><a href="contributions.html">💰 Contributions</a></li>
-                <li><a href="note-synthese.html">📄 Note de synthèse</a></li>
-                <li><a href="galaxy-donateurs.html">🌟 Galaxy Donateurs</a></li>
-            </ul>
-        </div>
-    </nav>
+    <!-- BOUTON MOBILE -->
+    <button class="mobile-toggle" onclick="toggleSidebar()">☰</button>
 
-    <div class="container">
+    <!-- MENU VERTICAL GAUCHE -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">❤️</div>
+            <div class="sidebar-title">Solidarité envers</div>
+            <div class="sidebar-subtitle">Marie Noëlle</div>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <div class="nav-item">
+                <a href="index.html" class="active">
+                    <span class="nav-icon">🏠</span>
+                    <span>Accueil</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="contributions.html">
+                    <span class="nav-icon">💰</span>
+                    <span>Contributions</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="note-synthese.html">
+                    <span class="nav-icon">📄</span>
+                    <span>Note de synthèse</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="galaxie-donateurs.html">
+                    <span class="nav-icon">🌟</span>
+                    <span>Galaxie Donateurs</span>
+                </a>
+            </div>
+        </nav>
+        
+        <div class="sidebar-footer">
+            <p>🙏 Chaque contribution compte</p>
+        </div>
+    </aside>
+
+    <!-- CONTENU PRINCIPAL -->
+    <main class="main-content">
         <div class="hero">
             <div class="header">
                 <h1>APPEL À LA SOLIDARITÉ</h1>
@@ -470,27 +491,6 @@
                 <div class="name-section">
                     <h2>WEDJE Marie Noëlle</h2>
                     <p>Notre sœur de promotion</p>
-                </div>
-
-                <!-- ACTIONS RAPIDES -->
-                <div class="quick-actions">
-                    <div class="action-card" onclick="window.location.href='contributions.html'">
-                        <div class="icon">💝</div>
-                        <h3>Contribuer</h3>
-                        <p>Apporter votre soutien financier</p>
-                    </div>
-                    
-                    <div class="action-card" onclick="window.location.href='note-synthese.html'">
-                        <div class="icon">📋</div>
-                        <h3>Note de synthèse</h3>
-                        <p>Détails sur la situation</p>
-                    </div>
-                    
-                    <div class="action-card" onclick="window.location.href='galaxy-donateurs.html'">
-                        <div class="icon">🌟</div>
-                        <h3>Nos Donateurs</h3>
-                        <p>Découvrir la galaxy de solidarité</p>
-                    </div>
                 </div>
                 
                 <div class="story">
@@ -537,7 +537,7 @@
                         <li>Voix rauque et plus grave due à l'épaississement des cordes vocales.</li>
                         <li>Apnée du sommeil (interruptions de la respiration pendant le sommeil).</li>
                         <li>Hypertension artérielle, risque accru de diabète et de problèmes cardiaques (cardiomégalie).</li>
-                        <li>Troubles de la vue (vision double, réduction du champ visuel) si la tumeur comprime les nerfs optiques.</li>
+                        <li>Troubles de la vue (vision double, réduction du champ visuel) si la tumeur compresse les nerfs optiques.</li>
                     </ul>
                     <p style="margin-top: 20px;"><strong>Sans traitement adapté, cette maladie peut mettre la vie en danger.</strong> Marie Noëlle souffre au quotidien et a besoin de ce nouveau traitement pour survivre et retrouver une vie normale.</p>
                 </div>
@@ -558,13 +558,22 @@
             <p>La solidarité est notre force. Marie Noëlle compte sur nous.</p>
             <div class="thanks">🙏 MERCI DE PARTAGER ET DE CONTRIBUER 🙏</div>
         </div>
-    </div>
+    </main>
 
     <script>
-        function toggleMenu() {
-            const navLinks = document.getElementById('navLinks');
-            navLinks.classList.toggle('active');
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active');
         }
+        
+        // Fermer le menu mobile quand on clique sur un lien
+        document.querySelectorAll('.sidebar a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 968) {
+                    document.getElementById('sidebar').classList.remove('active');
+                }
+            });
+        });
     </script>
 </body>
 </html>
