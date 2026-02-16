@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Note de Synthèse | Solidarité Marie Noëlle</title>
+    <link rel="icon" type="image/png" href="../icocollecte.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            line-height: 1.7;
+        }
+        
+        /* MENU DE NAVIGATION */
+        nav {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            animation: slideDown 0.5s ease-out;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+        }
+        
+        .nav-logo {
+            font-size: 1.5em;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #2d3748;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* CONTENU */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .document {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 50px;
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .doc-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .doc-header h1 {
+            color: #667eea;
+            font-size: 2.2em;
+            font-weight: 800;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        
+        .doc-header .subtitle {
+            color: #764ba2;
+            font-size: 1.3em;
+            font-weight: 600;
+        }
+        
+        .section {
+            margin-bottom: 35px;
+        }
+        
+        .section-title {
+            color: #2d3748;
+            font-size: 1.5em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            padding-left: 15px;
+            border-left: 5px solid #667eea;
+        }
+        
+        .section p {
+            color: #4a5568;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        .section ul, .section ol {
+            margin-left: 30px;
+            color: #4a5568;
+        }
+        
+        .section li {
+            margin-bottom: 10px;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #fff3cd, #ffe5b4);
+            border-left: 5px solid #ffc107;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+        }
+        
+        .highlight-box strong {
+            color: #d9534f;
+            font-size: 1.1em;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .info-card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            border: 2px solid #667eea;
+            padding: 20px;
+            border-radius: 12px;
+        }
+        
+        .info-card h4 {
+            color: #667eea;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .info-card p {
+            color: #2d3748;
+            font-size: 0.95em;
+            text-align: left;
+        }
+        
+        .table-responsive {
+            overflow-x: auto;
+            margin: 25px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        table th {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+            color: #4a5568;
+        }
+        
+        table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        table tr:hover {
+            background: rgba(102, 126, 234, 0.05);
+        }
+        
+        .contact-box {
+            background: #2d3748;
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+        
+        .contact-box h3 {
+            color: #ffd700;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+        
+        .contact-box p {
+            color: white;
+            margin: 8px 0;
+        }
+        
+        .urgent-banner {
+            background: linear-gradient(135deg, #f5576c, #f093fb);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 30px 0;
+            box-shadow: 0 8px 25px rgba(245, 87, 108, 0.4);
+        }
+        
+        .urgent-banner h3 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+        
+        .btn-action {
+            background: linear-gradient(135deg, #56ab2f, #a8e063);
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .btn-action:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .document {
+                padding: 30px 25px;
+            }
+            
+            .doc-header h1 {
+                font-size: 1.6em;
+            }
+            
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+                padding: 20px;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-toggle {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- MENU DE NAVIGATION -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-logo">❤️ Solidarité MN</div>
+            <button class="nav-toggle" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">🏠 Accueil</a></li>
+                <li><a href="contributions.html">💰 Contributions</a></li>
+                <li><a href="note-synthese.html" class="active">📄 Note de synthèse</a></li>
+                <li><a href="galaxy-donateurs.html">🌟 Galaxy Donateurs</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="document">
+            <div class="doc-header">
+                <h1>NOTE DE SYNTHÈSE</h1>
+                <div class="subtitle">Appel à la Solidarité pour Marie Noëlle WEDJE</div>
+            </div>
+
+            <!-- I. OBJET -->
+            <div class="section">
+                <h2 class="section-title">I. OBJET</h2>
+                <p>Sollicitation d'un soutien financier en vue du financement de la poursuite du traitement médical de Mademoiselle <strong>WEDJE Marie Noëlle</strong>, atteinte d'<strong>acromégalie</strong> (maladie chronique nécessitant des injections d'un nouveau traitement coûteux).</p>
+            </div>
+
+            <!-- II. CONTEXTE ET JUSTIFICATION -->
+            <div class="section">
+                <h2 class="section-title">II. CONTEXTE ET JUSTIFICATION</h2>
+                
+                <h3 style="color: #667eea; margin: 20px 0 10px 0; font-size: 1.2em;">A. Historique médical</h3>
+                <ul>
+                    <li><strong>2019</strong> : Diagnostic d'une tumeur de l'hypophyse</li>
+                    <li><strong>2021</strong> : Chirurgie réussie en Côte d'Ivoire</li>
+                    <li><strong>2023</strong> : Diagnostic d'acromégalie (production excessive d'hormone de croissance)</li>
+                    <li><strong>2023-2025</strong> : Traitement initial (Sandostatine LAR 30 mg) à 1,5 million FCFA/mois → inefficace</li>
+                    <li><strong>Décembre 2024</strong> : Prescription d'un nouveau traitement (Pasireotide Pamoate 60 mg) à 5 millions FCFA toutes les 3 semaines</li>
+                </ul>
+
+                <h3 style="color: #667eea; margin: 25px 0 10px 0; font-size: 1.2em;">B. Situation actuelle</h3>
+                <div class="highlight-box">
+                    <p><strong>Marie Noëlle fait face à une situation critique :</strong></p>
+                    <ul style="margin-left: 20px; margin-top: 15px;">
+                        <li>Perte d'emploi suite aux absences répétées pour raisons médicales</li>
+                        <li>Épuisement financier personnel et familial (sa sœur, Dr Sandrine WEDJE)</li>
+                        <li>Traitement précédent inefficace malgré son coût élevé</li>
+                        <li>Nouveau traitement vital plus coûteux (5 millions FCFA toutes les 3 semaines)</li>
+                        <li>Nécessité de 3 doses minimum pour évaluer l'efficacité du traitement</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- III. BESOIN FINANCIER -->
+            <div class="section">
+                <h2 class="section-title">III. BESOIN FINANCIER</h2>
+                
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Désignation</th>
+                                <th>Quantité</th>
+                                <th>Coût unitaire</th>
+                                <th>Montant total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Pasireotide Pamoate 60 mg</strong></td>
+                                <td>3 doses minimales</td>
+                                <td>5 000 000 FCFA</td>
+                                <td><strong>15 000 000 FCFA</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h4>📊 Objectif total</h4>
+                        <p style="font-size: 1.3em; font-weight: 700; color: #667eea;">5 000 000 FCFA</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>✅ Déjà collecté</h4>
+                        <p style="font-size: 1.3em; font-weight: 700; color: #56ab2f;">2 746 205 FCFA</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>⏰ Reste à mobiliser</h4>
+                        <p style="font-size: 1.3em; font-weight: 700; color: #f5576c;">2 253 795 FCFA</p>
+                    </div>
+                </div>
+
+                <p style="margin-top: 20px;"><strong>Note :</strong> Le montant mobilisé permettra de financer 3 doses minimales du nouveau traitement, période nécessaire pour évaluer son efficacité sur la patiente.</p>
+            </div>
+
+            <!-- IV. ÉTAT D'AVANCEMENT -->
+            <div class="section">
+                <h2 class="section-title">IV. ÉTAT D'AVANCEMENT DE LA COLLECTE</h2>
+                
+                <h3 style="color: #667eea; margin: 20px 0 10px 0; font-size: 1.2em;">Collecte actuelle (au 06 février 2026)</h3>
+                
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Dose</th>
+                                <th>Objectif</th>
+                                <th>Collecté</th>
+                                <th>Restitué</th>
+                                <th>Restant</th>
+                                <th>Statut</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Dose 1</strong></td>
+                                <td>1 600 000 FCFA</td>
+                                <td>2 369 500 FCFA</td>
+                                <td>1 600 000 FCFA</td>
+                                <td>769 500 FCFA</td>
+                                <td style="color: #56ab2f; font-weight: 700;">✅ Payée</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Dose 2</strong></td>
+                                <td>1 600 000 FCFA</td>
+                                <td>1 576 705 FCFA</td>
+                                <td>1 150 000 FCFA</td>
+                                <td>426 705 FCFA</td>
+                                <td style="color: #ffc107; font-weight: 700;">🟡 Partielle</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Dose 3</strong></td>
+                                <td>1 600 000 FCFA</td>
+                                <td>1 050 205 FCFA</td>
+                                <td>0 FCFA</td>
+                                <td>403 090 FCFA</td>
+                                <td style="color: #f5576c; font-weight: 700;">❌ En cours</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>💰 TOTAL COLLECTÉ :</strong> 4 996 410 FCFA</p>
+                    <p><strong>💸 TOTAL RESTITUÉ :</strong> 2 750 000 FCFA</p>
+                    <p><strong>💵 ARGENT RESTANT :</strong> 2 246 410 FCFA</p>
+                    <p style="margin-top: 15px;"><strong>🎯 BESOIN POUR DOSE 3 COMPLÈTE :</strong> 1 196 910 FCFA (après report du solde des doses 1 et 2)</p>
+                </div>
+            </div>
+
+            <!-- V. PARTICIPANTS -->
+            <div class="section">
+                <h2 class="section-title">V. ORIGINE DES CONTRIBUTIONS</h2>
+                <p>La collecte a mobilisé <strong>74 donateurs uniques</strong>, incluant :</p>
+                <ul>
+                    <li><strong>Promotion 2009</strong> : Anciens camarades de classe (contribution majoritaire)</li>
+                    <li><strong>Famille et proches</strong> : Soutien familial et amical</li>
+                    <li><strong>Parrains et bienfaiteurs</strong> : Contributions externes</li>
+                    <li><strong>Organisation UMMAH SOLIDAIRE</strong> : Soutien institutionnel</li>
+                </ul>
+                <p style="margin-top: 20px;">Voir la <a href="galaxy-donateurs.html" style="color: #667eea; font-weight: 700;">Galaxy des Donateurs</a> pour découvrir tous ceux qui ont contribué.</p>
+            </div>
+
+            <!-- VI. IMPACTS DU TRAITEMENT -->
+            <div class="section">
+                <h2 class="section-title">VI. IMPACTS ATTENDUS DU NOUVEAU TRAITEMENT</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h4>🏥 Impact médical</h4>
+                        <p>Contrôle de la production hormonale excessive, stabilisation de l'état de santé, réduction des symptômes invalidants</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>💼 Impact socio-économique</h4>
+                        <p>Possibilité de reprendre une activité professionnelle, réduction du fardeau financier familial</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>😊 Impact psychologique</h4>
+                        <p>Amélioration de la qualité de vie, espoir de guérison, dignité retrouvée</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>👨‍👩‍👧‍👦 Impact communautaire</h4>
+                        <p>Exemple de solidarité, renforcement des liens de promotion, esprit d'entraide</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VII. RISQUES -->
+            <div class="section">
+                <h2 class="section-title">VII. RISQUES ET CONSÉQUENCES D'UN NON-FINANCEMENT</h2>
+                <div class="highlight-box" style="background: linear-gradient(135deg, #ffe5e5, #ffcccc); border-left-color: #d9534f;">
+                    <p><strong>⚠️ Sans le financement complet du traitement :</strong></p>
+                    <ul style="margin-left: 20px; margin-top: 15px;">
+                        <li>Aggravation des symptômes et complications médicales</li>
+                        <li>Risque accru de complications cardiovasculaires et métaboliques</li>
+                        <li>Détérioration irréversible de la santé</li>
+                        <li>Risque vital à moyen terme</li>
+                        <li>Impact psychologique dévastateur sur la patiente et sa famille</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- VIII. STRATÉGIE DE COLLECTE -->
+            <div class="section">
+                <h2 class="section-title">VIII. STRATÉGIE DE COLLECTE</h2>
+                <p><strong>Coordination :</strong> ASSEU Géry Adélard (Camarade de promotion)</p>
+                
+                <h3 style="color: #667eea; margin: 20px 0 10px 0; font-size: 1.2em;">Canaux de collecte</h3>
+                <ul>
+                    <li>Mobilisation de la promotion 2009</li>
+                    <li>Sollicitation de parrains et bienfaiteurs</li>
+                    <li>Campagne de sensibilisation sur les réseaux sociaux</li>
+                    <li>Site web dédié : <a href="contributions.html" style="color: #667eea; font-weight: 700;">Page de suivi des contributions</a></li>
+                </ul>
+
+                <h3 style="color: #667eea; margin: 25px 0 10px 0; font-size: 1.2em;">Transparence et suivi</h3>
+                <ul>
+                    <li>Publication en temps réel des contributions reçues</li>
+                    <li>Mise à jour régulière de l'état d'avancement</li>
+                    <li>Communication des restitutions effectuées</li>
+                    <li>Remerciements publics aux donateurs (Galaxy des Donateurs)</li>
+                </ul>
+            </div>
+
+            <!-- IX. CONTACTS -->
+            <div class="section">
+                <h2 class="section-title">IX. CONTACTS</h2>
+                
+                <div class="contact-box">
+                    <h3>👤 Coordination du dossier</h3>
+                    <p><strong>ASSEU Géry Adélard</strong> - Coordinateur de la collecte</p>
+                    <p>📞 Tél. : (+225) 05 05 63 73 61</p>
+                    <p>✉️ Email : adelard.asseu@gmail.com</p>
+                </div>
+
+                <div class="contact-box">
+                    <h3>👨‍👩‍👧 Famille</h3>
+                    <p><strong>Marie Noëlle WEDJE :</strong> (+225) 07 88 54 77 56</p>
+                    <p><strong>Dr WEDJE Sandrine</strong> (sœur) : (+225) 07 08 76 02 20</p>
+                </div>
+            </div>
+
+            <!-- X. MOYENS DE CONTRIBUTION -->
+            <div class="section">
+                <h2 class="section-title">X. MOYENS DE CONTRIBUTION</h2>
+                
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h4>📱 Wave Mobile Money</h4>
+                        <p style="font-weight: 700; font-size: 1.1em;">(+225) 05 05 63 73 61</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>📱 MTN Mobile Money</h4>
+                        <p style="font-weight: 700; font-size: 1.1em;">(+225) 05 05 63 73 61</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>📱 Orange Money</h4>
+                        <p style="font-weight: 700; font-size: 1.1em;">(+225) 07 49 05 26 78</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>🏦 Virement bancaire</h4>
+                        <p style="font-weight: 700; font-size: 0.95em;">CI0320100200757366000741 (BOA)</p>
+                    </div>
+                </div>
+
+                <p style="text-align: center; margin-top: 25px;"><strong>💰 Remise directe :</strong> ASSEU Géry Adélard - (+225) 05 05 63 73 61</p>
+            </div>
+
+            <!-- XI. CONCLUSION -->
+            <div class="urgent-banner">
+                <h3>⚠️ URGENCE ABSOLUE</h3>
+                <p>La mobilisation d'un montant de <strong>2 253 795 FCFA</strong> permettra la poursuite et l'achèvement d'un traitement vital déjà engagé, condition indispensable à la stabilisation de l'état de santé de Marie Noëlle WEDJE.</p>
+                <p style="margin-top: 15px;"><strong>Le facteur temps étant déterminant, cette demande revêt un caractère d'urgence absolue.</strong></p>
+                <button class="btn-action" onclick="window.location.href='contributions.html'">💝 CONTRIBUER MAINTENANT</button>
+            </div>
+
+            <p style="text-align: center; margin-top: 30px; color: #667eea; font-weight: 600; font-size: 1.1em;">Fait à Abidjan, janvier 2026</p>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
