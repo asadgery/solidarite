@@ -23,8 +23,112 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       min-height: 100vh;
-      padding: 20px;
+      padding: 0;
       color: #333;
+    }
+
+
+    /* MENU VERTICAL GAUCHE */
+    .sidebar {
+        width: 260px;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px);
+        box-shadow: 4px 0 20px rgba(0,0,0,0.1);
+        position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.3s ease;
+    }
+    
+    .sidebar-header { padding: 30px 20px; text-align: center; border-bottom: 2px solid rgba(102, 126, 234, 0.2); }
+    .sidebar-logo { font-size: 2em; margin-bottom: 10px; }
+    .sidebar-title { font-size: 1.3em; font-weight: 800; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 5px; }
+    .sidebar-subtitle { font-size: 0.85em; color: #666; font-weight: 500; }
+    .sidebar-nav { flex: 1; padding: 20px 0; overflow-y: auto; }
+    .nav-item { margin: 8px 15px; }
+    .nav-item a { display: flex; align-items: center; gap: 15px; padding: 15px 20px; color: #2d3748; text-decoration: none; border-radius: 12px; transition: all 0.3s ease; font-weight: 600; font-size: 0.95em; }
+    .nav-item a:hover { background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1)); transform: translateX(5px); }
+    .nav-item a.active { background: linear-gradient(135deg, #667eea, #764ba2); color: white; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3); }
+    .nav-icon { font-size: 1.3em; min-width: 25px; text-align: center; }
+    .sidebar-footer { padding: 20px; border-top: 2px solid rgba(102, 126, 234, 0.2); text-align: center; font-size: 0.8em; color: #666; }
+    
+    .mobile-toggle {
+        display: none;
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 1100;
+        background: white;
+        border: none;
+        padding: 12px 16px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        cursor: pointer;
+        font-size: 1.5em;
+    }
+
+    body { display: flex; min-height: 100vh; padding: 0; }
+    .main-content { margin-left: 260px; flex: 1; padding: 20px; }
+
+    nav {
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      margin-bottom: 20px;
+    }
+    
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+    }
+    
+    .nav-logo {
+      font-size: 1.5em;
+      font-weight: 800;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+    }
+    
+    .nav-links a {
+      text-decoration: none;
+      color: #2d3748;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+    
+    .nav-links a:hover, .nav-links a.active {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      transform: translateY(-2px);
+    }
+    
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5em;
+      cursor: pointer;
     }
 
     header {
@@ -275,7 +379,32 @@
       }
     }
 
-    @media (max-width: 768px) {
+
+    @media (max-width: 968px) {
+      .sidebar { transform: translateX(-100%); }
+      .sidebar.active { transform: translateX(0); }
+      .mobile-toggle { display: block; }
+      .main-content { margin-left: 0; padding-top: 70px; }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        padding: 20px;
+      }
+      
+      .nav-links.active {
+        display: flex;
+      }
+      
+      .nav-toggle {
+        display: block;
+      }
+      
       h1 {
         font-size: 1.5em;
       }
@@ -311,207 +440,239 @@
   </style>
 </head>
 <body>
-  <header>
-    <h1>🎯 SUIVI DES COTISATIONS POUR [ WEDJE MARIE NOELLE ]</h1>
-    <p>Un geste pour sauver une vie.</p>
-    <p><b>Numéros : Wave/MTN (+225) 0505637361 | Orange (+225) 0749052678</b></p>
-
-    <div class="qrcodes">
-        <div class="qrcode wave">
-            <span>💙 Wave</span>
-            <span>05 05 63 73 61</span>
-            <a href="wave://capture/scan">
-              <img src="../qr_code_wave_80x80.jpg" alt="QR Code Wave">
-            </a> 
-        </div>
-        <div class="qrcode mtn">
-            <span>💛 MTN MoMo</span>
-            <span>05 05 63 73 61</span>
-            <a href="tel:*133%23">
-              <img src="../qr_code_mtn_80x80.jpg" alt="QR Code MTN">
-            </a>            
-        </div>
-        <div class="qrcode orange">
-            <span>🧡 Orange Money</span>
-            <span>07 49 05 26 78</span>
-            <a href="tel:%23144*1%23">
-              <img src="../qr_code_orange_80x80.jpg" alt="QR Code Orange">
-            </a>            
-        </div>
+  <button class="mobile-toggle" onclick="toggleSidebar()">☰</button>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">❤️</div>
+      <div class="sidebar-title">Solidarité envers</div>
+      <div class="sidebar-subtitle">Marie Noëlle</div>
     </div>
+    <nav class="sidebar-nav">
+      <div class="nav-item"><a href="accueil.html"><span class="nav-icon">🏠</span><span>Accueil</span></a></div>
+      <div class="nav-item"><a href="contributions.html" class="active"><span class="nav-icon">💰</span><span>Contributions</span></a></div>
+      <div class="nav-item"><a href="sprint-2.html"><span class="nav-icon">📄</span><span>Sprint 2</span></a></div>
+      <div class="nav-item"><a href="galaxie-donateurs.html"><span class="nav-icon">🌟</span><span>Galaxie Donateurs</span></a></div>
+      
+            <div class="nav-item">
+                <a href="index.html">
+                    <span class="nav-icon">🌟</span>
+                    <span>Conclusion</span>
+                </a>
+            </div>
+    </nav>
+    <div class="sidebar-footer"><p>💰 Suivi en temps réel</p></div>
+  </aside>
+  <div class="main-content">
+    <header>
+      <h1>🎯 SUIVI DES COTISATIONS POUR [ WEDJE MARIE NOELLE ]</h1>
+      <p>Un geste pour sauver une vie.</p>
+      <p><b>Numéros : Wave/MTN (+225) 0505637361 | Orange (+225) 0749052678</b></p>
+
+      <div class="qrcodes">
+          <div class="qrcode wave">
+              <span>💙 Wave</span>
+              <span>05 05 63 73 61</span>
+              <a href="wave://capture/scan">
+                <img src="../qr_code_wave_80x80.jpg" alt="QR Code Wave">
+              </a> 
+          </div>
+          <div class="qrcode mtn">
+              <span>💛 MTN MoMo</span>
+              <span>05 05 63 73 61</span>
+              <a href="tel:*133%23">
+                <img src="../qr_code_mtn_80x80.jpg" alt="QR Code MTN">
+              </a>            
+          </div>
+          <div class="qrcode orange">
+              <span>🧡 Orange Money</span>
+              <span>07 49 05 26 78</span>
+              <a href="tel:%23144*1%23">
+                <img src="../qr_code_orange_80x80.jpg" alt="QR Code Orange">
+              </a>            
+          </div>
+      </div>
+      
+      <div class="indicators">
+        <div class="indicator objectif">
+          <span>🎯 Objectif (Global)</span>
+          <strong id="objectif">5 000 000 FCFA</strong>
+        </div>
+        <div class="indicator total-recu">
+          <span>💰 Total reçu (PT Promo 2009)</span>
+          <strong id="totalRecu">0 FCFA</strong>
+        </div>
+        <div class="indicator reste">
+          <span>📊 Reste à collecter (Global)</span>
+          <strong id="resteACollecter">5 000 000 FCFA</strong>
+        </div>
+        <div class="indicator date-limite">
+          <span>⏰ Date limite (Global)</span>
+          <strong>15/02/2026</strong>
+        </div>
+      </div>
+      
+      <div class="indicators">
+        <div class="indicator total-recu">
+          <span>💰 Autres contrib. (Famille & Autres ami/es)</span>
+          <strong id="totalAutreContrib">0 FCFA</strong>
+        </div>
+        <div class="indicator restitution">
+          <span>➡️💰 Transfert pour Dose 1</span>
+          <strong id="restitution1">1 600 000 FCFA</strong>
+        </div>
+        <div class="indicator restitution">
+          <span>➡️💰 Transfert pour Dose 2</span>
+          <strong id="restitution1">1 150 000 FCFA</strong>
+        </div>
+        <div class="indicator aRestituer">
+          <span>💰 Reste à transférer</span>
+          <strong id="RestantaRestituer">0 FCFA</strong>
+        </div>
+      </div>
+      <div class="progress-container">
+        <div class="progress-bar" id="progress-bar">0%</div>
+      </div>
+    </header>
+  
+    <section class="table-container">
+      <h2 id="contributionsDose3-title" style="color: #667eea; margin-bottom: 10px;">📋 [ Dose 3 ] [ <span id="nombreContributeurs3">0</span> contributions ] [ 26/01/2026 à Aujourd'hui ]</h2>
     
-    <div class="indicators">
-      <div class="indicator objectif">
-        <span>🎯 Objectif (Global)</span>
-        <strong id="objectif">5 000 000 FCFA</strong>
+      <div class="indicators">   
+        <div class="indicator objectif">
+          <span>🎯 Objectif (Dose 3)</span>
+          <strong id="objectifDose3">1 600 000 FCFA</strong>
+        </div>
+        <div class="indicator total-recu">
+          <span>💰 Total reçu (Dose 3)</span>
+          <strong id="totalRecuDose3">0 FCFA</strong>
+        </div>
+        <div class="indicator reste">
+          <span>📊 Reste à collecter (Dose 3)</span>
+          <strong id="resteACollecterDose3">1 600 000 FCFA</strong>
+        </div>
+        <div class="indicator date-limite">
+          <span>⏰ Date limite (Dose 3)</span>
+          <strong>15/02/2026</strong>
+        </div>
       </div>
-      <div class="indicator total-recu">
-        <span>💰 Total reçu (PT Promo 2009)</span>
-        <strong id="totalRecu">0 FCFA</strong>
-      </div>
-      <div class="indicator reste">
-        <span>📊 Reste à collecter (Global)</span>
-        <strong id="resteACollecter">5 000 000 FCFA</strong>
-      </div>
-      <div class="indicator date-limite">
-        <span>⏰ Date limite (Global)</span>
-        <strong>15/02/2026</strong>
-      </div>
-    </div>
-	  
-	<div class="indicators">
-      <div class="indicator total-recu">
-        <span>💰 Autres contrib. (Famille & Autres ami/es)</span>
-        <strong id="totalAutreContrib">0 FCFA</strong>
-      </div>
-      <div class="indicator restitution">
-        <span>➡️💰 Transfert pour Dose 1</span>
-        <strong id="restitution1">1 600 000 FCFA</strong>
-      </div>
-      <div class="indicator restitution">
-        <span>➡️💰 Transfert pour Dose 2</span>
-        <strong id="restitution1">1 150 000 FCFA</strong>
-      </div>
-      <div class="indicator aRestituer">
-        <span>💰 Reste à transférer</span>
-        <strong id="RestantaRestituer">0 FCFA</strong>
-      </div>
-    </div>
-    <div class="progress-container">
-      <div class="progress-bar" id="progress-bar">0%</div>
-    </div>
-	
-  </header>
-  
-  <section class="table-container">
-    <h2 id="contributionsDose3-title" style="color: #667eea; margin-bottom: 10px;">📋 [ Dose 3 ] [ <span id="nombreContributeurs3">0</span> contributions ] [ 26/01/2026 à Aujourd'hui ]</h2>
-	
-    <div class="indicators">   
-      <div class="indicator objectif">
-        <span>🎯 Objectif (Dose 3)</span>
-        <strong id="objectifDose3">1 600 000 FCFA</strong>
-      </div>
-      <div class="indicator total-recu">
-        <span>💰 Total reçu (Dose 3)</span>
-        <strong id="totalRecuDose3">0 FCFA</strong>
-      </div>
-      <div class="indicator reste">
-        <span>📊 Reste à collecter (Dose 3)</span>
-        <strong id="resteACollecterDose3">1 600 000 FCFA</strong>
-      </div>
-      <div class="indicator date-limite">
-        <span>⏰ Date limite (Dose 3)</span>
-        <strong>15/02/2026</strong>
-      </div>
-    </div>
-	
-    <table id="contributionsDose3">
-      <thead>
-        <tr>
-          <th>N°</th>
-          <th>Nom</th>
-          <th>Montant versé (FCFA)</th>
-          <th>Mode de paiement</th>
-          <th>Date</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  </section>
+    
+      <table id="contributionsDose3">
+        <thead>
+          <tr>
+            <th>N°</th>
+            <th>Nom</th>
+            <th>Montant versé (FCFA)</th>
+            <th>Mode de paiement</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
 
-  <section class="table-container">
-    <h2 id="contributionsDose2-title" style="color: #667eea; margin-bottom: 10px;">📋 [ Dose 2 ] [ <span id="nombreContributeurs2">0</span> contributions ] [ 07/01/2026 au 25/01/2026 ]</h2>
-	
-	  <div class="indicators">   
-		<div class="indicator objectif">
-		  <span>🎯 Objectif (Dose 2)</span>
-		  <strong id="objectifDose2">1 600 000 FCFA</strong>
-		</div>
-		<div class="indicator total-recu">
-		  <span>💰 Total reçu (Dose 2)</span>
-		  <strong id="totalRecuDose2">0 FCFA</strong>
-		</div>
-		<div class="indicator reste">
-		  <span>📊 Reste à collecter (Dose 2)</span>
-		  <strong id="resteACollecterDose2">1 600 000 FCFA</strong>
-		</div>
-		<div class="indicator date-limite">
-		  <span>⏰ Date limite (Dose 2)</span>
-		  <strong>25/01/2026</strong>
-		</div>
-	  </div>
+    <section class="table-container">
+      <h2 id="contributionsDose2-title" style="color: #667eea; margin-bottom: 10px;">📋 [ Dose 2 ] [ <span id="nombreContributeurs2">0</span> contributions ] [ 07/01/2026 au 25/01/2026 ]</h2>
+    
+      <div class="indicators">   
+      <div class="indicator objectif">
+        <span>🎯 Objectif (Dose 2)</span>
+        <strong id="objectifDose2">1 600 000 FCFA</strong>
+      </div>
+      <div class="indicator total-recu">
+        <span>💰 Total reçu (Dose 2)</span>
+        <strong id="totalRecuDose2">0 FCFA</strong>
+      </div>
+      <div class="indicator reste">
+        <span>📊 Reste à collecter (Dose 2)</span>
+        <strong id="resteACollecterDose2">1 600 000 FCFA</strong>
+      </div>
+      <div class="indicator date-limite">
+        <span>⏰ Date limite (Dose 2)</span>
+        <strong>25/01/2026</strong>
+      </div>
+      </div>
+    
+      <table id="contributionsDose2">
+        <thead>
+          <tr>
+            <th>N°</th>
+            <th>Nom</th>
+            <th>Montant versé (FCFA)</th>
+            <th>Mode de paiement</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
   
-    <table id="contributionsDose2">
-      <thead>
-        <tr>
-          <th>N°</th>
-          <th>Nom</th>
-          <th>Montant versé (FCFA)</th>
-          <th>Mode de paiement</th>
-          <th>Date</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  </section>
-  
-  <section class="table-container">
-    <h2 style="color: #667eea; margin-bottom: 10px;">📋 [ Dose 1 ] [ <span id="nombreContributeurs1">0</span> contributions ] [ 14/12/2025 au 06/01/2025 ]</h2>
-	
-	<div class="indicators">   
-    <div class="indicator objectif">
-      <span>🎯 Objectif (Dose 1)</span>
-      <strong id="objectifDose1">1 600 000 FCFA</strong>
-    </div>
-    <div class="indicator total-recu">
-      <span>💰 Total reçu (Dose 1)</span>
-      <strong id="totalRecuDose1">0 FCFA</strong>
-    </div>
-    <div class="indicator reste">
-      <span>📊 Reste à collecter (Dose 1)</span>
-      <strong id="resteACollecterDose1">1 600 000 FCFA</strong>
-    </div>
-    <div class="indicator date-limite">
-      <span>⏰ Date limite (Dose 1)</span>
-      <strong>06/01/2026</strong>
-    </div>
+    <section class="table-container">
+      <h2 style="color: #667eea; margin-bottom: 10px;">📋 [ Dose 1 ] [ <span id="nombreContributeurs1">0</span> contributions ] [ 14/12/2025 au 06/01/2025 ]</h2>
+      <div class="indicators">   
+        <div class="indicator objectif">
+          <span>🎯 Objectif (Dose 1)</span>
+          <strong id="objectifDose1">1 600 000 FCFA</strong>
+        </div>
+        <div class="indicator total-recu">
+          <span>💰 Total reçu (Dose 1)</span>
+          <strong id="totalRecuDose1">0 FCFA</strong>
+        </div>
+        <div class="indicator reste">
+          <span>📊 Reste à collecter (Dose 1)</span>
+          <strong id="resteACollecterDose1">1 600 000 FCFA</strong>
+        </div>
+        <div class="indicator date-limite">
+          <span>⏰ Date limite (Dose 1)</span>
+          <strong>06/01/2026</strong>
+        </div>
+      </div>
+    
+      <table id="contributionsDose1">
+        <thead>
+          <tr>
+            <th>N°</th>
+            <th>Nom</th>
+            <th>Montant versé (FCFA)</th>
+            <th>Mode de paiement</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <footer>
+      <p>🙏 Merci pour votre solidarité et votre soutien !</p>
+      <button id="celebration-btn" style="
+        margin-top: 20px;
+        padding: 20px 40px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        background: linear-gradient(135deg, #FFD700, #FFA500);
+        color: #333;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
+        animation: pulse-button 2s ease-in-out infinite;
+        " onclick="window.location.href='index.html'">
+        🎉 Infos ! 🎉
+      </button>
+    </footer>
+
   </div>
-  
-    <table id="contributionsDose1">
-      <thead>
-        <tr>
-          <th>N°</th>
-          <th>Nom</th>
-          <th>Montant versé (FCFA)</th>
-          <th>Mode de paiement</th>
-          <th>Date</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  </section>
-
-  <footer>
-    <p>🙏 Merci pour votre solidarité et votre soutien !</p>
-    <button id="celebration-btn" style="
-      margin-top: 20px;
-      padding: 20px 40px;
-      font-size: 1.5rem;
-      font-weight: bold;
-      background: linear-gradient(135deg, #FFD700, #FFA500);
-      color: #333;
-      border: none;
-      border-radius: 50px;
-      cursor: pointer;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-      transition: all 0.3s ease;
-      animation: pulse-button 2s ease-in-out infinite;
-    " onclick="window.location.href='index.html'">
-      🎉 Infos ! 🎉
-    </button>
-  </footer>
 
   <script>
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('active');
+    }
+    document.querySelectorAll('.sidebar a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 968) document.getElementById('sidebar').classList.remove('active');
+      });
+    });
+    
     const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS12j5YSQwTrddBzFQ_nR_OgMKH2WmJhedtUDT1EEmP1JhGIGRNZeOS6nWfcvZul0g09_X7XrAXNTKG/pub?output=csv';
 
     function formatNumber(num) {
