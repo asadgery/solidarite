@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solidarité Marie Noëlle | Accueil</title>
+    <link rel="icon" type="image/png" href="../icocollecte.png">
+    <meta property="og:title" content="APPEL À LA SOLIDARITÉ POUR WEDJE MARIE NOELLE" />
+    <meta property="og:description" content="Soutenons Marie Noëlle dans son combat contre l'acromégalie">
+    <meta property="og:image" content="https://raw.githubusercontent.com/asadgery/solidarite/main/qr_code_wave_1200.jpg" />
+    <meta property="og:url" content="https://asadgery.github.io/solidarite/marie-noelle/" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+        }
+        
+        /* MENU VERTICAL GAUCHE */
+        .sidebar {
+            width: 260px;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 4px 0 20px rgba(0,0,0,0.1);
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
+        }
+        
+        .sidebar-header {
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom: 2px solid rgba(102, 126, 234, 0.2);
+        }
+        
+        .sidebar-logo {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        
+        .sidebar-title {
+            font-size: 1.3em;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 5px;
+        }
+        
+        .sidebar-subtitle {
+            font-size: 0.85em;
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .sidebar-nav {
+            flex: 1;
+            padding: 20px 0;
+            overflow-y: auto;
+        }
+        
+        .nav-item {
+            margin: 8px 15px;
+        }
+        
+        .nav-item a {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 20px;
+            color: #2d3748;
+            text-decoration: none;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+        
+        .nav-item a:hover {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            transform: translateX(5px);
+        }
+        
+        .nav-item a.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .nav-icon {
+            font-size: 1.3em;
+            min-width: 25px;
+            text-align: center;
+        }
+        
+        .sidebar-footer {
+            padding: 20px;
+            border-top: 2px solid rgba(102, 126, 234, 0.2);
+            text-align: center;
+            font-size: 0.8em;
+            color: #666;
+        }
+        
+        /* BOUTON MOBILE TOGGLE */
+        .mobile-toggle {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1100;
+            background: white;
+            border: none;
+            padding: 12px 16px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            cursor: pointer;
+            font-size: 1.5em;
+        }
+        
+        /* CONTENU PRINCIPAL */
+        .main-content {
+            margin-left: 260px;
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+            max-height: 100vh;
+        }
+        
+        .hero {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+            margin-bottom: 30px;
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 50px 40px;
+            text-align: center;
+        }
+        
+        .header::before {
+            content: '🤝';
+            font-size: 60px;
+            display: block;
+            margin-bottom: 15px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .header h1 {
+            color: white;
+            font-size: 2.8em;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            margin-bottom: 10px;
+        }
+        
+        .header .subtitle {
+            color: rgba(255,255,255,0.95);
+            font-size: 1.4em;
+            font-weight: 600;
+        }
+        
+        .content {
+            padding: 50px 40px;
+        }
+        
+        .name-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 35px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .name-section h2 {
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .name-section p {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+        
+        .story {
+            background: #f8f9fa;
+            padding: 35px;
+            border-radius: 15px;
+            margin-bottom: 35px;
+            border-left: 5px solid #f5576c;
+        }
+        
+        .story h3 {
+            color: #2d3748;
+            font-size: 1.8em;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+        
+        .story p {
+            color: #4a5568;
+            line-height: 1.9;
+            margin-bottom: 18px;
+            font-size: 1.1em;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 4px solid #ffc107;
+            margin: 30px 0;
+        }
+        
+        .highlight strong {
+            color: #d9534f;
+            font-size: 1.2em;
+        }
+        
+        .highlight p {
+            margin: 8px 0;
+        }
+        
+        .info-box {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            border: 3px solid #667eea;
+            padding: 35px;
+            border-radius: 15px;
+            margin-bottom: 35px;
+        }
+        
+        .info-box h3 {
+            color: #667eea;
+            font-size: 1.8em;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+        
+        .info-box p {
+            color: #2d3748;
+            line-height: 1.9;
+            margin-bottom: 18px;
+            font-size: 1.1em;
+        }
+        
+        .info-box ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 25px 0;
+        }
+        
+        .info-box ul li {
+            color: #4a5568;
+            padding: 15px 0 15px 40px;
+            position: relative;
+            line-height: 1.7;
+            font-size: 1.05em;
+        }
+        
+        .info-box ul li::before {
+            content: '⚠️';
+            position: absolute;
+            left: 0;
+            font-size: 1.3em;
+        }
+        
+        .appeal {
+            background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .appeal h3 {
+            font-size: 2.3em;
+            font-weight: 800;
+            margin-bottom: 18px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+        
+        .appeal p {
+            font-size: 1.3em;
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+        
+        .proverb {
+            background: #2d3748;
+            color: #ffd700;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            font-style: italic;
+            font-size: 1.4em;
+            font-weight: 600;
+            margin-bottom: 30px;
+            border: 3px solid #ffd700;
+        }
+        
+        .proverb::before {
+            content: '« ';
+            font-size: 1.5em;
+        }
+        
+        .proverb::after {
+            content: ' »';
+            font-size: 1.5em;
+        }
+        
+        .contribute-btn {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border: none;
+            padding: 20px 45px;
+            border-radius: 50px;
+            font-size: 1.3em;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(245, 87, 108, 0.4);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .contribute-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(245, 87, 108, 0.6);
+        }
+        
+        .btn-icon {
+            font-size: 1.3em;
+            animation: bounce 1s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        
+        .footer {
+            background: #2d3748;
+            color: white;
+            padding: 35px;
+            text-align: center;
+            border-radius: 15px;
+            margin-top: 30px;
+        }
+        
+        .footer p {
+            font-size: 1.15em;
+            margin-bottom: 18px;
+            line-height: 1.7;
+        }
+        
+        .footer .thanks {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: #ffd700;
+            margin-top: 25px;
+        }
+        
+        .hearts {
+            font-size: 2em;
+            margin: 18px 0;
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 968px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .main-content {
+                margin-left: 0;
+                padding: 80px 20px 20px 20px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .content {
+                padding: 30px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- BOUTON MOBILE -->
+    <button class="mobile-toggle" onclick="toggleSidebar()">☰</button>
+
+    <!-- MENU VERTICAL GAUCHE -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">❤️</div>
+            <div class="sidebar-title">Solidarité envers</div>
+            <div class="sidebar-subtitle">Marie Noëlle</div>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <div class="nav-item">
+                <a href="accueil.html" class="active">
+                    <span class="nav-icon">🏠</span>
+                    <span>Accueil</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="contributions.html">
+                    <span class="nav-icon">💰</span>
+                    <span>Contributions</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="sprint-2.html">
+                    <span class="nav-icon">📄</span>
+                    <span>Sprint 2</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="galaxie-donateurs.html">
+                    <span class="nav-icon">🌟</span>
+                    <span>Galaxie Donateurs</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="index.html">
+                    <span class="nav-icon">🌟</span>
+                    <span>Conclusion</span>
+                </a>
+            </div>
+        </nav>
+        
+        <div class="sidebar-footer">
+            <p>🙏 Chaque contribution compte</p>
+        </div>
+    </aside>
+
+    <!-- CONTENU PRINCIPAL -->
+    <main class="main-content">
+        <div class="hero">
+            <div class="header">
+                <h1>APPEL À LA SOLIDARITÉ</h1>
+                <div class="subtitle">Un geste pour sauver une vie</div>
+            </div>
+
+            <div class="content">
+                <div class="name-section">
+                    <h2>WEDJE Marie Noëlle</h2>
+                    <p>Notre sœur de promotion</p>
+                </div>
+                
+                <div class="story">
+                    <h3>Son Combat 💪</h3>
+                    <p>En 2019, Marie Noëlle a reçu le diagnostic d'une tumeur de l'hypophyse. Courageuse, elle a été opérée avec succès en Côte d'Ivoire en 2021.</p>
+                    
+                    <p>Mais la vie lui a réservé une autre épreuve : en 2023, on lui découvre l'acromégalie, une maladie chronique qui nécessite un traitement lourd et coûteux. Celle-ci se traite mieux en France, mais pour des raisons de manque d'argent, elle s'est refusée ce luxe et a choisi des soins en Tunisie.</p>
+                    
+                    <div class="highlight">
+                        <p><strong>Aujourd'hui, Marie Noëlle est à bout de souffle.</strong></p>
+                        <p>• Son traitement mensuel coûtait 1,5 million par injection</p>
+                        <p>• Ce traitement s'est révélé inefficace</p>
+                        <p>• Le nouveau traitement coûte <strong>5 MILLIONS</strong> avec des injections toutes les 3 semaines</p>
+                        <p>• Elle a perdu son emploi à cause de ses absences répétées</p>
+                        <p>• Sa sœur et elle sont financièrement épuisées</p>
+                    </div>
+                </div>
+                
+                <div class="proverb">
+                    La main qui donne est toujours au-dessus de celle qui reçoit
+                </div>
+                
+                <div class="appeal">
+                    <h3>🙏 ENSEMBLE, SAUVONS MARIE NOËLLE 🙏</h3>
+                    <p>Elle est notre sœur, notre camarade de promotion.</p>
+                    <p>Aujourd'hui, c'est elle. Demain, ça pourrait être nous.</p>
+                    <p><strong>Chaque contribution compte, aussi petite soit-elle !</strong></p>
+                </div>
+                
+                <div class="info-box">
+                    <h3>💡 Qu'est-ce que l'acromégalie ?</h3>
+                    <p><b>L'acromégalie</b> est une maladie endocrinienne rare (environ 60 nouveaux cas par million d'habitants chaque année) et chronique. Elle est causée par une <b>production excessive d'hormone de croissance (GH)</b> chez l'adulte, presque toujours due à une <b>tumeur bénigne (adénome) de l'hypophyse</b>.</p>
+                    <h3>🔍 Signes et Symptômes</h3>
+                    <p>Les changements sont souvent très lents (sur plusieurs années), ce qui retarde le diagnostic (en moyenne 7 à 10 ans). Ils peuvent inclure :</p>
+                    <ul>
+                        <li>Augmentation de la pointure de chaussures ou de la taille des bagues.</li>
+                        <li>Élargissement du nez, des lèvres, des arcades sourcilières.</li>
+                        <li>Saillie de la mâchoire inférieure (prognathisme).</li>
+                        <li>Transpiration excessive.</li>
+                        <li>Apparition de petites verrues molles (acrochordons).</li>
+                        <li>Élargissement de la langue (macroglossie) et espacement entre les dents.</li>
+                        <li>Syndrome du canal carpien : engourdissements, fourmillements ou douleurs dans les mains.</li>
+                        <li>Fatigue importante, maux de tête fréquents, douleurs et raideurs articulaires.</li>
+                        <li>Voix rauque et plus grave due à l'épaississement des cordes vocales.</li>
+                        <li>Apnée du sommeil (interruptions de la respiration pendant le sommeil).</li>
+                        <li>Hypertension artérielle, risque accru de diabète et de problèmes cardiaques (cardiomégalie).</li>
+                        <li>Troubles de la vue (vision double, réduction du champ visuel) si la tumeur compresse les nerfs optiques.</li>
+                    </ul>
+                    <p style="margin-top: 20px;"><strong>Sans traitement adapté, cette maladie peut mettre la vie en danger.</strong> Marie Noëlle souffre au quotidien et a besoin de ce nouveau traitement pour survivre et retrouver une vie normale.</p>
+                </div>
+
+                <div style="text-align: center; margin-top: 40px;">
+                    <button class="contribute-btn" onclick="window.location.href='contributions.html'">
+                        <span class="btn-icon">💝</span>
+                        <span class="btn-text">JE CONTRIBUE MAINTENANT</span>
+                        <span class="btn-icon">💝</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div class="hearts">❤️ 💚 🧡</div>
+            <p><strong>Que Dieu bénisse chaque main tendue !</strong></p>
+            <p>La solidarité est notre force. Marie Noëlle compte sur nous.</p>
+            <div class="thanks">🙏 MERCI DE PARTAGER ET DE CONTRIBUER 🙏</div>
+        </div>
+    </main>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active');
+        }
+        
+        // Fermer le menu mobile quand on clique sur un lien
+        document.querySelectorAll('.sidebar a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 968) {
+                    document.getElementById('sidebar').classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
