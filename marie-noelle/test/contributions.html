@@ -467,209 +467,205 @@
     <div class="sidebar-footer"><p>💰 Suivi en temps réel</p></div>
   </aside>
   <div class="main-content">
+    <header>
+      <h1>🎯 SUIVI DES COTISATIONS POUR [ WEDJE MARIE NOELLE ]</h1>
+      <p>Un geste pour sauver une vie.</p>
+      <p><b>Numéros : Wave/MTN (+225) 0505637361 | Orange (+225) 0749052678</b></p>
 
-
-  <div class="main-content">
-  <header>
-    <h1>🎯 SUIVI DES COTISATIONS POUR [ WEDJE MARIE NOELLE ]</h1>
-    <p>Un geste pour sauver une vie.</p>
-    <p><b>Numéros : Wave/MTN (+225) 0505637361 | Orange (+225) 0749052678</b></p>
-
-    <div class="qrcodes">
-        <div class="qrcode wave">
-            <span>💙 Wave</span>
-            <span>05 05 63 73 61</span>
-            <a href="wave://capture/scan">
-              <img src="../qr_code_wave_80x80.jpg" alt="QR Code Wave">
-            </a> 
+      <div class="qrcodes">
+          <div class="qrcode wave">
+              <span>💙 Wave</span>
+              <span>05 05 63 73 61</span>
+              <a href="wave://capture/scan">
+                <img src="../qr_code_wave_80x80.jpg" alt="QR Code Wave">
+              </a> 
+          </div>
+          <div class="qrcode mtn">
+              <span>💛 MTN MoMo</span>
+              <span>05 05 63 73 61</span>
+              <a href="tel:*133%23">
+                <img src="../qr_code_mtn_80x80.jpg" alt="QR Code MTN">
+              </a>            
+          </div>
+          <div class="qrcode orange">
+              <span>🧡 Orange Money</span>
+              <span>07 49 05 26 78</span>
+              <a href="tel:%23144*1%23">
+                <img src="../qr_code_orange_80x80.jpg" alt="QR Code Orange">
+              </a>            
+          </div>
+      </div>
+      
+      <div class="indicators">
+        <div class="indicator objectif">
+          <span>🎯 Objectif (Global)</span>
+          <strong id="objectif">5 000 000 FCFA</strong>
         </div>
-        <div class="qrcode mtn">
-            <span>💛 MTN MoMo</span>
-            <span>05 05 63 73 61</span>
-            <a href="tel:*133%23">
-              <img src="../qr_code_mtn_80x80.jpg" alt="QR Code MTN">
-            </a>            
+        <div class="indicator total-recu">
+          <span>💰 Total reçu (PT Promo 2009)</span>
+          <strong id="totalRecu">0 FCFA</strong>
         </div>
-        <div class="qrcode orange">
-            <span>🧡 Orange Money</span>
-            <span>07 49 05 26 78</span>
-            <a href="tel:%23144*1%23">
-              <img src="../qr_code_orange_80x80.jpg" alt="QR Code Orange">
-            </a>            
+        <div class="indicator reste">
+          <span>📊 Reste à collecter (Global)</span>
+          <strong id="resteACollecter">5 000 000 FCFA</strong>
         </div>
-    </div>
+        <div class="indicator date-limite">
+          <span>⏰ Date limite (Global)</span>
+          <strong>15/02/2026</strong>
+        </div>
+      </div>
+      
+      <div class="indicators">
+        <div class="indicator total-recu">
+          <span>💰 Autres contrib. (Famille & Autres ami/es)</span>
+          <strong id="totalAutreContrib">0 FCFA</strong>
+        </div>
+        <div class="indicator restitution">
+          <span>➡️💰 Transfert pour Dose 1</span>
+          <strong id="restitution1">1 600 000 FCFA</strong>
+        </div>
+        <div class="indicator restitution">
+          <span>➡️💰 Transfert pour Dose 2</span>
+          <strong id="restitution1">1 150 000 FCFA</strong>
+        </div>
+        <div class="indicator aRestituer">
+          <span>💰 Reste à transférer</span>
+          <strong id="RestantaRestituer">0 FCFA</strong>
+        </div>
+      </div>
+      <div class="progress-container">
+        <div class="progress-bar" id="progress-bar">0%</div>
+      </div>
+    </header>
+  
+    <section class="table-container">
+      <h2 id="contributionsDose3-title" style="color: #667eea; margin-bottom: 10px;">📋 [ Dose 3 ] [ <span id="nombreContributeurs3">0</span> contributions ] [ 26/01/2026 à Aujourd'hui ]</h2>
     
-    <div class="indicators">
-      <div class="indicator objectif">
-        <span>🎯 Objectif (Global)</span>
-        <strong id="objectif">5 000 000 FCFA</strong>
+      <div class="indicators">   
+        <div class="indicator objectif">
+          <span>🎯 Objectif (Dose 3)</span>
+          <strong id="objectifDose3">1 600 000 FCFA</strong>
+        </div>
+        <div class="indicator total-recu">
+          <span>💰 Total reçu (Dose 3)</span>
+          <strong id="totalRecuDose3">0 FCFA</strong>
+        </div>
+        <div class="indicator reste">
+          <span>📊 Reste à collecter (Dose 3)</span>
+          <strong id="resteACollecterDose3">1 600 000 FCFA</strong>
+        </div>
+        <div class="indicator date-limite">
+          <span>⏰ Date limite (Dose 3)</span>
+          <strong>15/02/2026</strong>
+        </div>
       </div>
-      <div class="indicator total-recu">
-        <span>💰 Total reçu (PT Promo 2009)</span>
-        <strong id="totalRecu">0 FCFA</strong>
-      </div>
-      <div class="indicator reste">
-        <span>📊 Reste à collecter (Global)</span>
-        <strong id="resteACollecter">5 000 000 FCFA</strong>
-      </div>
-      <div class="indicator date-limite">
-        <span>⏰ Date limite (Global)</span>
-        <strong>15/02/2026</strong>
-      </div>
-    </div>
-	  
-	<div class="indicators">
-      <div class="indicator total-recu">
-        <span>💰 Autres contrib. (Famille & Autres ami/es)</span>
-        <strong id="totalAutreContrib">0 FCFA</strong>
-      </div>
-      <div class="indicator restitution">
-        <span>➡️💰 Transfert pour Dose 1</span>
-        <strong id="restitution1">1 600 000 FCFA</strong>
-      </div>
-      <div class="indicator restitution">
-        <span>➡️💰 Transfert pour Dose 2</span>
-        <strong id="restitution1">1 150 000 FCFA</strong>
-      </div>
-      <div class="indicator aRestituer">
-        <span>💰 Reste à transférer</span>
-        <strong id="RestantaRestituer">0 FCFA</strong>
-      </div>
-    </div>
-    <div class="progress-container">
-      <div class="progress-bar" id="progress-bar">0%</div>
-    </div>
-	
-  </header>
-  
-  <section class="table-container">
-    <h2 id="contributionsDose3-title" style="color: #667eea; margin-bottom: 10px;">📋 [ Dose 3 ] [ <span id="nombreContributeurs3">0</span> contributions ] [ 26/01/2026 à Aujourd'hui ]</h2>
-	
-    <div class="indicators">   
-      <div class="indicator objectif">
-        <span>🎯 Objectif (Dose 3)</span>
-        <strong id="objectifDose3">1 600 000 FCFA</strong>
-      </div>
-      <div class="indicator total-recu">
-        <span>💰 Total reçu (Dose 3)</span>
-        <strong id="totalRecuDose3">0 FCFA</strong>
-      </div>
-      <div class="indicator reste">
-        <span>📊 Reste à collecter (Dose 3)</span>
-        <strong id="resteACollecterDose3">1 600 000 FCFA</strong>
-      </div>
-      <div class="indicator date-limite">
-        <span>⏰ Date limite (Dose 3)</span>
-        <strong>15/02/2026</strong>
-      </div>
-    </div>
-	
-    <table id="contributionsDose3">
-      <thead>
-        <tr>
-          <th>N°</th>
-          <th>Nom</th>
-          <th>Montant versé (FCFA)</th>
-          <th>Mode de paiement</th>
-          <th>Date</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  </section>
+    
+      <table id="contributionsDose3">
+        <thead>
+          <tr>
+            <th>N°</th>
+            <th>Nom</th>
+            <th>Montant versé (FCFA)</th>
+            <th>Mode de paiement</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
 
-  <section class="table-container">
-    <h2 id="contributionsDose2-title" style="color: #667eea; margin-bottom: 10px;">📋 [ Dose 2 ] [ <span id="nombreContributeurs2">0</span> contributions ] [ 07/01/2026 au 25/01/2026 ]</h2>
-	
-	  <div class="indicators">   
-		<div class="indicator objectif">
-		  <span>🎯 Objectif (Dose 2)</span>
-		  <strong id="objectifDose2">1 600 000 FCFA</strong>
-		</div>
-		<div class="indicator total-recu">
-		  <span>💰 Total reçu (Dose 2)</span>
-		  <strong id="totalRecuDose2">0 FCFA</strong>
-		</div>
-		<div class="indicator reste">
-		  <span>📊 Reste à collecter (Dose 2)</span>
-		  <strong id="resteACollecterDose2">1 600 000 FCFA</strong>
-		</div>
-		<div class="indicator date-limite">
-		  <span>⏰ Date limite (Dose 2)</span>
-		  <strong>25/01/2026</strong>
-		</div>
-	  </div>
+    <section class="table-container">
+      <h2 id="contributionsDose2-title" style="color: #667eea; margin-bottom: 10px;">📋 [ Dose 2 ] [ <span id="nombreContributeurs2">0</span> contributions ] [ 07/01/2026 au 25/01/2026 ]</h2>
+    
+      <div class="indicators">   
+      <div class="indicator objectif">
+        <span>🎯 Objectif (Dose 2)</span>
+        <strong id="objectifDose2">1 600 000 FCFA</strong>
+      </div>
+      <div class="indicator total-recu">
+        <span>💰 Total reçu (Dose 2)</span>
+        <strong id="totalRecuDose2">0 FCFA</strong>
+      </div>
+      <div class="indicator reste">
+        <span>📊 Reste à collecter (Dose 2)</span>
+        <strong id="resteACollecterDose2">1 600 000 FCFA</strong>
+      </div>
+      <div class="indicator date-limite">
+        <span>⏰ Date limite (Dose 2)</span>
+        <strong>25/01/2026</strong>
+      </div>
+      </div>
+    
+      <table id="contributionsDose2">
+        <thead>
+          <tr>
+            <th>N°</th>
+            <th>Nom</th>
+            <th>Montant versé (FCFA)</th>
+            <th>Mode de paiement</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
   
-    <table id="contributionsDose2">
-      <thead>
-        <tr>
-          <th>N°</th>
-          <th>Nom</th>
-          <th>Montant versé (FCFA)</th>
-          <th>Mode de paiement</th>
-          <th>Date</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  </section>
-  
-  <section class="table-container">
-    <h2 style="color: #667eea; margin-bottom: 10px;">📋 [ Dose 1 ] [ <span id="nombreContributeurs1">0</span> contributions ] [ 14/12/2025 au 06/01/2025 ]</h2>
-	
-	<div class="indicators">   
-    <div class="indicator objectif">
-      <span>🎯 Objectif (Dose 1)</span>
-      <strong id="objectifDose1">1 600 000 FCFA</strong>
-    </div>
-    <div class="indicator total-recu">
-      <span>💰 Total reçu (Dose 1)</span>
-      <strong id="totalRecuDose1">0 FCFA</strong>
-    </div>
-    <div class="indicator reste">
-      <span>📊 Reste à collecter (Dose 1)</span>
-      <strong id="resteACollecterDose1">1 600 000 FCFA</strong>
-    </div>
-    <div class="indicator date-limite">
-      <span>⏰ Date limite (Dose 1)</span>
-      <strong>06/01/2026</strong>
-    </div>
+    <section class="table-container">
+      <h2 style="color: #667eea; margin-bottom: 10px;">📋 [ Dose 1 ] [ <span id="nombreContributeurs1">0</span> contributions ] [ 14/12/2025 au 06/01/2025 ]</h2>
+      <div class="indicators">   
+        <div class="indicator objectif">
+          <span>🎯 Objectif (Dose 1)</span>
+          <strong id="objectifDose1">1 600 000 FCFA</strong>
+        </div>
+        <div class="indicator total-recu">
+          <span>💰 Total reçu (Dose 1)</span>
+          <strong id="totalRecuDose1">0 FCFA</strong>
+        </div>
+        <div class="indicator reste">
+          <span>📊 Reste à collecter (Dose 1)</span>
+          <strong id="resteACollecterDose1">1 600 000 FCFA</strong>
+        </div>
+        <div class="indicator date-limite">
+          <span>⏰ Date limite (Dose 1)</span>
+          <strong>06/01/2026</strong>
+        </div>
+      </div>
+    
+      <table id="contributionsDose1">
+        <thead>
+          <tr>
+            <th>N°</th>
+            <th>Nom</th>
+            <th>Montant versé (FCFA)</th>
+            <th>Mode de paiement</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <footer>
+      <p>🙏 Merci pour votre solidarité et votre soutien !</p>
+      <button id="celebration-btn" style="
+        margin-top: 20px;
+        padding: 20px 40px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        background: linear-gradient(135deg, #FFD700, #FFA500);
+        color: #333;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
+        animation: pulse-button 2s ease-in-out infinite;
+        " onclick="window.location.href='index.html'">
+        🎉 Infos ! 🎉
+      </button>
+    </footer>
+
   </div>
-  
-    <table id="contributionsDose1">
-      <thead>
-        <tr>
-          <th>N°</th>
-          <th>Nom</th>
-          <th>Montant versé (FCFA)</th>
-          <th>Mode de paiement</th>
-          <th>Date</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  </section>
-
-  <footer>
-    <p>🙏 Merci pour votre solidarité et votre soutien !</p>
-    <button id="celebration-btn" style="
-      margin-top: 20px;
-      padding: 20px 40px;
-      font-size: 1.5rem;
-      font-weight: bold;
-      background: linear-gradient(135deg, #FFD700, #FFA500);
-      color: #333;
-      border: none;
-      border-radius: 50px;
-      cursor: pointer;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-      transition: all 0.3s ease;
-      animation: pulse-button 2s ease-in-out infinite;
-    " onclick="window.location.href='index.html'">
-      🎉 Infos ! 🎉
-    </button>
-  </footer>
-  </div></div><!-- Fermeture main-content -->
 
   <script>
     function toggleSidebar() {
