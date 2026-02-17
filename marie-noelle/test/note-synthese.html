@@ -376,6 +376,34 @@
             box-shadow: 0 12px 30px rgba(0,0,0,0.3);
         }
         
+        .header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 50px 40px;
+            text-align: center;
+        }
+        
+        .header::before {
+            content: '🤝';
+            font-size: 60px;
+            display: block;
+            margin-bottom: 15px;
+            animation: pulse 2s infinite;
+        }
+        
+        .header h1 {
+            color: white;
+            font-size: 2.8em;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            margin-bottom: 10px;
+        }
+        
+        .header .subtitle {
+            color: rgba(255,255,255,0.95);
+            font-size: 1.4em;
+            font-weight: 600;
+        }
+        
 
         @media (max-width: 968px) {
             .sidebar { transform: translateX(-100%); }
@@ -430,9 +458,12 @@
     </aside>
     <div class="main-wrapper">
 
-
-
     <div class="container">
+        <div class="header">
+                <h1>APPEL À LA SOLIDARITÉ</h1>
+                <div class="subtitle">Un geste pour sauver une vie</div>
+            </div>
+        
         <div class="document">
             <div class="doc-header">
                 <h1>NOTE DE SYNTHÈSE</h1>
