@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solidarité Marie Noëlle | Accueil</title>
+    <title>Solidarité Marie Noëlle - Phase 2</title>
     <link rel="icon" type="image/png" href="../icocollecte.png">
-    <meta property="og:title" content="Bilan solidarité envers Marie Noëlle" />
-    <meta property="og:description" content="Soutenons Marie Noëlle dans son combat contre l'acromégalie">
-    <meta property="og:image" content="https://raw.githubusercontent.com/asadgery/solidarite/main/contributions_1248x1280.jpg" />
+    <meta property="og:title" content="PHASE 2 - Solidarité Marie Noëlle - Le traitement fonctionne !" />
+    <meta property="og:description" content="Baisse de 45% du taux IGF-1. Continuons ensemble jusqu'à la guérison complète.">
+    <meta property="og:image" content="https://raw.githubusercontent.com/asadgery/solidarite/main/qr_code_wave_1200.jpg" />
     <meta property="og:url" content="https://asadgery.github.io/solidarite/marie-noelle/" />
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
@@ -23,390 +23,606 @@
             background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%);
             min-height: 100vh;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            overflow-x: hidden;
         }
         
-        .success-container {
-            background: white;
-            border-radius: 30px;
-            box-shadow: 0 30px 80px rgba(0,0,0,0.3);
-            max-width: 900px;
-            width: 100%;
-            overflow: hidden;
-            animation: zoomIn 0.8s ease-out;
-        }
-        
-        @keyframes zoomIn {
-            from {
-                opacity: 0;
-                transform: scale(0.8);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-        
-        .confetti {
+        /* MENU VERTICAL */
+        .sidebar {
+            width: 260px;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 4px 0 20px rgba(0,0,0,0.1);
             position: fixed;
-            width: 10px;
-            height: 10px;
-            background: #f0f;
-            animation: fall 3s linear infinite;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
         }
         
-        @keyframes fall {
-            to {
-                transform: translateY(100vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-        
-        .header {
-            background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%);
-            padding: 60px 40px;
+        .sidebar-header {
+            padding: 30px 20px;
             text-align: center;
-            position: relative;
+            border-bottom: 2px solid rgba(86, 171, 47, 0.2);
         }
         
-        .trophy {
-            font-size: 100px;
-            margin-bottom: 20px;
-            animation: bounce 2s infinite;
-        }
+        .sidebar-logo { font-size: 2em; margin-bottom: 10px; }
         
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-        
-        .header h1 {
-            color: white;
-            font-size: 3.5em;
-            font-weight: 800;
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
-            margin-bottom: 15px;
-        }
-        
-        .header .subtitle {
-            color: rgba(255,255,255,0.95);
-            font-size: 1.5em;
-            font-weight: 600;
-        }
-        
-        .content {
-            padding: 50px 40px;
-        }
-        
-        .achievement-box {
-            background: linear-gradient(135deg, #667eea15, #764ba215);
-            border: 3px solid #56ab2f;
-            border-radius: 20px;
-            padding: 40px;
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        
-        .big-number {
-            font-size: 4em;
+        .sidebar-title {
+            font-size: 1.3em;
             font-weight: 800;
             background: linear-gradient(135deg, #56ab2f, #a8e063);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin: 20px 0;
+            margin-bottom: 5px;
         }
         
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 25px;
-            margin: 40px 0;
+        .sidebar-subtitle { font-size: 0.85em; color: #666; font-weight: 500; }
+        .sidebar-nav { flex: 1; padding: 20px 0; overflow-y: auto; }
+        .nav-item { margin: 8px 15px; position: relative; }
+        
+        .nav-item a {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 20px;
+            color: #2d3748;
+            text-decoration: none;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 0.95em;
         }
         
-        .stat-card {
+        .nav-item a:hover {
+            background: linear-gradient(135deg, rgba(86, 171, 47, 0.1), rgba(168, 224, 99, 0.1));
+            transform: translateX(5px);
+        }
+        
+        .nav-item a.active {
+            background: linear-gradient(135deg, #56ab2f, #a8e063);
+            color: white;
+            box-shadow: 0 4px 15px rgba(86, 171, 47, 0.3);
+        }
+        
+        .nav-badge {
+            background: #f5576c;
+            color: white;
+            font-size: 0.7em;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-left: auto;
+            font-weight: 700;
+        }
+        
+        .nav-icon { font-size: 1.3em; min-width: 25px; text-align: center; }
+        .sidebar-footer { padding: 20px; border-top: 2px solid rgba(86, 171, 47, 0.2); text-align: center; font-size: 0.8em; color: #666; }
+        
+        .mobile-toggle {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1100;
             background: white;
-            border: 3px solid #56ab2f;
-            border-radius: 15px;
-            padding: 30px 20px;
+            border: none;
+            padding: 12px 16px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            cursor: pointer;
+            font-size: 1.5em;
+        }
+        
+        /* CONTENU PRINCIPAL */
+        .main-wrapper {
+            margin-left: 260px;
+            flex: 1;
+            padding: 0;
+            overflow-y: auto;
+            max-height: 100vh;
+        }
+        
+        /* BANNIÈRE SUCCÈS PHASE 1 */
+        .success-banner {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px 40px;
             text-align: center;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            animation: slideDown 0.6s ease-out;
         }
         
-        .stat-card:hover {
-            transform: translateY(-10px);
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
-        .stat-icon {
-            font-size: 3em;
-            margin-bottom: 15px;
-        }
-        
-        .stat-value {
-            font-size: 2em;
+        .success-banner h2 {
+            font-size: 1.8em;
             font-weight: 800;
-            color: #56ab2f;
             margin-bottom: 10px;
         }
         
-        .stat-label {
-            color: #666;
+        .success-banner p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+        
+        /* CONTENU HERO */
+        .hero {
+            background: white;
+            padding: 60px 40px;
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .hero-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .hero h1 {
+            color: #56ab2f;
+            font-size: 3em;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+        
+        .hero .subtitle {
+            color: #2d3748;
+            font-size: 1.5em;
             font-weight: 600;
+            margin-bottom: 40px;
         }
         
-        .timeline {
-            background: #f8f9fa;
-            padding: 30px;
-            border-radius: 15px;
-            margin: 30px 0;
-        }
-        
-        .timeline h3 {
-            color: #56ab2f;
-            font-size: 1.8em;
-            margin-bottom: 25px;
-            text-align: center;
-        }
-        
-        .timeline-item {
-            display: flex;
-            align-items: center;
-            margin: 20px 0;
-            padding-left: 40px;
-            position: relative;
-        }
-        
-        .timeline-item::before {
-            content: '✅';
-            position: absolute;
-            left: 0;
-            font-size: 2em;
-        }
-        
-        .timeline-item strong {
-            color: #56ab2f;
-            min-width: 120px;
-            display: inline-block;
-        }
-        
-        .thank-you {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            padding: 50px;
+        /* RÉSULTATS MÉDICAUX */
+        .results-box {
+            background: linear-gradient(135deg, #56ab2f15, #a8e06315);
+            border: 3px solid #56ab2f;
             border-radius: 20px;
-            text-align: center;
+            padding: 40px;
             margin: 40px 0;
         }
         
-        .thank-you h2 {
-            font-size: 2.5em;
-            margin-bottom: 25px;
-            font-weight: 800;
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
         }
         
-        .thank-you p {
-            font-size: 1.3em;
-            line-height: 1.8;
-            margin: 15px 0;
-        }
-        
-        .quote {
-            background: #fff3cd;
-            border-left: 5px solid #ffc107;
-            padding: 30px;
-            border-radius: 12px;
-            margin: 30px 0;
-            font-style: italic;
-            font-size: 1.3em;
-            color: #2d3748;
+        .result-card {
             text-align: center;
         }
         
-        .buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 40px;
+        .result-label {
+            font-size: 0.95em;
+            color: #666;
+            margin-bottom: 10px;
         }
         
-        .btn {
-            padding: 18px 40px;
-            border-radius: 50px;
+        .result-value {
+            font-size: 2.5em;
+            font-weight: 800;
+            margin: 10px 0;
+        }
+        
+        .result-value.before {
+            color: #f5576c;
+        }
+        
+        .result-value.after {
+            color: #56ab2f;
+        }
+        
+        .result-icon {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+        
+        .arrow-down {
+            font-size: 4em;
+            color: #56ab2f;
+            animation: bounce 1s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        /* PRESCRIPTION */
+        .prescription-box {
+            background: #f8f9fa;
+            padding: 35px;
+            border-radius: 15px;
+            margin: 40px 0;
+            border-left: 5px solid #56ab2f;
+        }
+        
+        .prescription-box h3 {
+            color: #56ab2f;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+        
+        .prescription-box ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .prescription-box li {
+            padding: 12px 0;
+            font-size: 1.1em;
+            color: #2d3748;
+        }
+        
+        .prescription-box li::before {
+            content: '✅ ';
             font-size: 1.2em;
-            font-weight: 700;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            font-family: 'Poppins', sans-serif;
         }
         
-        .btn-primary {
+        /* OBJECTIFS PHASE 2 */
+        .phase2-box {
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
-            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+            padding: 50px 40px;
+            border-radius: 20px;
+            margin: 40px 0;
+            text-align: center;
         }
         
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(102, 126, 234, 0.6);
+        .phase2-box h2 {
+            font-size: 2.5em;
+            font-weight: 800;
+            margin-bottom: 30px;
         }
         
-        .btn-secondary {
-            background: white;
-            color: #56ab2f;
-            border: 3px solid #56ab2f;
+        .doses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
         }
         
-        .btn-secondary:hover {
-            background: #56ab2f;
+        .dose-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .dose-card h4 {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
+        
+        .dose-amount {
+            font-size: 1.8em;
+            font-weight: 800;
+        }
+        
+        .total-amount {
+            font-size: 3em;
+            font-weight: 800;
+            margin: 30px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        /* BOUTON CTA */
+        .cta-button {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
             color: white;
+            border: none;
+            padding: 25px 50px;
+            border-radius: 50px;
+            font-size: 1.5em;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(245, 87, 108, 0.4);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            font-family: 'Poppins', sans-serif;
+            margin: 30px 0;
         }
         
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2.5em;
-            }
-            
-            .big-number {
-                font-size: 3em;
-            }
-            
-            .content {
-                padding: 30px 25px;
-            }
-            
-            .buttons {
-                flex-direction: column;
-            }
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(245, 87, 108, 0.6);
+        }
+        
+        /* MOYENS DE PAIEMENT */
+        .payment-methods {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin: 40px 0;
+        }
+        
+        .payment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .payment-card {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid #e0e0e0;
+        }
+        
+        .payment-card h4 {
+            color: #56ab2f;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+        
+        .payment-card .number {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #2d3748;
+        }
+        
+        /* CITATION */
+        .quote {
+            background: #2d3748;
+            color: #ffd700;
+            padding: 35px;
+            border-radius: 15px;
+            text-align: center;
+            font-style: italic;
+            font-size: 1.5em;
+            font-weight: 600;
+            margin: 40px 0;
+            border: 3px solid #ffd700;
+        }
+        
+        .quote::before { content: '« '; font-size: 1.5em; }
+        .quote::after { content: ' »'; font-size: 1.5em; }
+        
+        /* FOOTER */
+        .footer {
+            background: #2d3748;
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .footer h3 {
+            font-size: 2em;
+            color: #ffd700;
+            margin-bottom: 20px;
+        }
+        
+        @media (max-width: 968px) {
+            .sidebar { transform: translateX(-100%); }
+            .sidebar.active { transform: translateX(0); }
+            .mobile-toggle { display: block; }
+            .main-wrapper { margin-left: 0; }
+            .hero h1 { font-size: 2em; }
+            .hero { padding: 40px 25px; }
+            .total-amount { font-size: 2em; }
         }
     </style>
 </head>
 <body>
-    <div class="success-container">
-        <div class="header">
-            <div class="trophy">🏆</div>
-            <h1>OBJECTIF ATTEINT !</h1>
-            <div class="subtitle">Mission accomplie ! 🎉</div>
+    <button class="mobile-toggle" onclick="toggleSidebar()">☰</button>
+
+    <!-- MENU VERTICAL -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">❤️</div>
+            <div class="sidebar-title">Solidarité MN</div>
+            <div class="sidebar-subtitle">Phase 2</div>
         </div>
         
-        <div class="content">
-            <div class="achievement-box">
-                <h2 style="color: #2d3748; font-size: 2em; margin-bottom: 20px;">✨ Résultat Final ✨</h2>
-                <div class="big-number">112%</div>
-                <p style="font-size: 1.3em; color: #666; margin-top: 20px;">
-                    <strong>5 613 865 FCFA</strong> mobilisés pour aider Marie Noëlle
-                </p>
-            </div>
-            
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-icon">🎯</div>
-                    <div class="stat-value">5M</div>
-                    <div class="stat-label">Objectif FCFA</div>
-                </div>
-                
-                <div class="stat-card">
-                    <div class="stat-icon">💰</div>
-                    <div class="stat-value">4.4M</div>
-                    <div class="stat-label">Promo Prépa Techno 2009</div>
-                </div>
-                
-                <div class="stat-card">
-                    <div class="stat-icon">❤️</div>
-                    <div class="stat-value">1.25M</div>
-                    <div class="stat-label">Famille proche & Autres amis</div>
-                </div>
-            </div>
-            
-            <div class="timeline">
-                <h3>📅 Chronologie du Succès</h3>
-                <div class="timeline-item">
-                    <strong>14/12/2025</strong> Lancement de la collecte
-                </div>
-                <div class="timeline-item">
-                    <strong>07/01/2026</strong> Dose 1 administrée
-                </div>
-                <div class="timeline-item">
-                    <strong>28/01/2026</strong> Dose 2 administrée
-                </div>
-                <div class="timeline-item">
-                    <strong>17/02/2026</strong> Objectif dépassé - Dose 3 financée
-                </div>
-                <div class="timeline-item">
-                    <strong>Aujourd'hui</strong> Marie Noëlle peut se soigner sereinement
-                </div>
-            </div>
-            
-            <div class="quote">
-                "Seul on va plus vite, ensemble on va plus loin"
-            </div>
-            
-            <div class="thank-you">
-                <h2>🙏 MERCI INFINIMENT 🙏</h2>
-                <p>Grâce à votre générosité exceptionnelle :</p>
-                <p>✨ Le traitement complet est assuré</p>
-                <p>✨ Marie Noëlle peut être soignée</p>
-                <p>✨ Une vie sécourue</p>
-                <p style="margin-top: 30px; font-size: 1.5em; font-weight: 700;">
-                    Nous avons été EXTRAORDINAIRES ! ❤️
-                </p>
-            </div>
-            
-            <div style="background: #f8f9fa; padding: 30px; border-radius: 15px; margin: 30px 0;">
-                <h3 style="color: #667eea; text-align: center; margin-bottom: 20px; font-size: 1.8em;">
-                    💬 Message de Marie Noëlle
-                </h3>
-                <p style="font-style: italic; text-align: center; font-size: 1.2em; color: #4a5568; line-height: 1.8;">
-                    "Je suis profondément touchée et reconnaissante envers chacun d'entre vous. Pour dire vrai, les mots me manquent, je n'ai pas imaginé que vous seriez si généreux. Merci du fond du cœur. Que Dieu vous bénisse tous !"
-                </p>
-            </div>
-            
-            <div class="buttons">
-                <a href="galaxie-donateurs.html" class="btn btn-primary">
-                    <span>🌟</span>
-                    <span>Voir la Galaxie des Héros</span>
-                </a>
-                <a href="accueil.html" class="btn btn-secondary">
-                    <span>🏠</span>
-                    <span>Retour à l'accueil</span>
+        <nav class="sidebar-nav">
+            <div class="nav-item">
+                <a href="index.html" class="active">
+                    <span class="nav-icon">🏠</span>
+                    <span>Accueil</span>
                 </a>
             </div>
-            
-            <p style="text-align: center; margin-top: 50px; color: #667eea; font-weight: 700; font-size: 1.2em;">
-                PROMO 2009 - UNIS POUR LA VIE 🎓
+            <div class="nav-item">
+                <a href="contributions.html">
+                    <span class="nav-icon">💰</span>
+                    <span>Suivi Phase 1</span>
+                    <span class="nav-badge">✅</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="contributions-act-2.html">
+                    <span class="nav-icon">💵</span>
+                    <span>Suivi Phase 2</span>
+                    <span class="nav-badge">🔴</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="note-synthese.html">
+                    <span class="nav-icon">📄</span>
+                    <span>Note de synthèse</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="parcours.html">
+                    <span class="nav-icon">📅</span>
+                    <span>Notre Parcours</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="galaxy-donateurs.html">
+                    <span class="nav-icon">🌟</span>
+                    <span>Galaxy Donateurs</span>
+                </a>
+            </div>
+        </nav>
+        
+        <div class="sidebar-footer">
+            <p>🙏 Phase 2 en cours</p>
+        </div>
+    </aside>
+
+    <!-- CONTENU PRINCIPAL -->
+    <div class="main-wrapper">
+        <!-- BANNIÈRE SUCCÈS PHASE 1 -->
+        <div class="success-banner">
+            <h2>🎉 PHASE 1 TERMINÉE : ✅ 112% ATTEINT</h2>
+            <p>74 donateurs - 5,6M FCFA mobilisés - Merci infiniment !</p>
+        </div>
+
+        <!-- HERO -->
+        <div class="hero">
+            <div class="hero-content">
+                <div class="hero-icon">🩺</div>
+                <h1>EXCELLENTE NOUVELLE !</h1>
+                <div class="subtitle">LE TRAITEMENT FONCTIONNE !</div>
+
+                <!-- RÉSULTATS MÉDICAUX -->
+                <div class="results-box">
+                    <h2 style="color: #56ab2f; font-size: 2em; margin-bottom: 20px;">📉 Taux IGF-1 (Hormone de Croissance)</h2>
+                    <div class="results-grid">
+                        <div class="result-card">
+                            <div class="result-icon">⚠️</div>
+                            <div class="result-label">Avant traitement</div>
+                            <div class="result-value before">1 069</div>
+                            <div class="result-label">ng/ml</div>
+                        </div>
+                        
+                        <div class="result-card">
+                            <div class="arrow-down">↓</div>
+                            <div style="font-size: 2em; font-weight: 800; color: #56ab2f;">-45%</div>
+                        </div>
+                        
+                        <div class="result-card">
+                            <div class="result-icon">✨</div>
+                            <div class="result-label">Après 3 doses</div>
+                            <div class="result-value after">593</div>
+                            <div class="result-label">ng/ml</div>
+                        </div>
+                    </div>
+                    <p style="margin-top: 30px; font-size: 1.3em; color: #2d3748; font-weight: 600;">
+                        🎯 Objectif final : &lt; 240 ng/ml
+                    </p>
+                </div>
+
+                <!-- PRESCRIPTION MÉDICALE -->
+                <div class="prescription-box">
+                    <h3>💊 PRESCRIPTION MÉDICALE</h3>
+                    <p style="font-size: 1.1em; color: #666; margin-bottom: 20px;">
+                        Pour atteindre la guérison complète :
+                    </p>
+                    <ul>
+                        <li>3 doses supplémentaires (Somatuline LP 120)</li>
+                        <li>Administrées toutes les 3 semaines</li>
+                        <li>Objectif : Ramener le taux sous 240 ng/ml</li>
+                        <li>Analyses de contrôle après la 6ème dose</li>
+                    </ul>
+                </div>
+
+                <!-- PHASE 2 - OBJECTIFS -->
+                <div class="phase2-box">
+                    <h2>💰 PHASE 2 - ACTE II</h2>
+                    <p style="font-size: 1.3em; margin-bottom: 30px;">Consolidation du traitement</p>
+                    
+                    <div class="doses-grid">
+                        <div class="dose-card">
+                            <h4>Dose 4</h4>
+                            <div class="dose-amount">1 600 000 FCFA</div>
+                        </div>
+                        <div class="dose-card">
+                            <h4>Dose 5</h4>
+                            <div class="dose-amount">1 600 000 FCFA</div>
+                        </div>
+                        <div class="dose-card">
+                            <h4>Dose 6</h4>
+                            <div class="dose-amount">1 600 000 FCFA</div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 40px;">
+                        <p style="font-size: 1.3em;">Objectif Total</p>
+                        <div class="total-amount">4 800 000 FCFA</div>
+                    </div>
+                    
+                    <button class="cta-button" onclick="window.location.href='contributions-act-2.html'">
+                        <span>💝</span>
+                        <span>CONTRIBUER MAINTENANT</span>
+                        <span>💝</span>
+                    </button>
+                </div>
+
+                <!-- MOYENS DE PAIEMENT -->
+                <div class="payment-methods">
+                    <h2 style="color: #2d3748; text-align: center; margin-bottom: 30px;">📱 Comment Contribuer ?</h2>
+                    <div class="payment-grid">
+                        <div class="payment-card">
+                            <h4>Wave / MTN Money</h4>
+                            <div class="number">05 05 63 73 61</div>
+                        </div>
+                        <div class="payment-card">
+                            <h4>Orange Money</h4>
+                            <div class="number">07 49 05 26 78</div>
+                        </div>
+                        <div class="payment-card">
+                            <h4>Virement BOA</h4>
+                            <div class="number" style="font-size: 1em;">CI0320100200757366000741</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CITATION -->
+                <div class="quote">
+                    Nous avons commencé ensemble, terminons ensemble !
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <h3>🙏 PROMO 2009 - PHASE 2 ✊</h3>
+            <p style="font-size: 1.2em; margin: 20px 0;">
+                Merci pour votre générosité et votre soutien continu
             </p>
+            <p>Marie Noëlle compte sur nous ❤️</p>
         </div>
     </div>
-    
+
     <script>
-        // Créer des confettis
-        function createConfetti() {
-            const colors = ['#f093fb', '#f5576c', '#56ab2f', '#a8e063', '#667eea', '#764ba2', '#ffd700'];
-            for (let i = 0; i < 50; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
-                confetti.style.left = Math.random() * 100 + 'vw';
-                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.animationDelay = Math.random() * 3 + 's';
-                confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
-                document.body.appendChild(confetti);
-                
-                setTimeout(() => confetti.remove(), 5000);
-            }
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('active');
         }
         
-        // Lancer les confettis au chargement
-        createConfetti();
-        setInterval(createConfetti, 3000);
+        document.querySelectorAll('.sidebar a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 968) {
+                    document.getElementById('sidebar').classList.remove('active');
+                }
+            });
+        });
     </script>
 </body>
 </html>
