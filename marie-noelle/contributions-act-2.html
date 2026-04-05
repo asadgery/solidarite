@@ -615,10 +615,10 @@
       </div>
     </header>
   
-    <section class="table-container">
+    <section class="table-container" id="section-dose3">
       <h2 id="contributionsDose3-title" style="color: #667eea; margin-bottom: 10px;">📋 [ Dose 3 ] [ <span id="nombreContributeurs3">0</span> contributions ] [ 04/05/2026 à 22/05/2026 ]</h2>
-    
-      <div class="indicators">   
+
+      <div class="indicators">
         <div class="indicator objectif">
           <span>🎯 Objectif (Dose 3)</span>
           <strong id="objectifDose3">1 600 000 FCFA</strong>
@@ -636,7 +636,11 @@
           <strong>22/05/2026</strong>
         </div>
       </div>
-    
+
+      <div class="progress-container" style="margin-top: 20px;">
+        <div class="progress-bar" id="progress-bar-dose3">0%</div>
+      </div>
+
       <table id="contributionsDose3">
         <thead>
           <tr>
@@ -651,10 +655,10 @@
       </table>
     </section>
 
-    <section class="table-container">
+    <section class="table-container" id="section-dose2">
       <h2 id="contributionsDose2-title" style="color: #667eea; margin-bottom: 10px;">📋 [ Dose 2 ] [ <span id="nombreContributeurs2">0</span> contributions ] [ 13/04/2026 au 01/05/2026 ]</h2>
-    
-      <div class="indicators">   
+
+      <div class="indicators">
       <div class="indicator objectif">
         <span>🎯 Objectif (Dose 2)</span>
         <strong id="objectifDose2">1 600 000 FCFA</strong>
@@ -672,7 +676,11 @@
         <strong>01/05/2026</strong>
       </div>
       </div>
-    
+
+      <div class="progress-container" style="margin-top: 20px;">
+        <div class="progress-bar" id="progress-bar-dose2">0%</div>
+      </div>
+
       <table id="contributionsDose2">
         <thead>
           <tr>
@@ -687,9 +695,9 @@
       </table>
     </section>
   
-    <section class="table-container">
+    <section class="table-container" id="section-dose1">
       <h2 style="color: #667eea; margin-bottom: 10px;">📋 [ Dose 1 ] [ <span id="nombreContributeurs1">0</span> contributions ] [ 31/03/2026 au 10/04/2026 ]</h2>
-      <div class="indicators">   
+      <div class="indicators">
         <div class="indicator objectif">
           <span>🎯 Objectif (Dose 1)</span>
           <strong id="objectifDose1">1 600 000 FCFA</strong>
@@ -707,7 +715,11 @@
           <strong>10/04/2026</strong>
         </div>
       </div>
-    
+
+      <div class="progress-container" style="margin-top: 20px;">
+        <div class="progress-bar" id="progress-bar-dose1">0%</div>
+      </div>
+
       <table id="contributionsDose1">
         <thead>
           <tr>
@@ -862,19 +874,42 @@
         document.getElementById('resteACollecterDose3').textContent = formatNumber(resteDose3) + ' FCFA';
         document.getElementById('nombreContributeurs3').textContent = contributionsDose3.length;
 
-        // Remplir les tableaux
-        fillTable('contributionsDose1', contributionsDose1);
-        fillTable('contributionsDose2', contributionsDose2);
-        fillTable('contributionsDose3', contributionsDose3);
+        // Barres de progression par dose
+        setDoseProgress('progress-bar-dose1', totalDose1, objectifDose1);
+        setDoseProgress('progress-bar-dose2', totalDose2, objectifDose2);
+        setDoseProgress('progress-bar-dose3', totalDose3, objectifDose3);
+
+        // Remplir les tableaux et masquer les sections vides
+        fillTable('contributionsDose1', contributionsDose1, 'section-dose1');
+        fillTable('contributionsDose2', contributionsDose2, 'section-dose2');
+        fillTable('contributionsDose3', contributionsDose3, 'section-dose3');
 
       } catch (error) {
         console.error('Erreur lors du chargement des données:', error);
       }
     }
 
-    function fillTable(tableId, contributions) {
+    function setDoseProgress(barId, total, objectif) {
+      const pct = Math.min((total / objectif) * 100, 100);
+      const bar = document.getElementById(barId);
+      bar.style.width = pct + '%';
+      bar.textContent = Math.round(pct) + '%';
+      if (pct >= 100) {
+        bar.style.background = 'linear-gradient(90deg, #56ab2f, #a8e063)';
+      } else if (pct >= 50) {
+        bar.style.background = 'linear-gradient(90deg, #f7971e, #ffd200)';
+      } else {
+        bar.style.background = 'linear-gradient(90deg, #FF4500, #FF6347)';
+      }
+    }
+
+    function fillTable(tableId, contributions, sectionId) {
       const tbody = document.querySelector(`#${tableId} tbody`);
       tbody.innerHTML = '';
+
+      if (sectionId) {
+        document.getElementById(sectionId).style.display = contributions.length === 0 ? 'none' : '';
+      }
 
       contributions.forEach((contrib, index) => {
         const tr = document.createElement('tr');
