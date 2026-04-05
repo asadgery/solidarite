@@ -16,13 +16,12 @@
         
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%);
             min-height: 100vh;
-            line-height: 1.7;
             display: flex;
         }
         
-        /* MENU VERTICAL GAUCHE */
+        /* MENU VERTICAL */
         .sidebar {
             width: 260px;
             background: rgba(255, 255, 255, 0.98);
@@ -41,7 +40,7 @@
         .sidebar-header {
             padding: 30px 20px;
             text-align: center;
-            border-bottom: 2px solid rgba(102, 126, 234, 0.2);
+            border-bottom: 2px solid rgba(86, 171, 47, 0.2);
         }
         
         .sidebar-logo { font-size: 2em; margin-bottom: 10px; }
@@ -49,7 +48,7 @@
         .sidebar-title {
             font-size: 1.3em;
             font-weight: 800;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #56ab2f, #a8e063);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -58,7 +57,7 @@
         
         .sidebar-subtitle { font-size: 0.85em; color: #666; font-weight: 500; }
         .sidebar-nav { flex: 1; padding: 20px 0; overflow-y: auto; }
-        .nav-item { margin: 8px 15px; }
+        .nav-item { margin: 8px 15px; position: relative; }
         
         .nav-item a {
             display: flex;
@@ -74,18 +73,28 @@
         }
         
         .nav-item a:hover {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            background: linear-gradient(135deg, rgba(86, 171, 47, 0.1), rgba(168, 224, 99, 0.1));
             transform: translateX(5px);
         }
         
         .nav-item a.active {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #56ab2f, #a8e063);
             color: white;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 4px 15px rgba(86, 171, 47, 0.3);
+        }
+        
+        .nav-badge {
+            background: #f5576c;
+            color: white;
+            font-size: 0.7em;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-left: auto;
+            font-weight: 700;
         }
         
         .nav-icon { font-size: 1.3em; min-width: 25px; text-align: center; }
-        .sidebar-footer { padding: 20px; border-top: 2px solid rgba(102, 126, 234, 0.2); text-align: center; font-size: 0.8em; color: #666; }
+        .sidebar-footer { padding: 20px; border-top: 2px solid rgba(86, 171, 47, 0.2); text-align: center; font-size: 0.8em; color: #666; }
         
         .mobile-toggle {
             display: none;
@@ -415,17 +424,17 @@
 <body>
     <button class="mobile-toggle" onclick="toggleSidebar()">☰</button>
 
-    <!-- MENU VERTICAL GAUCHE -->
+    <!-- MENU VERTICAL -->
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
             <div class="sidebar-logo">❤️</div>
-            <div class="sidebar-title">Solidarité envers</div>
-            <div class="sidebar-subtitle">Marie Noëlle</div>
+            <div class="sidebar-title">Solidarité MN</div>
+            <div class="sidebar-subtitle">Phase 2</div>
         </div>
         
         <nav class="sidebar-nav">
             <div class="nav-item">
-                <a href="accueil.html">
+                <a href="index.html" class="active">
                     <span class="nav-icon">🏠</span>
                     <span>Accueil</span>
                 </a>
@@ -433,34 +442,41 @@
             <div class="nav-item">
                 <a href="contributions.html">
                     <span class="nav-icon">💰</span>
-                    <span>Contributions</span>
+                    <span>Suivi Phase 1</span>
+                    <span class="nav-badge">✅</span>
                 </a>
             </div>
             <div class="nav-item">
-                <a href="sprint-2.html">
+                <a href="contributions-act-2.html">
+                    <span class="nav-icon">💵</span>
+                    <span>Suivi Phase 2</span>
+                    <span class="nav-badge">🔴</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="note-synthese.html">
                     <span class="nav-icon">📄</span>
-                    <span>Sprint 2</span>
+                    <span>Note de synthèse</span>
                 </a>
             </div>
             <div class="nav-item">
-                <a href="galaxie-donateurs.html">
+                <a href="parcours.html">
+                    <span class="nav-icon">📅</span>
+                    <span>Notre Parcours</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="galaxy-donateurs.html">
                     <span class="nav-icon">🌟</span>
                     <span>Galaxy Donateurs</span>
-                </a>
-            </div>            
-            <div class="nav-item">
-                <a href="index.html">
-                    <span class="nav-icon">🌟</span>
-                    <span>Conclusion</span>
                 </a>
             </div>
         </nav>
         
         <div class="sidebar-footer">
-            <p>📋 Document officiel</p>
+            <p>🙏 Phase 2 en cours</p>
         </div>
     </aside>
-
     <!-- CONTENU PRINCIPAL -->
     <div class="main-wrapper">
         <div class="document">
