@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solidarité Marie Noëlle - Acte 2</title>
+    <title>Solidarité Marie Noëlle - Le combat continue</title>
     <link rel="icon" type="image/png" href="../icocollecte.png">
-    <meta property="og:title" content="PHASE 2 - Solidarité Marie Noëlle - Le traitement fonctionne !" />
-    <meta property="og:description" content="Baisse de 45% du taux IGF-1. Continuons ensemble jusqu'à la guérison complète.">
+    <meta property="og:title" content="Solidarité Marie Noëlle - Une rechute confirmée, votre soutien reste décisif" />
+    <meta property="og:description" content="Après 6 doses et des progrès réels, le taux IGF-1 remonte. Les médecins recommandent la reprise immédiate du traitement.">
     <meta property="og:image" content="https://raw.githubusercontent.com/asadgery/solidarite/main/qr_code_wave_1200.jpg" />
     <meta property="og:url" content="https://asadgery.github.io/solidarite/marie-noelle/" />
     <style>
@@ -387,6 +387,118 @@
             color: #2d3748;
         }
         
+        /* FRISE IGF-1 (4 POINTS) */
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+            align-items: center;
+        }
+
+        .timeline-point { text-align: center; }
+
+        .timeline-date {
+            font-size: 0.85em;
+            color: #888;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .timeline-value {
+            font-size: 1.9em;
+            font-weight: 800;
+        }
+
+        .timeline-value.low { color: #f5576c; }
+        .timeline-value.best { color: #56ab2f; }
+        .timeline-value.rising { color: #f5a623; }
+        .timeline-value.alert { color: #f5576c; }
+
+        .timeline-tag {
+            font-size: 0.8em;
+            font-weight: 700;
+            margin-top: 5px;
+            padding: 3px 10px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .timeline-tag.best { background: #56ab2f22; color: #56ab2f; }
+        .timeline-tag.alert { background: #f5576c22; color: #f5576c; }
+
+        .gh-note {
+            margin-top: 25px;
+            padding: 18px 25px;
+            background: #f5a62315;
+            border-left: 5px solid #f5a623;
+            border-radius: 10px;
+            font-size: 1.05em;
+            color: #2d3748;
+            text-align: left;
+        }
+
+        /* DÉMARCHES OFFICIELLES */
+        .ministry-box {
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            padding: 30px 35px;
+            margin: 40px 0;
+            text-align: left;
+        }
+
+        .ministry-box h3 {
+            color: #2d3748;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .ministry-status {
+            display: inline-block;
+            background: #f5a62322;
+            color: #d68000;
+            font-weight: 700;
+            font-size: 0.85em;
+            padding: 5px 14px;
+            border-radius: 20px;
+            margin-bottom: 15px;
+        }
+
+        .ministry-box ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 10px;
+        }
+
+        .ministry-box li {
+            padding: 8px 0;
+            color: #555;
+            font-size: 1em;
+        }
+
+        .ministry-box li::before {
+            content: '📌 ';
+        }
+
+        /* DOSES DÉJÀ FINANCÉES */
+        .done-box {
+            background: #56ab2f15;
+            border: 2px solid #56ab2f;
+            border-radius: 15px;
+            padding: 25px 30px;
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        .done-box h4 {
+            color: #56ab2f;
+            font-size: 1.2em;
+            margin-bottom: 12px;
+        }
+
+        .done-box p { color: #2d3748; font-size: 0.98em; line-height: 1.6; }
+
         /* CITATION */
         .quote {
             background: #2d3748;
@@ -488,77 +600,115 @@
 
     <!-- CONTENU PRINCIPAL -->
     <div class="main-wrapper">
-        <!-- BANNIÈRE SUCCÈS PHASE 1 -->
+        <!-- BANNIÈRE ÉTAT GLOBAL -->
         <div class="success-banner">
-            <h2>🎉 PHASE 1 TERMINÉE : ✅ 112% ATTEINT</h2>
-            <p>74 donateurs - 5,6M FCFA mobilisés - Merci infiniment !</p>
+            <h2>✅ 6 doses financées et administrées — 8,8M FCFA mobilisés</h2>
+            <p>🔴 Reprise nécessaire aujourd'hui : doses 7, 8 et 9 pour atteindre la guérison</p>
         </div>
 
         <!-- HERO -->
         <div class="hero">
             <div class="hero-content">
                 <div class="hero-icon">🩺</div>
-                <h1>EXCELLENTE NOUVELLE !</h1>
-                <div class="subtitle">LE TRAITEMENT FONCTIONNE !</div>
+                <h1>LE COMBAT CONTINUE</h1>
+                <div class="subtitle">Une légère rechute confirmée — votre soutien reste décisif</div>
 
                 <!-- RÉSULTATS MÉDICAUX -->
                 <div class="results-box">
-                    <h2 style="color: #56ab2f; font-size: 2em; margin-bottom: 20px;">📉 Taux IGF-1 (Hormone de Croissance)</h2>
-                    <div class="results-grid">
-                        <div class="result-card">
-                            <div class="result-icon">⚠️</div>
-                            <div class="result-label">Avant traitement</div>
-                            <div class="result-value before">1 069</div>
+                    <h2 style="color: #56ab2f; font-size: 2em; margin-bottom: 20px;">📊 Évolution du taux IGF-1 (Hormone de Croissance)</h2>
+                    <div class="timeline-grid">
+                        <div class="timeline-point">
+                            <div class="timeline-date">Déc. 2025</div>
+                            <div class="timeline-value low">1 069</div>
                             <div class="result-label">ng/ml</div>
                         </div>
-                        
-                        <div class="result-card">
-                            <div class="arrow-down">↓</div>
-                            <div style="font-size: 2em; font-weight: 800; color: #56ab2f;">-45%</div>
+                        <div class="timeline-point">
+                            <div class="arrow-down" style="font-size: 2em;">→</div>
                         </div>
-                        
-                        <div class="result-card">
-                            <div class="result-icon">✨</div>
-                            <div class="result-label">Après 3 doses</div>
-                            <div class="result-value after">593</div>
+                        <div class="timeline-point">
+                            <div class="timeline-date">Mars 2026</div>
+                            <div class="timeline-value best">593</div>
                             <div class="result-label">ng/ml</div>
+                            <div class="timeline-tag best">Meilleur résultat</div>
+                        </div>
+                        <div class="timeline-point">
+                            <div class="arrow-down" style="font-size: 2em;">→</div>
+                        </div>
+                        <div class="timeline-point">
+                            <div class="timeline-date">Juin 2026</div>
+                            <div class="timeline-value rising">624,9</div>
+                            <div class="result-label">ng/ml</div>
+                        </div>
+                        <div class="timeline-point">
+                            <div class="arrow-down" style="font-size: 2em;">→</div>
+                        </div>
+                        <div class="timeline-point">
+                            <div class="timeline-date">Août 2026</div>
+                            <div class="timeline-value alert">674,7</div>
+                            <div class="result-label">ng/ml</div>
+                            <div class="timeline-tag alert">Résultat actuel</div>
                         </div>
                     </div>
                     <p style="margin-top: 30px; font-size: 1.3em; color: #2d3748; font-weight: 600;">
                         🎯 Objectif final : &lt; 240 ng/ml
                     </p>
+                    <div class="gh-note">
+                        📈 <strong>Second marqueur confirmé :</strong> l'hormone de croissance (GH) suit la même tendance, passée de <strong>47,43 à 61,10 mUI/L</strong> entre les deux dernières analyses. Deux analyses consécutives, deux marqueurs — l'interruption du traitement entraîne une régression réelle et mesurable, confirmée médicalement et non plus seulement redoutée.
+                    </div>
+                    <div class="gh-note" style="border-left-color: #667eea; background: #667eea15; margin-top: 15px;">
+                        ⏱️ <strong>Pourquoi cette rechute ?</strong> Le protocole médical impose un délai strict de 3 semaines entre chaque dose. Faute de moyens suffisants réunis à temps, ce délai n'a pas toujours pu être respecté entre les dernières doses — un facteur qui explique vraisemblablement cette remontée. Chaque financement obtenu <em>à temps</em> compte directement pour l'efficacité du traitement.
+                    </div>
+                </div>
+
+                <!-- DOSES DÉJÀ FINANCÉES -->
+                <div class="done-box">
+                    <h4>✅ Ce que nous avons déjà accompli ensemble</h4>
+                    <p>
+                        Les doses 4, 5 et 6 ont été intégralement financées et administrées grâce à votre solidarité — la 6ème dans des conditions particulièrement difficiles, via une avance obtenue auprès du fournisseur après de multiples sollicitations, avec un reliquat depuis honoré grâce au concours d'un généreux donateur. Au total, plus de 8,8M FCFA ont été mobilisés depuis janvier 2026.
+                    </p>
+                </div>
+
+                <!-- DÉMARCHES OFFICIELLES -->
+                <div class="ministry-box">
+                    <h3>🏛️ Démarches auprès du Ministère de la Santé</h3>
+                    <span class="ministry-status">⏳ En attente de réponse</span>
+                    <ul>
+                        <li>Courrier officiel déposé le 07 juillet 2026, sollicitant une prise en charge durable et un soutien financier de 4,8M FCFA</li>
+                        <li>Relance envoyée fin août 2026, accompagnée des derniers résultats d'analyses confirmant l'urgence</li>
+                        <li>Aucune réponse officielle à ce jour — le soutien de la communauté reste indispensable en parallèle</li>
+                    </ul>
                 </div>
 
                 <!-- PRESCRIPTION MÉDICALE -->
                 <div class="prescription-box">
-                    <h3>💊 PRESCRIPTION MÉDICALE</h3>
+                    <h3>💊 PRESCRIPTION MÉDICALE ACTUALISÉE</h3>
                     <p style="font-size: 1.1em; color: #666; margin-bottom: 20px;">
-                        Pour atteindre la guérison complète :
+                        Suite à la rechute confirmée, les médecins recommandent la reprise immédiate :
                     </p>
                     <ul>
-                        <li>3 doses supplémentaires (Somatuline LP 120)</li>
+                        <li>3 nouvelles doses (Somatuline LP 120) — doses 7, 8 et 9</li>
                         <li>Administrées toutes les 3 semaines</li>
                         <li>Objectif : Ramener le taux sous 240 ng/ml</li>
-                        <li>Analyses de contrôle après la 6ème dose</li>
+                        <li>Analyses de contrôle déjà réalisées, confirmant la nécessité de reprendre sans délai</li>
                     </ul>
                 </div>
 
                 <!-- PHASE 2 - OBJECTIFS -->
                 <div class="phase2-box">
-                    <h2>💰 PHASE 2 - ACTE II</h2>
-                    <p style="font-size: 1.3em; margin-bottom: 30px;">Consolidation du traitement</p>
+                    <h2>💰 REPRISE DU TRAITEMENT</h2>
+                    <p style="font-size: 1.3em; margin-bottom: 30px;">3 nouvelles doses pour viser la guérison</p>
                     
                     <div class="doses-grid">
                         <div class="dose-card">
-                            <h4>Dose 4</h4>
+                            <h4>Dose 7</h4>
                             <div class="dose-amount">1 600 000 FCFA</div>
                         </div>
                         <div class="dose-card">
-                            <h4>Dose 5</h4>
+                            <h4>Dose 8</h4>
                             <div class="dose-amount">1 600 000 FCFA</div>
                         </div>
                         <div class="dose-card">
-                            <h4>Dose 6</h4>
+                            <h4>Dose 9</h4>
                             <div class="dose-amount">1 600 000 FCFA</div>
                         </div>
                     </div>
@@ -596,7 +746,7 @@
 
                 <!-- CITATION -->
                 <div class="quote">
-                    Nous avons commencé ensemble, terminons ensemble !
+                    Nous avons déjà parcouru tant de chemin ensemble — ne nous arrêtons pas si près du but.
                 </div>
             </div>
         </div>
