@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notre Parcours — Solidarité Marie Noëlle</title>
+    <link rel="icon" type="image/png" href="../icocollecte.png">
+    <meta property="og:title" content="Notre Parcours — Solidarité Marie Noëlle" />
+    <meta property="og:description" content="La chronologie complète du combat de Marie Noëlle, du diagnostic à aujourd'hui.">
+    <meta property="og:image" content="https://raw.githubusercontent.com/asadgery/solidarite/main/qr_code_wave_1200.jpg" />
+    <meta property="og:url" content="https://asadgery.github.io/solidarite/marie-noelle/" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%);
+            min-height: 100vh;
+            display: flex;
+        }
+
+        /* MENU VERTICAL */
+        .sidebar {
+            width: 260px;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 4px 0 20px rgba(0,0,0,0.1);
+            position: fixed;
+            left: 0; top: 0; bottom: 0;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-header { padding: 30px 20px; text-align: center; border-bottom: 2px solid rgba(86, 171, 47, 0.2); }
+        .sidebar-logo { font-size: 2em; margin-bottom: 10px; }
+        .sidebar-title {
+            font-size: 1.3em; font-weight: 800;
+            background: linear-gradient(135deg, #56ab2f, #a8e063);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            margin-bottom: 5px;
+        }
+        .sidebar-subtitle { font-size: 0.85em; color: #666; font-weight: 500; }
+        .sidebar-nav { flex: 1; padding: 20px 0; overflow-y: auto; }
+        .nav-item { margin: 8px 15px; position: relative; }
+        .nav-item a {
+            display: flex; align-items: center; gap: 15px; padding: 15px 20px;
+            color: #2d3748; text-decoration: none; border-radius: 12px;
+            transition: all 0.3s ease; font-weight: 600; font-size: 0.95em;
+        }
+        .nav-item a:hover { background: linear-gradient(135deg, rgba(86, 171, 47, 0.1), rgba(168, 224, 99, 0.1)); transform: translateX(5px); }
+        .nav-item a.active { background: linear-gradient(135deg, #56ab2f, #a8e063); color: white; box-shadow: 0 4px 15px rgba(86, 171, 47, 0.3); }
+        .nav-icon { font-size: 1.3em; min-width: 25px; text-align: center; }
+        .sidebar-footer { padding: 20px; border-top: 2px solid rgba(86, 171, 47, 0.2); text-align: center; font-size: 0.8em; color: #666; }
+
+        .mobile-toggle {
+            display: none; position: fixed; top: 20px; left: 20px; z-index: 1100;
+            background: white; border: none; padding: 12px 16px; border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2); cursor: pointer; font-size: 1.5em;
+        }
+
+        .main-wrapper { margin-left: 260px; flex: 1; padding: 0; overflow-y: auto; max-height: 100vh; }
+
+        .hero { background: white; padding: 60px 40px 20px; }
+        .hero-content { max-width: 850px; margin: 0 auto; text-align: center; }
+        .hero-icon { font-size: 70px; margin-bottom: 15px; }
+        .hero h1 { color: #56ab2f; font-size: 2.6em; font-weight: 800; margin-bottom: 10px; }
+        .hero .subtitle { color: #2d3748; font-size: 1.2em; font-weight: 600; margin-bottom: 20px; }
+
+        /* TIMELINE */
+        .timeline-wrap { background: white; padding: 20px 40px 60px; }
+        .timeline-container { max-width: 850px; margin: 0 auto; }
+
+        .era-header {
+            margin: 50px 0 25px;
+            padding: 14px 25px;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 1.2em;
+            color: white;
+            text-align: center;
+        }
+        .era-header.medical { background: linear-gradient(135deg, #56ab2f, #a8e063); }
+        .era-header.phase1 { background: linear-gradient(135deg, #667eea, #764ba2); }
+        .era-header.phase2 { background: linear-gradient(135deg, #56ab2f, #a8e063); }
+        .era-header.official { background: linear-gradient(135deg, #f5576c, #f093fb); }
+
+        .timeline-vertical { position: relative; padding-left: 45px; }
+        .timeline-vertical::before {
+            content: ''; position: absolute; left: 14px; top: 5px; bottom: 5px;
+            width: 3px; background: #e0e0e0;
+        }
+
+        .tl-item { position: relative; margin-bottom: 28px; }
+        .tl-dot {
+            position: absolute; left: -45px; top: 3px;
+            width: 26px; height: 26px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.9em; color: white; font-weight: 800;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+        }
+        .tl-dot.med { background: #56ab2f; }
+        .tl-dot.dose { background: #667eea; }
+        .tl-dot.analyse { background: #f5a623; }
+        .tl-dot.analyse.alert { background: #f5576c; }
+        .tl-dot.officiel { background: #f5576c; }
+        .tl-dot.site { background: #2d3748; }
+
+        .tl-date { font-size: 0.85em; color: #888; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+        .tl-title { font-size: 1.15em; font-weight: 700; color: #2d3748; margin: 4px 0 6px; }
+        .tl-desc { color: #555; font-size: 0.98em; line-height: 1.55; }
+        .tl-tag {
+            display: inline-block; font-size: 0.75em; font-weight: 700;
+            padding: 3px 12px; border-radius: 20px; margin-top: 8px;
+        }
+        .tl-tag.ok { background: #56ab2f22; color: #56ab2f; }
+        .tl-tag.warn { background: #f5a62322; color: #d68000; }
+        .tl-tag.alert { background: #f5576c22; color: #f5576c; }
+
+        .footer { background: #2d3748; color: white; padding: 40px; text-align: center; }
+        .footer h3 { font-size: 1.8em; color: #ffd700; margin-bottom: 15px; }
+
+        @media (max-width: 968px) {
+            .sidebar { transform: translateX(-100%); }
+            .sidebar.active { transform: translateX(0); }
+            .mobile-toggle { display: block; }
+            .main-wrapper { margin-left: 0; }
+            .hero h1 { font-size: 1.9em; }
+            .hero, .timeline-wrap { padding-left: 25px; padding-right: 25px; }
+            .timeline-vertical { padding-left: 35px; }
+            .tl-dot { left: -35px; width: 22px; height: 22px; font-size: 0.75em; }
+        }
+    </style>
+</head>
+<body>
+    <button class="mobile-toggle" onclick="toggleSidebar()">☰</button>
+
+    <!-- MENU VERTICAL -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">❤️</div>
+            <div class="sidebar-title">Solidarité MN</div>
+            <div class="sidebar-subtitle">Suivi solidarité</div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <div class="nav-item">
+                <a href="index.html">
+                    <span class="nav-icon">🏠</span>
+                    <span>Accueil</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="contributions.html">
+                    <span class="nav-icon">💰</span>
+                    <span>Suivi Contributions</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="sprint-2.html">
+                    <span class="nav-icon">📄</span>
+                    <span>Note de synthèse</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="parcours.html" class="active">
+                    <span class="nav-icon">📅</span>
+                    <span>Notre Parcours</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="galaxie-donateurs.html">
+                    <span class="nav-icon">🌟</span>
+                    <span>Galaxy Donateurs</span>
+                </a>
+            </div>
+        </nav>
+
+        <div class="sidebar-footer">
+            <p>🙏 Merci de votre soutien continu</p>
+        </div>
+    </aside>
+
+    <!-- CONTENU PRINCIPAL -->
+    <div class="main-wrapper">
+        <div class="hero">
+            <div class="hero-content">
+                <div class="hero-icon">📅</div>
+                <h1>NOTRE PARCOURS</h1>
+                <div class="subtitle">De 2019 à aujourd'hui — chaque étape de ce combat</div>
+            </div>
+        </div>
+
+        <div class="timeline-wrap">
+            <div class="timeline-container">
+
+                <!-- ÈRE 1 : DIAGNOSTIC ET CHIRURGIE -->
+                <div class="era-header medical">🩺 2019 – 2025 · Diagnostic et premiers traitements</div>
+                <div class="timeline-vertical">
+
+                    <div class="tl-item">
+                        <div class="tl-dot med">🔍</div>
+                        <div class="tl-date">2019</div>
+                        <div class="tl-title">Diagnostic de l'acromégalie</div>
+                        <div class="tl-desc">Découverte d'un adénome hypophysaire sécrétant l'hormone de croissance (GH), à l'origine de la maladie.</div>
+                    </div>
+
+                    <div class="tl-item">
+                        <div class="tl-dot med">🏥</div>
+                        <div class="tl-date">Avril 2021</div>
+                        <div class="tl-title">Chirurgie transsphénoïdale</div>
+                        <div class="tl-desc">Intervention réalisée par le Professeur HAIDARA, par voie endoscopique endonasale.</div>
+                    </div>
+
+                    <div class="tl-item">
+                        <div class="tl-dot med">✈️</div>
+                        <div class="tl-date">Octobre 2025</div>
+                        <div class="tl-title">Traitement spécialisé en Tunisie</div>
+                        <div class="tl-desc">Prise en charge à l'Hôpital Beau Séjour de Tunis pour la poursuite du suivi médical.</div>
+                    </div>
+
+                    <div class="tl-item">
+                        <div class="tl-dot analyse alert">📊</div>
+                        <div class="tl-date">08 décembre 2025</div>
+                        <div class="tl-title">Analyse IGF-1 : 1 069,10 ng/ml</div>
+                        <div class="tl-desc">Point de départ du suivi biologique — taux très élevé, confirmant l'urgence d'un traitement soutenu.</div>
+                        <div class="tl-tag alert">Avant traitement</div>
+                    </div>
+
+                    <div class="tl-item">
+                        <div class="tl-dot med">🏥</div>
+                        <div class="tl-date">Décembre 2025</div>
+                        <div class="tl-title">Hospitalisation à l'Hôpital Militaire d'Abidjan</div>
+                        <div class="tl-desc">Prise en charge de complications liées à un diabète sucré associé.</div>
+                    </div>
+                </div>
+
+                <!-- ÈRE 2 : PHASE 1 -->
+                <div class="era-header phase1">💜 Phase 1 · Décembre 2025 – Février 2026</div>
+                <div class="timeline-vertical">
+
+                    <div class="tl-item">
+                        <div class="tl-dot dose">💉</div>
+                        <div class="tl-date">07 janvier 2026</div>
+                        <div class="tl-title">Dose 1 administrée</div>
+                        <div class="tl-desc">Premier financement mobilisé par la Promo 2009 et l'entourage — début du traitement actuel (Somatuline LP 120 + Dostinex).</div>
+                    </div>
+
+                    <div class="tl-item">
+                        <div class="tl-dot dose">💉</div>
+                        <div class="tl-date">Janvier 2026</div>
+                        <div class="tl-title">Doses 2 et 3 administrées</div>
+                        <div class="tl-desc">Poursuite du protocole, toutes les 3 semaines comme prescrit.</div>
+                    </div>
+
+                    <div class="tl-item">
+                        <div class="tl-dot site">🎉</div>
+                        <div class="tl-date">Février 2026</div>
+                        <div class="tl-title">Phase 1 terminée : 112% de l'objectif atteint</div>
+                        <div class="tl-desc">5 613 865 FCFA collectés grâce à 74 donateurs — un immense élan de solidarité de la Promo 2009, de la famille et des amis.</div>
+                        <div class="tl-tag ok">Objectif dépassé</div>
+                    </div>
+                </div>
+
+                <!-- ÈRE 3 : PHASE 2 -->
+                <div class="era-header phase2">💚 Phase 2 · Mars – Juin 2026</div>
+                <div class="timeline-vertical">
+
+                    <div class="tl-item">
+                        <div class="tl-dot analyse">📊</div>
+                        <div class="tl-date">18 mars 2026</div>
+                        <div class="tl-title">Analyse IGF-1 : 593,30 ng/ml</div>
+                        <div class="tl-desc">Meilleur résultat obtenu à ce jour — baisse de 45% depuis décembre 2025. Le traitement montre son efficacité.</div>
+                        <div class="tl-tag ok">Meilleur résultat</div>
+                    </div>
+
+                    <div class="tl-item">
+                        <div class="tl-dot dose">💉</div>
+                        <div class="tl-date">25 mars 2026</div>
+                        <div class="tl-title">Dose 4 administrée</div>
+                        <div class="tl-desc">Poursuite du traitement pour consolider les progrès obtenus.</div>
+                    </div>
+
+                    <div class="tl-item">
+                        <div class="tl-dot dose">💉</div>
+                        <div class="tl-date">04 avril 2026</div>
+                        <div class="tl-title">Dose 5 administrée</div>
+                    </div>
+
+                    <div class="tl-item">
+                        <div class="tl-dot dose">⚠️</div>
+                        <div class="tl-date">19 juin 2026</div>
+                        <div class="tl-title">Dose 6 administrée — dans des conditions difficiles</div>
+                        <div class="tl-desc">Après de multiples sollicitations, le fournisseur accepte une avance : seule la moitié du coût (800 000 FCFA) est réglée. Le reliquat sera soldé plus tard grâce au geste d'un généreux donateur. Le délai entre les doses, normalement strict de 3 semaines, commence à s'allonger faute de fonds réunis à temps.</div>
+                        <div class="tl-tag warn">Délai non respecté</div>
+                    </div>
+                </div>
+
+                <!-- ÈRE 4 : DÉMARCHES OFFICIELLES -->
+                <div class="era-header official">🏛️ Démarches officielles · Juillet – Août 2026</div>
+                <div class="timeline-vertical">
+
+                    <div class="tl-item">
+                        <div class="tl-dot analyse warn">📊</div>
+                        <div class="tl-date">Juin 2026</div>
+                        <div class="tl-title">Analyse IGF-1 : 624,90 ng/ml</div>
+                        <div class="tl-desc">Première remontée du taux après plusieurs mois de baisse continue — signal d'alerte, probablement lié à l'allongement du délai entre les doses.</div>
+                        <div class="tl-tag warn">Première remontée</div>
+                    </div>
+
+                    <div class="tl-item">
+                        <div class="tl-dot officiel">📮</div>
+                        <div class="tl-date">07 juillet 2026</div>
+                        <div class="tl-title">Courrier déposé au Ministère de la Santé</div>
+                        <div class="tl-desc">Demande officielle de prise en charge et de soutien financier, adressée au Ministère de la Santé, de l'Hygiène Publique et de la Couverture Maladie Universelle. Accusé de réception obtenu.</div>
+                        <div class="tl-tag warn">En attente de réponse</div>
+                    </div>
+
+                    <div class="tl-item">
+                        <div class="tl-dot analyse alert">📊</div>
+                        <div class="tl-date">20 août 2026</div>
+                        <div class="tl-title">Analyse IGF-1 : 674,70 ng/ml — hausse confirmée</div>
+                        <div class="tl-desc">Deuxième analyse consécutive à la hausse. L'hormone de croissance (GH) suit la même tendance (47,43 → 61,10 mUI/L). La régression redoutée est désormais confirmée médicalement, sur deux marqueurs distincts.</div>
+                        <div class="tl-tag alert">Rechute confirmée</div>
+                    </div>
+
+                    <div class="tl-item">
+                        <div class="tl-dot officiel">📧</div>
+                        <div class="tl-date">Fin août 2026</div>
+                        <div class="tl-title">Relance envoyée au Ministère de la Santé</div>
+                        <div class="tl-desc">Courrier et email de relance, accompagnés des derniers résultats d'analyses, pour réaffirmer l'urgence de la situation auprès des autorités.</div>
+                        <div class="tl-tag warn">Toujours sans réponse</div>
+                    </div>
+
+                </div>
+
+                <!-- AUJOURD'HUI -->
+                <div class="era-header" style="background: linear-gradient(135deg, #2d3748, #4a5568);">📍 Aujourd'hui</div>
+                <div class="timeline-vertical" style="padding-bottom: 10px;">
+                    <div class="tl-item" style="margin-bottom: 0;">
+                        <div class="tl-dot site">💪</div>
+                        <div class="tl-title">Le combat continue</div>
+                        <div class="tl-desc">
+                            6 doses financées et administrées, 9,6M FCFA mobilisés depuis janvier 2026. Trois nouvelles doses (7, 8 et 9) sont nécessaires pour reprendre la progression vers la guérison — soit 4,8M FCFA. Une démarche est en cours auprès du Ministère de la Santé ; votre soutien reste, en parallèle, décisif.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <h3>🙏 Chaque étape compte</h3>
+            <p style="font-size: 1.1em; margin: 15px 0;">
+                Merci à toutes celles et ceux qui ont fait, et continuent de faire, partie de ce parcours.
+            </p>
+            <p>Marie Noëlle compte sur nous ❤️</p>
+        </div>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('active');
+        }
+        document.querySelectorAll('.sidebar a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 968) {
+                    document.getElementById('sidebar').classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
