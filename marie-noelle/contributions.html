@@ -392,7 +392,7 @@
       // croissant, voir fetchAndPopulate) ne changent pas.
       const doseBlocks = phase.doses.map((d, idx) => {
         return `
-        <div class="table-container">
+        <div class="table-container" id="doseBlock-${phase.id}-${idx}" style="display:none;">
           <h2 style="color:#667eea;margin-bottom:10px;">📋 [ ${d.globalLabel} ] [ <span id="nbContrib-${phase.id}-${idx}">0</span> contributions ] [ ${d.dateRange} ]</h2>
           <div class="indicators">
             <div class="indicator"><span>🎯 Objectif (${d.globalLabel})</span><strong id="objDose-${phase.id}-${idx}">${formatNumber(d.objectif)} FCFA</strong></div>
@@ -400,7 +400,7 @@
             <div class="indicator"><span>📊 Reste à collecter (${d.globalLabel})</span><strong id="resteDose-${phase.id}-${idx}">${formatNumber(d.objectif)} FCFA</strong></div>
           </div>
           <div class="progress-container" style="margin-top:15px;"><div class="progress-bar" id="progressDose-${phase.id}-${idx}">0%</div></div>
-          <table id="tableDose-${phase.id}-${idx}" style="display:none;">
+          <table id="tableDose-${phase.id}-${idx}">
             <thead><tr><th>N°</th><th>Nom</th><th>Montant versé (FCFA)</th><th>Mode de paiement</th><th>Date</th></tr></thead>
             <tbody></tbody>
           </table>
@@ -422,12 +422,9 @@
     }
 
     function fillTable(tableId, contributions) {
-      const table = document.getElementById(tableId);
       const tbody = document.querySelector(`#${tableId} tbody`);
       if (!tbody) return;
       tbody.innerHTML = '';
-      // Une dose sans aucune contribution n'affiche pas de tableau vide.
-      if (table) table.style.display = contributions.length ? '' : 'none';
       contributions.forEach((c, index) => {
         const tr = document.createElement('tr');
         tr.style.animationDelay = `${index * 0.05}s`;
@@ -492,6 +489,10 @@
           setText(`nbContrib-${phase.id}-${idx}`, (doseContribs[d.csvTag] || []).length);
           setDoseProgress(`progressDose-${phase.id}-${idx}`, pctDose);
           fillTable(`tableDose-${phase.id}-${idx}`, doseContribs[d.csvTag] || []);
+
+          // Une dose sans aucune contribution ne s'affiche pas du tout.
+          const bloc = document.getElementById(`doseBlock-${phase.id}-${idx}`);
+          if (bloc) bloc.style.display = (doseContribs[d.csvTag] || []).length ? '' : 'none';
 
           cumulativeCarry += (total - restitution);
         });
