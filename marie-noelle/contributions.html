@@ -243,7 +243,7 @@
     <header>
       <h1>🎯 Suivi des Contributions — Marie Noëlle</h1>
       <p>Un geste pour sauver une vie.</p>
-      <p><b>Numéros : Wave/MTN (+225) 0505637361 | Orange (+225) 0749052678</b></p>
+      <p><b>Numéro unique (Wave / MTN / Orange) : (+225) 0505637361</b></p>
 
       <div class="qrcodes">
           <div class="qrcode wave">
@@ -258,7 +258,7 @@
           </div>
           <div class="qrcode orange">
               <span>🧡 Orange Money</span>
-              <span>07 49 05 26 78</span>
+              <span>05 05 63 73 61</span>
               <a href="tel:%23144*1%23"><img src="../qr_code_orange_80x80.jpg" alt="QR Code Orange"></a>
           </div>
       </div>
@@ -386,8 +386,12 @@
         </div>`;
       }
 
-      phase.doses.forEach((d, idx) => {
-        html += `
+      // Affichage de la dose la plus récente en premier. Seul l'ordre
+      // d'affichage est inversé : `idx` reste l'index réel dans phase.doses,
+      // donc les identifiants et le calcul de report cumulé (qui doit rester
+      // croissant, voir fetchAndPopulate) ne changent pas.
+      const doseBlocks = phase.doses.map((d, idx) => {
+        return `
         <div class="table-container">
           <h2 style="color:#667eea;margin-bottom:10px;">📋 [ ${d.globalLabel} ] [ <span id="nbContrib-${phase.id}-${idx}">0</span> contributions ] [ ${d.dateRange} ]</h2>
           <div class="indicators">
@@ -402,6 +406,7 @@
           </table>
         </div>`;
       });
+      html += doseBlocks.reverse().join('');
 
       return html;
     }
