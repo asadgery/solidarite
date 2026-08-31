@@ -143,6 +143,18 @@
             padding-right: 15px; color: white; font-weight: bold; box-shadow: 0 2px 10px rgba(0,0,0,0.2);
         }
 
+        /* La barre globale est posée sur un fond blanc : à 100 % elle devient
+           verte et se confondrait avec l'arrière-plan vert de la page. */
+        .global-progress {
+            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
+            border-radius: 20px; padding: 22px 25px; margin: 25px 0 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        .global-progress h3 {
+            color: #667eea; font-size: 1.05em; font-weight: 600;
+            margin-bottom: 14px; text-align: center;
+        }
+
         .table-container {
             background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
             border-radius: 20px; padding: 30px; margin-bottom: 30px;
@@ -229,7 +241,7 @@
           <div class="nav-item">
               <a href="galaxie-donateurs.html">
                   <span class="nav-icon">🌟</span>
-                  <span>Galaxy Donateurs</span>
+                  <span>Galaxie des donateurs</span>
               </a>
           </div>
       </nav>
@@ -374,7 +386,10 @@
           <div class="indicator"><span>💰 Autres contrib. (Famille & Autres ami/es)</span><strong id="totalAutre-${phase.id}">0 FCFA</strong></div>
           <div class="indicator"><span>💰 Reste à transférer</span><strong id="aRestituer-${phase.id}">0 FCFA</strong></div>
         </div>
-        <div class="progress-container"><div class="progress-bar" id="progress-${phase.id}">0%</div></div>
+        <div class="global-progress">
+          <h3>📈 Progression globale de la phase</h3>
+          <div class="progress-container"><div class="progress-bar" id="progress-${phase.id}">0%</div></div>
+        </div>
       `;
 
       if (!phase.csvUrl) {
@@ -478,6 +493,7 @@
         setDoseProgress(`progress-${phase.id}`, pourcentageGlobal);
 
         let cumulativeCarry = 0;
+        let doseEnCoursTrouvee = false;
         phase.doses.forEach((d, idx) => {
           const total = doseTotals[d.csvTag] || 0;
           const restitution = (phase.restitutions && phase.restitutions[idx]) || 0;
@@ -490,9 +506,17 @@
           setDoseProgress(`progressDose-${phase.id}-${idx}`, pctDose);
           fillTable(`tableDose-${phase.id}-${idx}`, doseContribs[d.csvTag] || []);
 
-          // Une dose sans aucune contribution ne s'affiche pas du tout.
+          // Un bloc s'affiche s'il a des contributions ou s'il s'agit de la
+          // dose en cours de collecte (la première non encore financée).
+          const aDesContributions = (doseContribs[d.csvTag] || []).length > 0;
+          // On se fonde sur le total propre à la dose, pas sur `reste` : ce
+          // dernier intègre le report cumulé et tombe à 0 sur une dose encore
+          // vide dès que la précédente est financée.
+          const estDoseEnCours = !doseEnCoursTrouvee && total < d.objectif;
+          if (estDoseEnCours) doseEnCoursTrouvee = true;
+
           const bloc = document.getElementById(`doseBlock-${phase.id}-${idx}`);
-          if (bloc) bloc.style.display = (doseContribs[d.csvTag] || []).length ? '' : 'none';
+          if (bloc) bloc.style.display = (aDesContributions || estDoseEnCours) ? '' : 'none';
 
           cumulativeCarry += (total - restitution);
         });
