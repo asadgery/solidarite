@@ -176,10 +176,14 @@
         td:nth-child(3) { color: #32CD32; font-weight: 600; }
 
         .empty-note {
-            background: #f5a62315; border-left: 5px solid #f5a623;
-            padding: 20px 25px; border-radius: 12px; margin: 20px 0;
-            color: #2d3748; font-size: 1.02em;
+            background: rgba(255, 255, 255, 0.95); border-left: 5px solid #f5a623;
+            padding: 22px 28px; border-radius: 12px; margin: 20px 0;
+            color: #2d3748; font-size: 1.02em; line-height: 1.65;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
         }
+        /* Variante « bonne nouvelle » : collecte close parce que le besoin
+           est couvert, et non parce qu'il manque une configuration. */
+        .empty-note.good { border-left-color: #56ab2f; }
 
         footer { text-align: center; padding: 30px; color: white; font-size: 1.2em; font-weight: 600; margin-top: 30px; animation: pulse 2s ease-in-out infinite; }
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
@@ -341,8 +345,22 @@
       {
         id: 'phase3',
         label: 'Phase 3',
-        badge: '🔴 En cours',
-        csvUrl: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT6EoAaL9yp7Z84IesK8NC8W_vsTfFi-19gzUPfiCE4m8_aTES5Dqhf_4B7Y4iFbhgvHCWxDhtfa9M5/pub?gid=2039195236&single=true&output=csv',
+        badge: '⏸️ Suspendue',
+        // Collecte suspendue le 02/09/2026 : les doses 7 à 11 sont couvertes
+        // par la prise en charge validée par le Conseil de Santé. L'entrée est
+        // conservée plutôt que supprimée — la collecte serait réouverte en
+        // remettant le lien CSV ci-dessous et le badge « 🔴 En cours ».
+        csvUrl: null,
+        // Lien du Google Sheet, conservé pour une réouverture éventuelle :
+        // https://docs.google.com/spreadsheets/d/e/2PACX-1vT6EoAaL9yp7Z84IesK8NC8W_vsTfFi-19gzUPfiCE4m8_aTES5Dqhf_4B7Y4iFbhgvHCWxDhtfa9M5/pub?gid=2039195236&single=true&output=csv
+        note: `✅ <strong>Collecte suspendue — ces doses sont couvertes.</strong>
+               Le 2 septembre 2026, le Conseil de Santé a validé une prise en charge
+               de 5 doses (doses 7 à 11), au-delà des 3 doses initialement sollicitées.
+               L'appel aux dons lancé fin août n'a reçu aucune contribution et est clos :
+               aucun reversement n'est à effectuer.
+               <br><br>⏳ La prise en charge reste à concrétiser — sa transmission à
+               Yako Santé est en cours. Si un besoin réapparaissait, cette collecte
+               serait rouverte ici même.`,
         objectifGlobal: 4800000,
         dateLimiteGlobal: 'À définir',
         restitutions: [0, 0],
@@ -375,6 +393,13 @@
     }
 
     function skeletonHTML(phase) {
+      // Une phase dont la collecte est close (`note`) n'affiche ni objectif ni
+      // « reste à collecter » : ces chiffres n'ont plus de sens et induiraient
+      // les visiteurs en erreur. Seule l'explication est présentée.
+      if (phase.note) {
+        return `<div class="empty-note good" id="empty-note-${phase.id}">${phase.note}</div>`;
+      }
+
       let html = `
         <div class="indicators">
           <div class="indicator"><span>🎯 Objectif (Global)</span><strong id="objectif-${phase.id}">${formatNumber(phase.objectifGlobal)} FCFA</strong></div>
