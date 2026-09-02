@@ -288,6 +288,20 @@
             box-shadow: 0 8px 25px rgba(245, 87, 108, 0.4);
         }
         
+        /* Variante « demande aboutie » : même bandeau, couleurs de succès. */
+        /* Vert soutenu : sur le dégradé clair #a8e063, le texte blanc du
+           bandeau devenait illisible. */
+        .urgent-banner.resolved {
+            background: linear-gradient(135deg, #3d7c1f, #56ab2f);
+            box-shadow: 0 8px 25px rgba(86, 171, 47, 0.4);
+        }
+        
+        /* `.section p` impose une couleur sombre, illisible sur le bandeau
+           coloré : on rétablit le blanc pour les deux variantes. */
+        .urgent-banner p {
+            color: white;
+        }
+        
         .urgent-banner h3 {
             font-size: 1.8em;
             margin-bottom: 15px;
@@ -487,7 +501,7 @@
 
                 <div class="highlight-box">
                     <p>Après 6 doses administrées avec succès et des progrès médicaux réels, une rechute a été confirmée par deux analyses consécutives. Faute de moyens réunis à temps entre les dernières doses, le taux d'IGF-1 est reparti à la hausse.</p>
-                    <p style="margin-top: 15px;"><strong>À ce jour, un besoin de 4 800 000 FCFA (3 nouvelles doses) est nécessaire pour reprendre le traitement et éviter une régression plus grave.</strong></p>
+                    <p style="margin-top: 15px;"><strong>Le 2 septembre 2026, le Conseil de Santé a validé une prise en charge de 5 doses (doses 7 à 11).</strong> La démarche officielle engagée en juillet a donc abouti, au-delà des 3 doses initialement sollicitées. Sa concrétisation est en cours de finalisation.</p>
                 </div>
             </div>
 
@@ -553,9 +567,11 @@
                             <tr><td>Dose 4</td><td>25/03/2026</td><td>1 600 000</td><td>✅ Administrée</td></tr>
                             <tr><td>Dose 5</td><td>04/04/2026</td><td>1 600 000</td><td>✅ Administrée</td></tr>
                             <tr><td>Dose 6</td><td>19/06/2026</td><td>1 600 000</td><td>✅ Administrée (via avance fournisseur)</td></tr>
-                            <tr><td><strong>Dose 7</strong></td><td>À planifier</td><td>1 600 000</td><td>⚠️ À financer — urgence</td></tr>
-                            <tr><td><strong>Dose 8</strong></td><td>À planifier</td><td>1 600 000</td><td>⚠️ À financer</td></tr>
-                            <tr><td><strong>Dose 9</strong></td><td>À planifier</td><td>1 600 000</td><td>⚠️ À financer</td></tr>
+                            <tr><td><strong>Dose 7</strong></td><td>À planifier</td><td>1 600 000</td><td>✅ Couverte par la prise en charge</td></tr>
+                            <tr><td><strong>Dose 8</strong></td><td>À planifier</td><td>1 600 000</td><td>✅ Couverte par la prise en charge</td></tr>
+                            <tr><td><strong>Dose 9</strong></td><td>À planifier</td><td>1 600 000</td><td>✅ Couverte par la prise en charge</td></tr>
+                            <tr><td><strong>Dose 10</strong></td><td>À planifier</td><td>1 600 000</td><td>✅ Couverte par la prise en charge</td></tr>
+                            <tr><td><strong>Dose 11</strong></td><td>À planifier</td><td>1 600 000</td><td>✅ Couverte par la prise en charge</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -578,31 +594,37 @@
                         <div class="value">9 600 000 FCFA</div>
                     </div>
                     <div class="financial-card">
-                        <h4>✅ Doses financées</h4>
-                        <div class="value">6 / 9</div>
+                        <h4>✅ Doses financées par la solidarité</h4>
+                        <div class="value">6</div>
                     </div>
                     <div class="financial-card">
-                        <h4>⚠️ Besoin actuel</h4>
-                        <div class="value">4 800 000 FCFA</div>
+                        <h4>🏛️ Doses prises en charge</h4>
+                        <div class="value">5</div>
                     </div>
                 </div>
 
                 <h3 class="section-subtitle">V.2. Situation actuelle</h3>
-                <p>Les ressources de la famille et de l'entourage proche sont aujourd'hui épuisées. La patiente, sans activité professionnelle du fait de la maladie, ne dispose d'aucun revenu propre. Aucun financement n'a encore été réuni pour les doses 7, 8 et 9.</p>
+                <p>Les ressources de la famille et de l'entourage proche sont épuisées, et la patiente, sans activité professionnelle du fait de la maladie, ne dispose d'aucun revenu propre. C'est ce constat qui avait motivé la démarche officielle de juillet.</p>
+                <p style="margin-top: 15px;">Depuis le 2 septembre 2026, <strong>le besoin financier immédiat est couvert</strong> : les doses 7 à 11 relèvent de la prise en charge validée par le Conseil de Santé. L'appel aux dons lancé fin août pour la dose 7 n'a reçu aucune contribution et est clos — aucun reversement n'est donc à effectuer.</p>
+                <p style="margin-top: 15px;">La prise en charge des analyses de contrôle, des consultations de suivi et des frais annexes n'est pas confirmée à ce stade et fait l'objet d'une vérification.</p>
             </div>
 
             <!-- VI. DEMARCHES OFFICIELLES -->
             <div class="section">
-                <h2 class="section-title">VI. DÉMARCHES AUPRÈS DU MINISTÈRE DE LA SANTÉ</h2>
+                <h2 class="section-title">VI. DÉMARCHES OFFICIELLES ET LEUR ABOUTISSEMENT</h2>
                 <p>En parallèle de la mobilisation communautaire, une démarche officielle a été engagée auprès du Ministère de la Santé, de l'Hygiène Publique et de la Couverture Maladie Universelle :</p>
                 <div class="medical-timeline">
                     <ul>
                         <li><strong>07 juillet 2026</strong> Dépôt d'un courrier sollicitant une prise en charge et un soutien financier, avec accusé de réception</li>
+                        <li><strong>10 juillet 2026</strong> Transfert du dossier au Conseil de Santé, reçu par celui-ci le 15 juillet</li>
                         <li><strong>Fin août 2026</strong> Relance envoyée, accompagnée des derniers résultats d'analyses confirmant l'aggravation</li>
-                        <li><strong>À ce jour</strong> Aucune réponse officielle reçue</li>
+                        <li><strong>31 août 2026</strong> Déplacement au service courrier du Ministère : le transfert au Conseil de Santé est découvert à cette occasion. Déplacement au Conseil de Santé le jour même, où il est précisé que l'institution octroie des prises en charge de traitement et non des aides financières</li>
+                        <li><strong>1er septembre 2026</strong> Entretien de la sœur de la patiente avec la direction du Conseil de Santé</li>
+                        <li><strong>02 septembre 2026</strong> <strong>Prise en charge de 5 doses validée</strong>, dans la limite du budget de l'année en cours, avec possibilité de déposer un nouveau dossier l'an prochain si la maladie persiste</li>
+                        <li><strong>En cours</strong> Transmission de la prise en charge à Yako Santé, structure qui fournit les doses</li>
                     </ul>
                 </div>
-                <p>Cette démarche vise non seulement un soutien financier ponctuel, mais aussi l'orientation de la patiente vers un dispositif de prise en charge adapté aux affections de longue durée, l'acromégalie étant une pathologie chronique susceptible de nécessiter un suivi prolongé.</p>
+                <p>La démarche visait non seulement un soutien ponctuel, mais aussi l'orientation de la patiente vers un dispositif adapté aux affections de longue durée, l'acromégalie étant une pathologie chronique susceptible de nécessiter un suivi prolongé. C'est précisément la forme qu'a prise la réponse obtenue.</p>
             </div>
 
             <!-- VII. MOTIFS -->
@@ -619,14 +641,15 @@
 
             <!-- VIII. NOTRE DEMANDE -->
             <div class="section">
-                <h2 class="section-title">VIII. NOTRE DEMANDE</h2>
-                <div class="urgent-banner">
-                    <h3>⚠️ URGENCE ABSOLUE</h3>
-                    <p>Montant nécessaire pour reprendre le traitement :</p>
-                    <div class="amount">4 800 000 FCFA</div>
-                    <p>3 doses supplémentaires (7, 8 et 9) pour viser la guérison complète</p>
+                <h2 class="section-title">VIII. NOTRE DEMANDE — ISSUE OBTENUE</h2>
+                <div class="urgent-banner resolved">
+                    <h3>✅ PRISE EN CHARGE VALIDÉE</h3>
+                    <p>Réponse du Conseil de Santé, le 2 septembre 2026 :</p>
+                    <div class="amount">5 doses</div>
+                    <p>Doses 7 à 11 — au-delà des 3 doses initialement sollicitées</p>
                 </div>
-                <p>Ce montant permettra la reprise immédiate du traitement et la poursuite vers l'objectif thérapeutique fixé : un taux d'IGF-1 inférieur à 240 ng/ml, condition indispensable à la stabilisation durable de l'état de santé de Madame WEDJE APPIA MARIE NOËLLE.</p>
+                <p>La demande formulée dans cette note a abouti. Cette prise en charge permettra la reprise du traitement et la poursuite vers l'objectif thérapeutique fixé : un taux d'IGF-1 inférieur à 240 ng/ml, condition indispensable à la stabilisation durable de l'état de santé de Madame WEDJE APPIA MARIE NOËLLE.</p>
+                <p style="margin-top: 15px;"><strong>Elle reste toutefois à concrétiser.</strong> Sa transmission à Yako Santé est en cours et aucune dose n'a encore été délivrée à ce titre. La note demeure publiée pour mémoire du parcours accompli et par souci de transparence envers les contributeurs.</p>
             </div>
 
             <!-- IX. TRANSPARENCE -->
